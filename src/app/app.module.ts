@@ -3,14 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {environment} from '../environments/environment';
+import {ApiModule, Configuration, ConfigurationParameters} from './core/api';
+import {HttpClientModule} from '@angular/common/http';
 
+export const apiConfigFactory = () => {
+  const params: ConfigurationParameters = {
+    basePath: environment.apiUrl,
+  }
+  return new Configuration(params);
+}
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    ApiModule.forRoot(apiConfigFactory)
   ],
   providers: [],
   bootstrap: [AppComponent]

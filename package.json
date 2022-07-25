@@ -2,6 +2,8 @@
   "name": "ecommerce-platform-angular-admin-panel",
   "version": "0.0.0",
   "scripts": {
+    "openapi-gen": "openapi-generator-cli generate",
+    "postinstall": "npm run openapi-gen",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -26,6 +28,7 @@
     "@angular-devkit/build-angular": "^14.1.0",
     "@angular/cli": "~14.1.0",
     "@angular/compiler-cli": "^14.1.0",
+    "@openapitools/openapi-generator-cli": "^2.5.1",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",

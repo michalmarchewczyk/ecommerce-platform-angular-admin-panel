@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "6.0.1",
+    "generators": {
+      "v3.0": {
+        "generatorName": "typescript-angular",
+        "output": "./src/app/core/api",
+        "inputSpec": "https://github.com/michalmarchewczyk/ecommerce-platform-nestjs-api/releases/download/v1.1.1/specification.json",
+        "additionalProperties": {
+          "fileNaming": "kebab-case",
+          "serviceSuffix": "ApiService",
+          "serviceFileSuffix": "-api.service"
+        }
+      }
+    }
+  }
+}
