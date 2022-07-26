@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {environment} from '../environments/environment';
 import {ApiModule, Configuration, ConfigurationParameters} from './core/api';
 import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const apiConfigFactory = () => {
   const params: ConfigurationParameters = {
@@ -15,15 +16,16 @@ export const apiConfigFactory = () => {
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ApiModule.forRoot(apiConfigFactory)
+    ApiModule.forRoot(apiConfigFactory),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
