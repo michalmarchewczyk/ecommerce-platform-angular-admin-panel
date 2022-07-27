@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
 
   lint:
     runs-on: ubuntu-latest
