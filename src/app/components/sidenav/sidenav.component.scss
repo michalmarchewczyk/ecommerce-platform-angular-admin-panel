@@ -1,0 +1,24 @@
+:host {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+mat-sidenav-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+mat-sidenav-content {
+  padding: 24px;
+  height: auto;
+  overflow-y: scroll;
+  flex: 1;
+}

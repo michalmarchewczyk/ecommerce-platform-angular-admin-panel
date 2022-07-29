@@ -1,2 +1,6 @@
-<app-toolbar></app-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <app-toolbar (sidenavToggle)="sidenav.toggle()"></app-toolbar>
+  <app-sidenav #sidenav>
+    <router-outlet></router-outlet>
+  </app-sidenav>
+</div>

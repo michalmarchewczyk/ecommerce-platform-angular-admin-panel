@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button>
+  <button
+    mat-icon-button
+    *ngIf="matchesMedium | async"
+    (click)="toggleSidenav()"
+  >
     <mat-icon>menu</mat-icon>
   </button>
   <span>Dashboard</span>

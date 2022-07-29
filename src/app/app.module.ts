@@ -21,6 +21,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MainComponent } from './pages/main/main.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 export const apiConfigFactory = () => {
   const params: ConfigurationParameters = { basePath: environment.apiUrl };
@@ -33,6 +34,7 @@ export const apiConfigFactory = () => {
     LayoutComponent,
     ToolbarComponent,
     MainComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,

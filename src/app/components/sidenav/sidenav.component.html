@@ -1,0 +1,16 @@
+<mat-sidenav-container>
+  <mat-sidenav
+    [mode]="(matchesMedium | async) ? 'over' : 'side'"
+    [fixedInViewport]="matchesMedium | async"
+    [fixedTopGap]="(matchesSmall | async) ? 56 : 64"
+    [opened]="(matchesMedium | async) === false"
+  >
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">Home</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
