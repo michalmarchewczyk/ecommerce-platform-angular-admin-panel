@@ -36,7 +36,8 @@
            "endOfLine": "auto"
           }
         ],
-        "max-lines": [1, 200]
+        "max-lines": [1, 200],
+        "no-unused-vars": "warn"
       }
     },
     {
