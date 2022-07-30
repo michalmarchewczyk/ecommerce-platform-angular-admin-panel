@@ -1,0 +1,38 @@
+<mat-card>
+  <form (submit)="login()" [formGroup]="loginForm">
+    <mat-card-title>Login - {{ error$ | async }}</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required />
+        <mat-error *ngIf="loginForm.controls.email.invalid"
+          >Invalid email</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required />
+        <mat-error *ngIf="loginForm.controls.password.invalid">
+          <ng-container *ngIf="(error$ | async) !== null">
+            Wrong email or password
+          </ng-container>
+          <ng-container
+            *ngIf="loginForm.controls.password.hasError('required')"
+          >
+            Password is required
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [disabled]="loginForm.invalid && (error$ | async) === null"
+      >
+        Login
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

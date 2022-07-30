@@ -22,9 +22,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MainComponent } from './pages/main/main.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { LoginComponent } from './pages/login/login.component';
+import { StoreModule } from '@ngrx/store';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthModule } from './core/auth/auth.module';
 
 export const apiConfigFactory = () => {
-  const params: ConfigurationParameters = { basePath: environment.apiUrl };
+  const params: ConfigurationParameters = {
+    basePath: environment.apiUrl,
+    withCredentials: true,
+  };
   return new Configuration(params);
 };
 
@@ -35,11 +44,13 @@ export const apiConfigFactory = () => {
     ToolbarComponent,
     MainComponent,
     SidenavComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     ApiModule.forRoot(apiConfigFactory),
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -53,6 +64,14 @@ export const apiConfigFactory = () => {
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    AuthModule,
+    StoreModule.forRoot([], {}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    ReactiveFormsModule,
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

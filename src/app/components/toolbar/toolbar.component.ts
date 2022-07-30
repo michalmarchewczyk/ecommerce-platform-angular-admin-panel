@@ -2,6 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../../core/auth/store/actions';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,7 +15,7 @@ export class ToolbarComponent {
 
   @Output() sidenavToggle = new EventEmitter<void>();
 
-  constructor(breakpointObserver: BreakpointObserver) {
+  constructor(breakpointObserver: BreakpointObserver, private store: Store) {
     this.matchesMedium = breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
       .pipe(map((v) => v.matches));
@@ -21,5 +23,9 @@ export class ToolbarComponent {
 
   toggleSidenav() {
     this.sidenavToggle.emit();
+  }
+
+  logout() {
+    this.store.dispatch(AuthActions.logout());
   }
 }
