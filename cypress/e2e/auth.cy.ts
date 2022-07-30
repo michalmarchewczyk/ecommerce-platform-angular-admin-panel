@@ -5,7 +5,7 @@ describe('Auth', () => {
 
   it('login and logout user user', () => {
     cy.contains('Login');
-    cy.get('input[type="email"]').type('test@test.local');
+    cy.get('input[type="email"]').type('admin@test.local');
     cy.get('input[type="password"]').type('test1234');
     cy.get('button[type="submit"]').click();
     cy.location('pathname').should('eq', '/');
@@ -32,7 +32,7 @@ describe('Auth', () => {
   });
 
   it('try to login with wrong credentials', () => {
-    cy.get('input[type="email"]').type('test@test.local');
+    cy.get('input[type="email"]').type('admin@test.local');
     cy.get('input[type="password"]').type('test123456');
     cy.get('button[type="submit"]').click();
     cy.contains('Wrong email or password');
@@ -45,7 +45,7 @@ describe('Auth', () => {
 
   it('redirect to main page if user is logged in', () => {
     cy.visit('/login');
-    cy.get('input[type="email"]').type('test@test.local');
+    cy.get('input[type="email"]').type('admin@test.local');
     cy.get('input[type="password"]').type('test1234');
     cy.get('button[type="submit"]').click();
 
