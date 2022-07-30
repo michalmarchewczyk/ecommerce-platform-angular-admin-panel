@@ -34,8 +34,12 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           browser: chrome
+          record: true
           start: npm run start
           wait-on: 'http://localhost:4200'
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   lint:
     runs-on: ubuntu-latest
