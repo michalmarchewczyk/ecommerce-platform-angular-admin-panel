@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolbarComponent } from './toolbar.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -8,6 +9,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideMockStore()],
       declarations: [ToolbarComponent],
     }).compileComponents();
 

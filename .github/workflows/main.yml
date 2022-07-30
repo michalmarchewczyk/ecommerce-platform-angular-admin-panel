@@ -23,6 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          repository: michalmarchewczyk/ecommerce-platform-nestjs-api
+          path: ./server
+      - name: Run dev server
+        run: docker-compose -f docker-compose-dev.yml up -d
+        working-directory: ./server
+      - uses: actions/checkout@v3
       - name: Run cypress
         uses: cypress-io/github-action@v4
         with:
