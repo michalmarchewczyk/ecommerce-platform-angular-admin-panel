@@ -34,12 +34,20 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           browser: chrome
-          record: true
           start: npm run start
           wait-on: 'http://localhost:4200'
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload cypress screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - name: Upload cypress videos
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
 
   lint:
     runs-on: ubuntu-latest
