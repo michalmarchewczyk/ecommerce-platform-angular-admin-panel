@@ -37,7 +37,7 @@ export const selectUser = createSelector(selectAuthUserState, fromUser.getUser);
 
 export const selectLoggedIn = createSelector(selectUser, (user) => !!user);
 
-export const selectAuthRole = createSelector(
+export const selectUserRole = createSelector(
   selectUser,
   (user) => user?.role ?? null,
 );
