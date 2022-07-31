@@ -25,6 +25,6 @@ export class SidenavComponent {
   }
 
   async toggle() {
-    await this.sidenav.toggle();
+    this.sidenav.toggle();
   }
 }
