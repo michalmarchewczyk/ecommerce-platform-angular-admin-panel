@@ -3,7 +3,7 @@ import * as LoginActions from '../../store/actions/login.actions';
 import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { selectLoginError } from '../../store/reducers';
+import { selectLoginError } from '../../store';
 
 @Component({
   selector: 'app-login-form',

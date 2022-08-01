@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Observable, of, skipWhile, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectAuthUserState } from '../store';
 import { User } from '../../api';
 import RoleEnum = User.RoleEnum;
+import { selectAuthUserState } from '../store';
 
 @Injectable({
   providedIn: 'root',

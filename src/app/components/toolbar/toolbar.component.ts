@@ -4,8 +4,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AuthActions } from '../../core/auth/store/actions';
-import { selectUserEmail } from '../../core/auth/store';
 import { Title } from '@angular/platform-browser';
+import { selectUserEmail } from '../../core/auth/store';
 
 @Component({
   selector: 'app-toolbar',
