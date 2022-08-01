@@ -7,6 +7,24 @@
   >
     <mat-nav-list>
       <a mat-list-item routerLink="/">Home</a>
+      <ng-container
+        *ngIf="
+          ['admin', 'manager', 'sales'].includes((userRoles$ | async) ?? '')
+        "
+      >
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/orders"> Orders </a>
+      </ng-container>
+      <ng-container
+        *ngIf="['admin', 'manager'].includes((userRoles$ | async) ?? '')"
+      >
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/products"> Products </a>
+      </ng-container>
+      <ng-container *ngIf="['admin'].includes((userRoles$ | async) ?? '')">
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/users"> Users </a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
 

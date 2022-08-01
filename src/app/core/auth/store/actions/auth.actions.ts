@@ -3,6 +3,11 @@ import { User } from '../../../api';
 
 export const loginCheck = createAction('[Auth] Login Check');
 
+export const loginCheckSuccess = createAction(
+  '[Auth] Login Check Success',
+  props<{ user: Pick<User, 'id' | 'email' | 'role'> }>(),
+);
+
 export const loginSuccess = createAction(
   '[Auth] Login Success',
   props<{ user: Pick<User, 'id' | 'email' | 'role'> }>(),

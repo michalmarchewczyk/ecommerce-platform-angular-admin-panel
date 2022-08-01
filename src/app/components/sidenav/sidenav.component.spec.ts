@@ -6,6 +6,9 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../../core/auth/store/reducers/user.reducer';
+import { selectUserRole } from '../../core/auth/store';
 
 describe('SidenavComponent', () => {
   let component: SidenavComponent;
@@ -15,6 +18,17 @@ describe('SidenavComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatSidenavModule, NoopAnimationsModule, MatListModule],
+      providers: [
+        provideMockStore({
+          initialState: { auth: { user: initialState } },
+          selectors: [
+            {
+              selector: selectUserRole,
+              value: 'admin',
+            },
+          ],
+        }),
+      ],
       declarations: [SidenavComponent],
     }).compileComponents();
 

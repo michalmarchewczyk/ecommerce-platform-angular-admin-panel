@@ -4,6 +4,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AuthActions } from '../../core/auth/store/actions';
+import { selectUserEmail } from '../../core/auth/store';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,10 +14,15 @@ import { AuthActions } from '../../core/auth/store/actions';
 })
 export class ToolbarComponent {
   matchesMedium: Observable<boolean>;
+  email$ = this.store.select(selectUserEmail);
 
   @Output() sidenavToggle = new EventEmitter<void>();
 
-  constructor(breakpointObserver: BreakpointObserver, private store: Store) {
+  constructor(
+    breakpointObserver: BreakpointObserver,
+    private store: Store,
+    public title: Title,
+  ) {
     this.matchesMedium = breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
       .pipe(map((v) => v.matches));

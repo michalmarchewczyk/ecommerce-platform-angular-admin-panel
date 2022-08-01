@@ -14,6 +14,7 @@ mat-sidenav-container {
 
 mat-sidenav {
   width: 200px;
+  padding-top: 12px;
 }
 
 mat-sidenav-content {
@@ -21,4 +22,8 @@ mat-sidenav-content {
   height: auto;
   overflow-y: scroll;
   flex: 1;
+}
+
+mat-divider {
+  margin: 12px 0;
 }

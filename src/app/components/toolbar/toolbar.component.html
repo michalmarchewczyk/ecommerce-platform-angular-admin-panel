@@ -6,8 +6,9 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Dashboard</span>
+  <span>{{ title.getTitle() }}</span>
   <span class="spacer"></span>
+  <span>{{ email$ | async }}</span>
   <button mat-icon-button (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>

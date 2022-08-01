@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { cold } from 'jasmine-marbles';
+import { selectUserEmail } from '../../core/auth/store';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -18,7 +19,16 @@ describe('ToolbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, MatToolbarModule, MatIconModule],
-      providers: [provideMockStore()],
+      providers: [
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectUserEmail,
+              value: 'test@test.local',
+            },
+          ],
+        }),
+      ],
       declarations: [ToolbarComponent],
     }).compileComponents();
 
@@ -27,6 +37,14 @@ describe('ToolbarComponent', () => {
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
     store = TestBed.inject(MockStore);
+    store.setState({
+      auth: {
+        user: {
+          user: { id: 123, email: 'test@test.local', role: 'admin' },
+          checked: true,
+        },
+      },
+    });
   });
 
   it('should create', () => {
@@ -51,7 +69,6 @@ describe('ToolbarComponent', () => {
   });
 
   it('should dispatch logout action on logout button click', async () => {
-    store.setState({ auth: { user: { user: { id: 123 } } } });
     const logoutButton = await loader.getHarness(
       MatButtonHarness.with({ text: 'logout' }),
     );

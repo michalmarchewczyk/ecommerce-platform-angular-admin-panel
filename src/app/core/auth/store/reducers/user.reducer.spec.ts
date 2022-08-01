@@ -15,7 +15,7 @@ describe('User Reducer', () => {
   });
 
   describe('login success action', () => {
-    it('should set loading to true', () => {
+    it('should set user', () => {
       const testUser = {
         email: 'test@test.local',
         id: 123,
@@ -34,6 +34,27 @@ describe('User Reducer', () => {
     });
   });
 
+  describe('login check success action', () => {
+    it('should set user and checked', () => {
+      const testUser = {
+        email: 'test@test.local',
+        id: 123,
+        role: RoleEnum.Admin,
+      };
+      const action = AuthActions.loginCheckSuccess({
+        user: testUser,
+      });
+
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        user: testUser,
+        checked: true,
+      });
+    });
+  });
+
   describe('logout action', () => {
     it('should set user to null', () => {
       const action = AuthActions.logout();
@@ -43,6 +64,7 @@ describe('User Reducer', () => {
       expect(result).toEqual({
         ...initialState,
         user: null,
+        checked: true,
       });
     });
   });

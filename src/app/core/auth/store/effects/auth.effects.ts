@@ -21,12 +21,26 @@ export class AuthEffects {
       ofType(AuthActions.loginCheck),
       exhaustMap(() =>
         this.usersApi.getCurrentUser().pipe(
-          map((user) => AuthActions.loginSuccess({ user })),
+          map((user) => AuthActions.loginCheckSuccess({ user })),
           catchError(() => of(AuthActions.logout())),
         ),
       ),
     );
   });
+
+  loginCheckSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.loginCheckSuccess),
+        tap(() => {
+          if (this.router.url === '/login') {
+            this.router.navigate(['/']);
+          }
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 
   login$ = createEffect(() => {
     return this.actions$.pipe(

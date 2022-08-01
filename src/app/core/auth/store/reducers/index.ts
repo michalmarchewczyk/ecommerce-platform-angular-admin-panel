@@ -42,6 +42,11 @@ export const selectUserRole = createSelector(
   (user) => user?.role ?? null,
 );
 
+export const selectUserEmail = createSelector(
+  selectUser,
+  (user) => user?.email ?? '',
+);
+
 export const selectLoginState = createSelector(
   selectAuthState,
   (state) => state[fromLogin.loginFeatureKey],

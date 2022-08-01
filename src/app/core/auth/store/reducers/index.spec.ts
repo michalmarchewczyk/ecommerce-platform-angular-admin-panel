@@ -8,6 +8,7 @@ import {
   selectLoginLoading,
   selectLoginState,
   selectUser,
+  selectUserEmail,
   selectUserRole,
 } from './index';
 import * as fromUser from './user.reducer';
@@ -36,6 +37,7 @@ describe('Auth Selectors', () => {
           email: 'test@test.local',
           role: 'admin',
         },
+        checked: true,
       },
       login: {
         loading: false,
@@ -87,6 +89,20 @@ describe('Auth Selectors', () => {
       const result = selectUserRole.projector(null);
 
       expect(result).toEqual(null);
+    });
+  });
+
+  describe('selectUserEmail', () => {
+    it('should select the user email', () => {
+      const result = selectUserEmail.projector(initialState.user.user);
+
+      expect(result).toEqual('test@test.local');
+    });
+
+    it('should select empty string if user is null', () => {
+      const result = selectUserEmail.projector(null);
+
+      expect(result).toEqual('');
     });
   });
 

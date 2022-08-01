@@ -28,6 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './core/auth/auth.module';
+import { UsersComponent } from './pages/users/users.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 export const apiConfigFactory = () => {
   const params: ConfigurationParameters = {
@@ -45,6 +48,9 @@ export const apiConfigFactory = () => {
     MainComponent,
     SidenavComponent,
     LoginComponent,
+    UsersComponent,
+    ProductsComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

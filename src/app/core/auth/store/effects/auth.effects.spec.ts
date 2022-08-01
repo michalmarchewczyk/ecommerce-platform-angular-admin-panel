@@ -47,7 +47,9 @@ describe('AuthEffects', () => {
       actions$ = of(AuthActions.loginCheck());
 
       effects.loginCheck$.subscribe((result) => {
-        expect(result).toEqual(AuthActions.loginSuccess({ user: testUser }));
+        expect(result).toEqual(
+          AuthActions.loginCheckSuccess({ user: testUser }),
+        );
         done();
       });
 
@@ -124,6 +126,26 @@ describe('AuthEffects', () => {
       spyOn(router, 'navigate');
 
       effects.loginSuccess$.subscribe();
+
+      expect(router.navigate).toHaveBeenCalledWith(['/']);
+
+      done();
+    });
+  });
+
+  describe('loginCheckSuccess$', () => {
+    it('should navigate to /', (done) => {
+      const testUser = {
+        id: 1,
+        email: 'test@test.local',
+        role: RoleEnum.Admin,
+      };
+      actions$ = of(AuthActions.loginCheckSuccess({ user: testUser }));
+
+      spyOnProperty(router, 'url').and.returnValue('/login');
+      spyOn(router, 'navigate');
+
+      effects.loginCheckSuccess$.subscribe();
 
       expect(router.navigate).toHaveBeenCalledWith(['/']);
 
