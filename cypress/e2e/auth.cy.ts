@@ -48,6 +48,8 @@ describe('Auth', () => {
     cy.get('input[type="email"]').type('admin@test.local');
     cy.get('input[type="password"]').type('test1234');
     cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/');
+    cy.contains('Dashboard');
 
     cy.visit('/login');
     cy.location('pathname').should('eq', '/');
