@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Observable, of, skipWhile, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAuthUserState } from '../store';
@@ -15,10 +11,7 @@ import RoleEnum = User.RoleEnum;
 })
 export class AuthRoleGuard implements CanActivate {
   constructor(private store: Store) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): Observable<boolean> {
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const roles: RoleEnum[] = route.data['roles'];
     return this.store.select(selectAuthUserState).pipe(
       skipWhile((state) => !state.checked),

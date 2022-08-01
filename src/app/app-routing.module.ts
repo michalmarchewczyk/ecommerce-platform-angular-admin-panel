@@ -1,14 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './pages/layout/layout.component';
-import { MainComponent } from './pages/main/main.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { AuthRoleGuard } from './core/auth/guards/auth-role.guard';
 import { User } from './core/api';
 import RoleEnum = User.RoleEnum;
-import { UsersComponent } from './pages/users/users.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { OrdersComponent } from './pages/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -20,35 +15,40 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthRoleGuard],
         data: { roles: [RoleEnum.Admin, RoleEnum.Manager, RoleEnum.Sales] },
-        component: MainComponent,
+        loadChildren: () =>
+          import('./home/home.module').then((m) => m.HomeModule),
       },
       {
         title: 'Users',
         path: 'users',
         canActivate: [AuthRoleGuard],
         data: { roles: [RoleEnum.Admin] },
-        component: UsersComponent,
+        loadChildren: () =>
+          import('./users/users.module').then((m) => m.UsersModule),
       },
       {
         title: 'Products',
         path: 'products',
         canActivate: [AuthRoleGuard],
         data: { roles: [RoleEnum.Admin, RoleEnum.Manager] },
-        component: ProductsComponent,
+        loadChildren: () =>
+          import('./products/products.module').then((m) => m.ProductsModule),
       },
       {
         title: 'Orders',
         path: 'orders',
         canActivate: [AuthRoleGuard],
         data: { roles: [RoleEnum.Admin, RoleEnum.Manager, RoleEnum.Sales] },
-        component: OrdersComponent,
+        loadChildren: () =>
+          import('./orders/orders.module').then((m) => m.OrdersModule),
       },
     ],
   },
   {
     title: 'Login',
     path: 'login',
-    component: LoginComponent,
+    loadChildren: () =>
+      import('./core/auth/auth.module').then((m) => m.AuthModule),
   },
 ];
 

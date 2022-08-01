@@ -8,7 +8,7 @@ import { ApiModule, Configuration, ConfigurationParameters } from './core/api';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { LayoutComponent } from './pages/layout/layout.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,17 +20,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { MainComponent } from './pages/main/main.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { LoginComponent } from './pages/login/login.component';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './core/auth/auth.module';
-import { UsersComponent } from './pages/users/users.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { OrdersComponent } from './pages/orders/orders.component';
 
 export const apiConfigFactory = () => {
   const params: ConfigurationParameters = {
@@ -45,12 +40,7 @@ export const apiConfigFactory = () => {
     AppComponent,
     LayoutComponent,
     ToolbarComponent,
-    MainComponent,
     SidenavComponent,
-    LoginComponent,
-    UsersComponent,
-    ProductsComponent,
-    OrdersComponent,
   ],
   imports: [
     BrowserModule,

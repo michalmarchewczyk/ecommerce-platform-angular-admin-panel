@@ -46,7 +46,7 @@ describe('AuthRoleGuard', () => {
     const routerState = router.routerState.snapshot;
     const route = routerState.root;
     route.data['roles'] = [];
-    guard.canActivate(route, routerState).subscribe((result) => {
+    guard.canActivate(route).subscribe((result) => {
       expect(result).toBeTruthy();
       done();
     });
@@ -61,7 +61,7 @@ describe('AuthRoleGuard', () => {
     const routerState = router.routerState.snapshot;
     const route = routerState.root;
     route.data['roles'] = [RoleEnum.Manager];
-    guard.canActivate(route, routerState).subscribe((result) => {
+    guard.canActivate(route).subscribe((result) => {
       expect(result).toBeFalsy();
       done();
     });
@@ -72,7 +72,7 @@ describe('AuthRoleGuard', () => {
     const routerState = router.routerState.snapshot;
     const route = routerState.root;
     route.data['roles'] = [RoleEnum.Admin];
-    guard.canActivate(route, routerState).subscribe((result) => {
+    guard.canActivate(route).subscribe((result) => {
       expect(result).toBeTruthy();
       done();
     });
@@ -83,7 +83,7 @@ describe('AuthRoleGuard', () => {
     const routerState = router.routerState.snapshot;
     const route = routerState.root;
     route.data['roles'] = [RoleEnum.Manager];
-    guard.canActivate(route, routerState).subscribe((result) => {
+    guard.canActivate(route).subscribe((result) => {
       expect(result).toBeFalsy();
       done();
     });
