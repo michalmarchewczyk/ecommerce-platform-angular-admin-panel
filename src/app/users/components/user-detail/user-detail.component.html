@@ -1,0 +1,53 @@
+<form (submit)="save()" [formGroup]="editForm">
+  <div class="user-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required />
+      <mat-error *ngIf="editForm.controls.email.invalid">
+        Invalid email
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>First name</mat-label>
+      <input matInput type="email" formControlName="firstName" />
+      <mat-error *ngIf="editForm.controls.firstName.invalid">
+        Invalid first name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input matInput type="email" formControlName="lastName" />
+      <mat-error *ngIf="editForm.controls.lastName.invalid">
+        Invalid last name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="customer">{{ 'customer' | roleName }}</mat-option>
+        <mat-option value="sales">{{ 'sales' | roleName }}</mat-option>
+        <mat-option value="manager">{{ 'manager' | roleName }}</mat-option>
+        <mat-option value="admin">{{ 'admin' | roleName }}</mat-option>
+        <mat-option value="disabled">{{ 'disabled' | roleName }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.controls.role.invalid">
+        Invalid role
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="user-actions">
+    <button mat-flat-button color="warn" (click)="delete()" type="button">
+      Delete
+    </button>
+    <div class="user-actions-spacer"></div>
+    <button
+      mat-button
+      color="primary"
+      (click)="cancel.emit(); resetValues()"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button mat-flat-button color="primary" type="submit">Save</button>
+  </div>
+</form>
