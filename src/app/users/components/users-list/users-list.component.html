@@ -88,7 +88,7 @@
           columns: ['id', 'email', 'firstName', 'lastName', 'role', 'expand']
         "
         class="user-row"
-        [class.example-expanded-row]="expandedUser === user"
+        [class.user-expanded-row]="expandedUser === user"
         (click)="expandedUser = expandedUser === user ? null : user"
       ></tr>
       <tr
