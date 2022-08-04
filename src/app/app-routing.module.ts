@@ -27,12 +27,12 @@ const routes: Routes = [
           import('./users/users.module').then((m) => m.UsersModule),
       },
       {
-        title: 'Products',
-        path: 'products',
+        title: 'Catalog',
+        path: 'catalog',
         canActivate: [AuthRoleGuard],
         data: { roles: [RoleEnum.Admin, RoleEnum.Manager] },
         loadChildren: () =>
-          import('./products/products.module').then((m) => m.ProductsModule),
+          import('./catalog/catalog.module').then((m) => m.CatalogModule),
       },
       {
         title: 'Orders',

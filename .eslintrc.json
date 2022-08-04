@@ -72,6 +72,14 @@
       "extends": [
         "plugin:@ngrx/all-requiring-type-checking"
       ]
+    },
+    {
+      "files": [
+        "*.spec.ts"
+      ],
+      "rules": {
+        "max-lines": "off"
+      }
     }
   ]
 }
