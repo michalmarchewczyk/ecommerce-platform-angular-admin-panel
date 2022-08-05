@@ -13,9 +13,23 @@ import {
   CategoriesEffects,
   ProductsEffects,
 } from './store/effects';
+import { ProductsListComponent } from './components/products-list/products-list.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { SharedModule } from '../shared/shared.module';
+import { ProductPhotoComponent } from './components/product-photo/product-photo.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
-  declarations: [CategoriesComponent, ProductsComponent],
+  declarations: [
+    CategoriesComponent,
+    ProductsComponent,
+    ProductsListComponent,
+    ProductPhotoComponent,
+    ProductComponent,
+  ],
   imports: [
     CommonModule,
     CatalogRoutingModule,
@@ -25,6 +39,11 @@ import {
       CategoriesEffects,
       AttributesEffects,
     ]),
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    SharedModule,
+    MatIconModule,
   ],
 })
 export class CatalogModule {}
