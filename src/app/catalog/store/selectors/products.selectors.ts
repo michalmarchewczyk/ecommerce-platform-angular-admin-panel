@@ -24,3 +24,14 @@ export const selectSelectedProduct = createSelector(
       ? state.list.find((p) => p.id === selectedProductId)
       : null,
 );
+
+export const selectProductPhotos = createSelector(
+  selectProductsState,
+  (state) => state.photos,
+);
+
+export const selectProductPhoto = (photoId: number) =>
+  createSelector(
+    selectProductPhotos,
+    (state) => state.find((p) => p.id === photoId) ?? null,
+  );

@@ -112,4 +112,15 @@ describe('Products Reducer', () => {
       });
     });
   });
+
+  describe('load product photos success action', () => {
+    it('should set the product photos', () => {
+      const photos = [{ id: 1, data: null }];
+      const action = ProductsActions.loadProductPhotosSuccess({ photos });
+
+      const result = reducer(initialState, action);
+
+      expect(result.photos).toEqual(photos);
+    });
+  });
 });

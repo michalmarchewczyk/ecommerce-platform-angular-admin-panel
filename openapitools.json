@@ -7,7 +7,7 @@
       "v3.0": {
         "generatorName": "typescript-angular",
         "output": "./src/app/core/api",
-        "inputSpec": "https://github.com/michalmarchewczyk/ecommerce-platform-nestjs-api/releases/download/v1.2.3/specification.json",
+        "inputSpec": "https://github.com/michalmarchewczyk/ecommerce-platform-nestjs-api/releases/download/v1.2.4/specification.json",
         "additionalProperties": {
           "fileNaming": "kebab-case",
           "serviceSuffix": "ApiService",

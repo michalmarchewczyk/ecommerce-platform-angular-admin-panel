@@ -12,6 +12,7 @@ describe('Attributes Selectors', () => {
       products: {
         list: [],
         selectedProductId: null,
+        photos: [],
       },
       categories: {
         list: [],

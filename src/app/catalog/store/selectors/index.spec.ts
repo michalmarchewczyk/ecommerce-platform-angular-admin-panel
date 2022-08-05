@@ -9,6 +9,7 @@ describe('Catalog Selectors', () => {
       products: {
         list: [],
         selectedProductId: null,
+        photos: [],
       },
       categories: {
         list: [],

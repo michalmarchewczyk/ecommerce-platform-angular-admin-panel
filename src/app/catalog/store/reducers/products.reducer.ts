@@ -7,11 +7,13 @@ export const productsFeatureKey = 'products';
 export interface State {
   list: Product[];
   selectedProductId: number | null;
+  photos: { id: number; data: Blob | null }[];
 }
 
 export const initialState: State = {
   list: [],
   selectedProductId: null,
+  photos: [],
 };
 
 export const reducer = createReducer(
@@ -56,6 +58,13 @@ export const reducer = createReducer(
     (state, { id, attributes }): State => ({
       ...state,
       list: state.list.map((p) => (p.id === id ? { ...p, attributes } : p)),
+    }),
+  ),
+  on(
+    ProductsActions.loadProductPhotosSuccess,
+    (state, { photos }): State => ({
+      ...state,
+      photos: photos,
     }),
   ),
 );

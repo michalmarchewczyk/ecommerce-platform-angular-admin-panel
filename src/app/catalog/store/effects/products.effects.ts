@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ProductsActions } from '../actions';
 import { ProductsApiService } from '../../../core/api';
 import { concatMap, exhaustMap, map, mergeMap } from 'rxjs/operators';
-import { catchError, of } from 'rxjs';
+import { catchError, combineLatest, of } from 'rxjs';
 
 @Injectable()
 export class ProductsEffects {
@@ -21,6 +21,34 @@ export class ProductsEffects {
           catchError(({ error }) =>
             of(ProductsActions.loadProductsFailure({ error: error.message })),
           ),
+        ),
+      ),
+    );
+  });
+
+  loadProductPhotos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductsActions.loadProductsSuccess),
+      mergeMap(({ products }) =>
+        combineLatest(
+          products
+            .flatMap((product) => product.photos)
+            .map((photo) =>
+              this.productsApi.getProductPhoto(photo.id).pipe(
+                map((data) => ({
+                  id: photo.id,
+                  data: data,
+                })),
+                catchError(() =>
+                  of({
+                    id: photo.id,
+                    data: null,
+                  }),
+                ),
+              ),
+            ),
+        ).pipe(
+          map((photos) => ProductsActions.loadProductPhotosSuccess({ photos })),
         ),
       ),
     );

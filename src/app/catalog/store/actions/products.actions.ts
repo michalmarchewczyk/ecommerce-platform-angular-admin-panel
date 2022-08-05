@@ -83,3 +83,13 @@ export const updateProductAttributesFailure = createAction(
   '[Products] Update Product Attributes Failure',
   props<{ error: string }>(),
 );
+
+export const loadProductPhotos = createAction(
+  '[Products] Load Product Photos',
+  props<{ products: Product[] }>(),
+);
+
+export const loadProductPhotosSuccess = createAction(
+  '[Products] Load Product Photos Success',
+  props<{ photos: { id: number; data: Blob | null }[] }>(),
+);

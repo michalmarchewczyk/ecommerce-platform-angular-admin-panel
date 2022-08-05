@@ -1,5 +1,7 @@
 import { CatalogState } from '../reducers';
 import {
+  selectProductPhoto,
+  selectProductPhotos,
   selectProductsList,
   selectProductsState,
   selectSelectedProduct,
@@ -20,6 +22,12 @@ describe('Products Selectors', () => {
           } as Product,
         ],
         selectedProductId: 1,
+        photos: [
+          {
+            id: 1,
+            data: {} as Blob,
+          },
+        ],
       },
       categories: {
         list: [],
@@ -64,6 +72,29 @@ describe('Products Selectors', () => {
       const result = selectSelectedProduct.projector(
         initialState.products,
         null,
+      );
+      expect(result).toEqual(null);
+    });
+  });
+
+  describe('selectProductPhotos', () => {
+    it('should select the product photos', () => {
+      const result = selectProductPhotos.projector(initialState.products);
+      expect(result).toEqual(initialState.products.photos);
+    });
+  });
+
+  describe('selectProductPhoto', () => {
+    it('should select the product photo', () => {
+      const result = selectProductPhoto(1).projector(
+        initialState.products.photos,
+      );
+      expect(result).toEqual(initialState.products.photos[0]);
+    });
+
+    it('should return null if no photo is found', () => {
+      const result = selectProductPhoto(2).projector(
+        initialState.products.photos,
       );
       expect(result).toEqual(null);
     });

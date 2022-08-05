@@ -65,6 +65,45 @@ describe('ProductsEffects', () => {
     });
   });
 
+  describe('loadProductPhotos$', () => {
+    it('should return a loadProductPhotosSuccess action', (done) => {
+      const product = {
+        id: 1,
+        name: 'Product 1',
+        photos: [
+          {
+            id: 1,
+          },
+          {
+            id: 2,
+          },
+        ],
+      } as Product;
+      actions$ = of(
+        ProductsActions.loadProductsSuccess({ products: [product] }),
+      );
+
+      effects.loadProductPhotos$.subscribe((result) => {
+        expect(result).toEqual(
+          ProductsActions.loadProductPhotosSuccess({
+            photos: [
+              { id: 1, data: null },
+              { id: 2, data: null },
+            ],
+          }),
+        );
+        done();
+      });
+
+      const requests = httpTestingController.match({ method: 'GET' });
+      requests[0].flush(null);
+      requests[1].flush(null, {
+        status: 500,
+        statusText: 'Server Error',
+      });
+    });
+  });
+
   describe('addProduct$', () => {
     it('should return a addProductSuccess action', (done) => {
       const product = {
