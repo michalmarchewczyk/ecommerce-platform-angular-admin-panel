@@ -123,4 +123,29 @@ describe('Products Reducer', () => {
       expect(result.photos).toEqual(photos);
     });
   });
+
+  describe('add product photo success action', () => {
+    it('should add the product photo to the list', () => {
+      const photo = { id: 1, data: new Blob() };
+      const action = ProductsActions.addProductPhotoSuccess(photo);
+
+      const result = reducer(initialState, action);
+
+      expect(result.photos).toEqual([photo]);
+    });
+  });
+
+  describe('delete product photo success action', () => {
+    it('should delete the product photo from the list', () => {
+      const photo = { id: 1, data: new Blob() };
+      const action = ProductsActions.deleteProductPhotoSuccess({
+        productId: 1,
+        photoId: 1,
+      });
+
+      const result = reducer({ ...initialState, photos: [photo] }, action);
+
+      expect(result.photos).toEqual([]);
+    });
+  });
 });

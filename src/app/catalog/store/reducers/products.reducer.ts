@@ -67,4 +67,18 @@ export const reducer = createReducer(
       photos: photos,
     }),
   ),
+  on(
+    ProductsActions.addProductPhotoSuccess,
+    (state, { id, data }): State => ({
+      ...state,
+      photos: [...state.photos, { id, data }],
+    }),
+  ),
+  on(
+    ProductsActions.deleteProductPhotoSuccess,
+    (state, { photoId }): State => ({
+      ...state,
+      photos: state.photos.filter((p) => p.id !== photoId),
+    }),
+  ),
 );

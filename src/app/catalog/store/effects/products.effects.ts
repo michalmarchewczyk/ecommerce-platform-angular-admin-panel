@@ -117,4 +117,40 @@ export class ProductsEffects {
       ),
     );
   });
+
+  addProductPhoto$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductsActions.addProductPhoto),
+      concatMap(({ productId, data }) =>
+        this.productsApi.addProductPhoto(productId, { file: data }).pipe(
+          map(({ id }) => ProductsActions.addProductPhotoSuccess({ id, data })),
+          catchError(({ error }) =>
+            of(
+              ProductsActions.addProductPhotoFailure({ error: error.message }),
+            ),
+          ),
+        ),
+      ),
+    );
+  });
+
+  deleteProductPhoto$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductsActions.deleteProductPhoto),
+      concatMap(({ productId, photoId }) =>
+        this.productsApi.deleteProductPhoto(productId, photoId).pipe(
+          map(() =>
+            ProductsActions.deleteProductPhotoSuccess({ productId, photoId }),
+          ),
+          catchError(({ error }) =>
+            of(
+              ProductsActions.deleteProductPhotoFailure({
+                error: error.message,
+              }),
+            ),
+          ),
+        ),
+      ),
+    );
+  });
 }

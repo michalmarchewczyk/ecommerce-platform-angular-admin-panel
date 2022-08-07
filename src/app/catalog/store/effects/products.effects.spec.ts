@@ -288,4 +288,89 @@ describe('ProductsEffects', () => {
       );
     });
   });
+
+  describe('addProductPhoto$', () => {
+    it('should return a addProductPhotoSuccess action', (done) => {
+      actions$ = of(
+        ProductsActions.addProductPhoto({ productId: 1, data: new Blob() }),
+      );
+
+      effects.addProductPhoto$.subscribe((result) => {
+        expect(result).toEqual(
+          ProductsActions.addProductPhotoSuccess({ id: 1, data: new Blob() }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'POST' }).flush({
+        id: 1,
+        data: new Blob(),
+      });
+    });
+
+    it('should return a addProductPhotoFailure action', (done) => {
+      actions$ = of(
+        ProductsActions.addProductPhoto({ productId: 1, data: new Blob() }),
+      );
+      effects.addProductPhoto$.subscribe((result) => {
+        expect(result).toEqual(
+          ProductsActions.addProductPhotoFailure({ error: 'error' }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'POST' }).flush(
+        {
+          message: 'error',
+        },
+        {
+          status: 500,
+          statusText: 'Server Error',
+        },
+      );
+    });
+  });
+
+  describe('deleteProductPhoto$', () => {
+    it('should return a deleteProductPhotoSuccess action', (done) => {
+      actions$ = of(
+        ProductsActions.deleteProductPhoto({ photoId: 1, productId: 1 }),
+      );
+
+      effects.deleteProductPhoto$.subscribe((result) => {
+        expect(result).toEqual(
+          ProductsActions.deleteProductPhotoSuccess({
+            photoId: 1,
+            productId: 1,
+          }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'DELETE' }).flush(null);
+    });
+
+    it('should return a deleteProductPhotoFailure action', (done) => {
+      actions$ = of(
+        ProductsActions.deleteProductPhoto({ photoId: 1, productId: 1 }),
+      );
+
+      effects.deleteProductPhoto$.subscribe((result) => {
+        expect(result).toEqual(
+          ProductsActions.deleteProductPhotoFailure({ error: 'error' }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'DELETE' }).flush(
+        {
+          message: 'error',
+        },
+        {
+          status: 500,
+          statusText: 'Server Error',
+        },
+      );
+    });
+  });
 });

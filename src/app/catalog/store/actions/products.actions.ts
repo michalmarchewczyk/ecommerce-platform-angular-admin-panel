@@ -84,12 +84,37 @@ export const updateProductAttributesFailure = createAction(
   props<{ error: string }>(),
 );
 
-export const loadProductPhotos = createAction(
-  '[Products] Load Product Photos',
-  props<{ products: Product[] }>(),
-);
-
 export const loadProductPhotosSuccess = createAction(
   '[Products] Load Product Photos Success',
   props<{ photos: { id: number; data: Blob | null }[] }>(),
+);
+
+export const addProductPhoto = createAction(
+  '[Products] Add Product Photo',
+  props<{ productId: number; data: Blob }>(),
+);
+
+export const addProductPhotoSuccess = createAction(
+  '[Products] Add Product Photo Success',
+  props<{ id: number; data: Blob }>(),
+);
+
+export const addProductPhotoFailure = createAction(
+  '[Products] Add Product Photo Failure',
+  props<{ error: string }>(),
+);
+
+export const deleteProductPhoto = createAction(
+  '[Products] Delete Product Photo',
+  props<{ productId: number; photoId: number }>(),
+);
+
+export const deleteProductPhotoSuccess = createAction(
+  '[Products] Delete Product Photo Success',
+  props<{ productId: number; photoId: number }>(),
+);
+
+export const deleteProductPhotoFailure = createAction(
+  '[Products] Delete Product Photo Failure',
+  props<{ error: string }>(),
 );
