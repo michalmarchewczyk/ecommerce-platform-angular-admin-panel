@@ -126,24 +126,75 @@ describe('Products Reducer', () => {
 
   describe('add product photo success action', () => {
     it('should add the product photo to the list', () => {
-      const photo = { id: 1, data: new Blob() };
-      const action = ProductsActions.addProductPhotoSuccess(photo);
+      const photo = { id: 123, data: new Blob() };
+      const product = {
+        id: 1,
+        name: 'Product 1',
+        photos: [{ ...photo, id: 12345 }],
+      } as any;
+      const action = ProductsActions.addProductPhotoSuccess({
+        ...photo,
+        productId: 1,
+        product: {
+          ...product,
+          photos: [photo],
+        },
+      });
 
-      const result = reducer(initialState, action);
+      const result = reducer(
+        { ...initialState, list: [product, { ...product, id: 2 }] },
+        action,
+      );
 
       expect(result.photos).toEqual([photo]);
+    });
+
+    it('should ignore if photoId is not found', () => {
+      const photo = { id: 123, data: new Blob() };
+      const product = {
+        id: 1,
+        name: 'Product 1',
+        photos: [{ ...photo, id: 12345 }],
+      } as any;
+      const action = ProductsActions.addProductPhotoSuccess({
+        ...photo,
+        productId: 1,
+        product: {
+          ...product,
+          photos: [],
+        },
+      });
+
+      const result = reducer(
+        { ...initialState, list: [product, { ...product, id: 2 }] },
+        action,
+      );
+
+      expect(result.photos).toEqual([{ ...photo, id: -1 }]);
     });
   });
 
   describe('delete product photo success action', () => {
     it('should delete the product photo from the list', () => {
       const photo = { id: 1, data: new Blob() };
+      const product = {
+        id: 1,
+        name: 'Product 1',
+        photos: [photo],
+      } as any;
       const action = ProductsActions.deleteProductPhotoSuccess({
         productId: 1,
         photoId: 1,
       });
 
-      const result = reducer({ ...initialState, photos: [photo] }, action);
+      const result = reducer(
+        {
+          ...initialState,
+          list: [product, { ...product, id: 2 }],
+          photos: [photo],
+        },
+        action,
+      );
 
       expect(result.photos).toEqual([]);
     });

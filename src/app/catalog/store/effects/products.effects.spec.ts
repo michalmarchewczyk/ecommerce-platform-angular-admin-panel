@@ -297,14 +297,17 @@ describe('ProductsEffects', () => {
 
       effects.addProductPhoto$.subscribe((result) => {
         expect(result).toEqual(
-          ProductsActions.addProductPhotoSuccess({ id: 1, data: new Blob() }),
+          ProductsActions.addProductPhotoSuccess({
+            productId: 123,
+            data: new Blob(),
+            product: { id: 123 } as any,
+          }),
         );
         done();
       });
 
       httpTestingController.expectOne({ method: 'POST' }).flush({
-        id: 1,
-        data: new Blob(),
+        id: 123,
       });
     });
 

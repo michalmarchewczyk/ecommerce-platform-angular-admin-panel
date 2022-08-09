@@ -1,1 +1,112 @@
-<p>product works!</p>
+<mat-card>
+  <form [formGroup]="editForm" (submit)="save()">
+    <mat-card-title-group>
+      <mat-card-title>
+        Edit product: "{{ (product$ | async)?.name }}"
+        <span *ngIf="editForm.dirty">(Not saved)</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        Updated at: {{ (product$ | async)?.updated | date: 'medium' }}
+      </mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <div class="form-column">
+        <mat-form-field appearance="outline" class="product-name">
+          <mat-label>Product name</mat-label>
+          <input type="text" matInput required formControlName="name" />
+          <mat-error>Invalid product name</mat-error>
+        </mat-form-field>
+        <div class="product-photos" *ngIf="product$ | async">
+          <app-product-photo
+            *ngFor="let photo of (product$ | async)?.photos"
+            [product]="(product$ | async)!"
+            [photoId]="photo.id"
+            [class.to-delete]="
+              editForm.controls.photosToDelete.value.includes(photo.id)
+            "
+          >
+            <button
+              *ngIf="!editForm.controls.photosToDelete.value.includes(photo.id)"
+              mat-icon-button
+              matTooltip="Delete photo"
+              (click)="deletePhoto(photo.id)"
+              type="button"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              *ngIf="editForm.controls.photosToDelete.value.includes(photo.id)"
+              mat-icon-button
+              matTooltip="Cancel deletion"
+              (click)="restorePhoto(photo.id)"
+              type="button"
+            >
+              <mat-icon>clear</mat-icon>
+            </button>
+          </app-product-photo>
+          <div *ngFor="let photo of photosToDisplay">
+            <img [src]="photo.data | safeUrl" alt="producttttt photo" />
+            <button
+              mat-icon-button
+              matTooltip="Remove photo"
+              type="button"
+              (click)="removePhoto(photo.name)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Add photos</mat-label>
+            <ngx-mat-file-input
+              accept="image/*"
+              multiple
+              formControlName="photos"
+              (change)="updatePhotos()"
+            ></ngx-mat-file-input>
+            <mat-icon matSuffix>add_photo_alternate</mat-icon>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" class="product-description">
+          <mat-label>Product description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error>Invalid product description</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-column">
+        <mat-form-field appearance="outline" class="product-price">
+          <mat-label>Price</mat-label>
+          <input type="number" matInput required formControlName="price" />
+          <mat-error>Invalid price</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="product-stock">
+          <mat-label>Stock</mat-label>
+          <input type="number" matInput required formControlName="stock" />
+          <mat-error>Invalid stock</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="product-visible">
+          <mat-label>Visibility</mat-label>
+          <mat-select formControlName="visible">
+            <mat-option value="true">Visible</mat-option>
+            <mat-option value="false">Hidden</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-button
+          type="button"
+          (click)="resetValues()"
+          color="primary"
+        >
+          Cancel
+        </button>
+        <button
+          mat-flat-button
+          type="submit"
+          [disabled]="!editForm.valid"
+          color="primary"
+        >
+          Save
+        </button>
+      </div>
+    </mat-card-content>
+  </form>
+</mat-card>

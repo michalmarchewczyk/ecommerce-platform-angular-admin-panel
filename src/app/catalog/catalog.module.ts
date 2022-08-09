@@ -21,6 +21,13 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductPhotoComponent } from './components/product-photo/product-photo.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductComponent } from './components/product/product.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -44,6 +51,13 @@ import { ProductComponent } from './components/product/product.component';
     MatSortModule,
     SharedModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MaterialFileInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatTooltipModule,
   ],
 })
 export class CatalogModule {}

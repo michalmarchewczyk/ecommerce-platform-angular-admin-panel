@@ -122,8 +122,14 @@ export class ProductsEffects {
     return this.actions$.pipe(
       ofType(ProductsActions.addProductPhoto),
       concatMap(({ productId, data }) =>
-        this.productsApi.addProductPhoto(productId, { file: data }).pipe(
-          map(({ id }) => ProductsActions.addProductPhotoSuccess({ id, data })),
+        this.productsApi.addProductPhoto(productId, data).pipe(
+          map((product) =>
+            ProductsActions.addProductPhotoSuccess({
+              productId: product.id,
+              data,
+              product,
+            }),
+          ),
           catchError(({ error }) =>
             of(
               ProductsActions.addProductPhotoFailure({ error: error.message }),

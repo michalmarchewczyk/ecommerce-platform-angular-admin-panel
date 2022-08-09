@@ -96,7 +96,7 @@ export const addProductPhoto = createAction(
 
 export const addProductPhotoSuccess = createAction(
   '[Products] Add Product Photo Success',
-  props<{ id: number; data: Blob }>(),
+  props<{ productId: number; data: Blob; product: Product }>(),
 );
 
 export const addProductPhotoFailure = createAction(

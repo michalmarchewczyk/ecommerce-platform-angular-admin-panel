@@ -69,15 +69,29 @@ export const reducer = createReducer(
   ),
   on(
     ProductsActions.addProductPhotoSuccess,
-    (state, { id, data }): State => ({
-      ...state,
-      photos: [...state.photos, { id, data }],
-    }),
+    (state, { productId, data, product }): State => {
+      const oldProduct = state.list.find((p) => p.id === productId);
+      const photoId = product.photos.find(
+        (p) => !oldProduct?.photos.find((ph) => ph.id === p.id),
+      )?.id;
+      return {
+        ...state,
+        photos: [...state.photos, { id: photoId ?? -1, data }],
+        list: state.list.map((p) =>
+          p.id === product.id ? { ...p, photos: product.photos } : p,
+        ),
+      };
+    },
   ),
   on(
     ProductsActions.deleteProductPhotoSuccess,
-    (state, { photoId }): State => ({
+    (state, { photoId, productId }): State => ({
       ...state,
+      list: state.list.map((p) =>
+        p.id === productId
+          ? { ...p, photos: p.photos.filter((p) => p.id !== photoId) }
+          : p,
+      ),
       photos: state.photos.filter((p) => p.id !== photoId),
     }),
   ),
