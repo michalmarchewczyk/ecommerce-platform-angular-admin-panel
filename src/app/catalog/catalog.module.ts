@@ -20,7 +20,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { SharedModule } from '../shared/shared.module';
 import { ProductPhotoComponent } from './components/product-photo/product-photo.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ProductComponent } from './components/product/product.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -29,6 +29,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProductPhotosInputComponent } from './components/product-photos-input/product-photos-input.component';
+import { ProductComponent } from './components/product/product.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ProductAttributesComponent } from './components/product-attributes/product-attributes.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +39,10 @@ import { ProductPhotosInputComponent } from './components/product-photos-input/p
     ProductsComponent,
     ProductsListComponent,
     ProductPhotoComponent,
-    ProductComponent,
+    ProductDetailsComponent,
     ProductPhotosInputComponent,
+    ProductComponent,
+    ProductAttributesComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +65,7 @@ import { ProductPhotosInputComponent } from './components/product-photos-input/p
     ReactiveFormsModule,
     MatButtonModule,
     MatTooltipModule,
+    MatTabsModule,
   ],
 })
 export class CatalogModule {}

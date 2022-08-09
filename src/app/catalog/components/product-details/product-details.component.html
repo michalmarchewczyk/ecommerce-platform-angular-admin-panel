@@ -1,0 +1,47 @@
+<form [formGroup]="editForm" (submit)="save()">
+  <div class="form-column">
+    <mat-form-field appearance="outline" class="product-name">
+      <mat-label>Product name</mat-label>
+      <input type="text" matInput required formControlName="name" />
+      <mat-error>Invalid product name</mat-error>
+    </mat-form-field>
+    <app-product-photos-input [product]="product"></app-product-photos-input>
+    <mat-form-field appearance="outline" class="product-description">
+      <mat-label>Product description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error>Invalid product description</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-column">
+    <mat-form-field appearance="outline" class="product-price">
+      <mat-label>Price</mat-label>
+      <input type="number" matInput required formControlName="price" />
+      <mat-error>Invalid price</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="product-stock">
+      <mat-label>Stock</mat-label>
+      <input type="number" matInput required formControlName="stock" />
+      <mat-error>Invalid stock</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="product-visible">
+      <mat-label>Visibility</mat-label>
+      <mat-select formControlName="visible">
+        <mat-option value="true">Visible</mat-option>
+        <mat-option value="false">Hidden</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-button type="button" (click)="resetValues()" color="primary">
+        Cancel
+      </button>
+      <button
+        mat-flat-button
+        type="submit"
+        [disabled]="!editForm.valid || !editForm.dirty"
+        color="primary"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>

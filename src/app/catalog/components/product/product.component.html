@@ -1,65 +1,20 @@
 <mat-card>
-  <form [formGroup]="editForm" (submit)="save()">
-    <mat-card-title-group>
-      <mat-card-title>
-        Edit product: "{{ (product$ | async)?.name }}"
-        <span *ngIf="editForm.dirty">(Not saved)</span>
-      </mat-card-title>
-      <mat-card-subtitle>
-        Updated at: {{ (product$ | async)?.updated | date: 'medium' }}
-      </mat-card-subtitle>
-    </mat-card-title-group>
-    <mat-card-content>
-      <div class="form-column">
-        <mat-form-field appearance="outline" class="product-name">
-          <mat-label>Product name</mat-label>
-          <input type="text" matInput required formControlName="name" />
-          <mat-error>Invalid product name</mat-error>
-        </mat-form-field>
-        <app-product-photos-input
-          [product]="product$ | async"
-        ></app-product-photos-input>
-        <mat-form-field appearance="outline" class="product-description">
-          <mat-label>Product description</mat-label>
-          <textarea matInput formControlName="description"></textarea>
-          <mat-error>Invalid product description</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-column">
-        <mat-form-field appearance="outline" class="product-price">
-          <mat-label>Price</mat-label>
-          <input type="number" matInput required formControlName="price" />
-          <mat-error>Invalid price</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="product-stock">
-          <mat-label>Stock</mat-label>
-          <input type="number" matInput required formControlName="stock" />
-          <mat-error>Invalid stock</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="product-visible">
-          <mat-label>Visibility</mat-label>
-          <mat-select formControlName="visible">
-            <mat-option value="true">Visible</mat-option>
-            <mat-option value="false">Hidden</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button
-          mat-button
-          type="button"
-          (click)="resetValues()"
-          color="primary"
-        >
-          Cancel
-        </button>
-        <button
-          mat-flat-button
-          type="submit"
-          [disabled]="!editForm.valid"
-          color="primary"
-        >
-          Save
-        </button>
-      </div>
-    </mat-card-content>
-  </form>
+  <mat-card-title-group>
+    <mat-card-title>{{ (product$ | async)?.name }} </mat-card-title>
+  </mat-card-title-group>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="General">
+      <mat-card-content>
+        <app-product-details
+          *ngIf="product$ | async"
+          [product]="(product$ | async) ?? null"
+        ></app-product-details>
+      </mat-card-content>
+    </mat-tab>
+    <mat-tab label="Attributes">
+      <mat-card-content>
+        <app-product-attributes></app-product-attributes>
+      </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>
 </mat-card>

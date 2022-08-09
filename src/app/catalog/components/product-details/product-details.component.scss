@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  .form-column:first-child {
+    flex: 100;
+    flex-shrink: 0;
+    flex-basis: 400px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .form-column:nth-child(2) {
+    flex: 1;
+    flex-basis: 200px;
+    overflow: hidden;
+
+    > div {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      button {
+        margin-left: 12px;
+      }
+    }
+  }
+}
+.product-name {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.product-description {
+  width: 100%;
+  textarea {
+    height: 200px;
+  }
+}
+
+.product-price {
+  width: 100%;
+}
+
+.product-stock {
+  width: 100%;
+}
+
+.product-visible {
+  width: 100%;
+}
