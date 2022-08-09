@@ -28,6 +28,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ProductPhotosInputComponent } from './components/product-photos-input/product-photos-input.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ProductsListComponent,
     ProductPhotoComponent,
     ProductComponent,
+    ProductPhotosInputComponent,
   ],
   imports: [
     CommonModule,

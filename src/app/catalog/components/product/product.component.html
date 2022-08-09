@@ -16,56 +16,9 @@
           <input type="text" matInput required formControlName="name" />
           <mat-error>Invalid product name</mat-error>
         </mat-form-field>
-        <div class="product-photos" *ngIf="product$ | async">
-          <app-product-photo
-            *ngFor="let photo of (product$ | async)?.photos"
-            [product]="(product$ | async)!"
-            [photoId]="photo.id"
-            [class.to-delete]="
-              editForm.controls.photosToDelete.value.includes(photo.id)
-            "
-          >
-            <button
-              *ngIf="!editForm.controls.photosToDelete.value.includes(photo.id)"
-              mat-icon-button
-              matTooltip="Delete photo"
-              (click)="deletePhoto(photo.id)"
-              type="button"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button
-              *ngIf="editForm.controls.photosToDelete.value.includes(photo.id)"
-              mat-icon-button
-              matTooltip="Cancel deletion"
-              (click)="restorePhoto(photo.id)"
-              type="button"
-            >
-              <mat-icon>clear</mat-icon>
-            </button>
-          </app-product-photo>
-          <div *ngFor="let photo of photosToDisplay">
-            <img [src]="photo.data | safeUrl" alt="producttttt photo" />
-            <button
-              mat-icon-button
-              matTooltip="Remove photo"
-              type="button"
-              (click)="removePhoto(photo.name)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-          <mat-form-field appearance="outline">
-            <mat-label>Add photos</mat-label>
-            <ngx-mat-file-input
-              accept="image/*"
-              multiple
-              formControlName="photos"
-              (change)="updatePhotos()"
-            ></ngx-mat-file-input>
-            <mat-icon matSuffix>add_photo_alternate</mat-icon>
-          </mat-form-field>
-        </div>
+        <app-product-photos-input
+          [product]="product$ | async"
+        ></app-product-photos-input>
         <mat-form-field appearance="outline" class="product-description">
           <mat-label>Product description</mat-label>
           <textarea matInput formControlName="description"></textarea>

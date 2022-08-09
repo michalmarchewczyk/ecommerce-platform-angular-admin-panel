@@ -1,0 +1,48 @@
+<div class="product-photos" *ngIf="product">
+  <app-product-photo
+    *ngFor="let photo of product?.photos"
+    [product]="product!"
+    [photoId]="photo.id"
+    [class.to-delete]="photosToDelete.value.includes(photo.id)"
+  >
+    <button
+      *ngIf="!photosToDelete.value.includes(photo.id)"
+      mat-icon-button
+      matTooltip="Delete photo"
+      (click)="markPhotoToDelete(photo.id)"
+      type="button"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button
+      *ngIf="photosToDelete.value.includes(photo.id)"
+      mat-icon-button
+      matTooltip="Cancel deletion"
+      (click)="unmarkPhoto(photo.id)"
+      type="button"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </app-product-photo>
+  <div *ngFor="let photo of photosToDisplay">
+    <img [src]="photo.data | safeUrl" alt="producttttt photo" />
+    <button
+      mat-icon-button
+      matTooltip="Remove photo"
+      type="button"
+      (click)="removePhoto(photo.name)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Add photos</mat-label>
+    <ngx-mat-file-input
+      accept="image/*"
+      multiple
+      [formControl]="photosToSave"
+      (change)="updatePhotosToDisplay()"
+    ></ngx-mat-file-input>
+    <mat-icon matSuffix>add_photo_alternate</mat-icon>
+  </mat-form-field>
+</div>

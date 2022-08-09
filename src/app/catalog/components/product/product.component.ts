@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ProductsActions, selectSelectedProduct } from '../../store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom, Subscription } from 'rxjs';
-import { FileInput } from 'ngx-material-file-input';
+import { ProductPhotosInputComponent } from '../product-photos-input/product-photos-input.component';
 
 @Component({
   selector: 'app-product',
@@ -32,15 +32,11 @@ export class ProductComponent implements OnInit, OnDestroy {
     visible: new FormControl('true', {
       nonNullable: true,
     }),
-    photos: new FormControl<FileInput>(new FileInput([]), {
-      nonNullable: true,
-    }),
-    photosToDelete: new FormControl<number[]>([], {
-      nonNullable: true,
-    }),
   });
   private subscription!: Subscription;
-  photosToDisplay: { name: string; data: string }[] = [];
+
+  @ViewChild(ProductPhotosInputComponent)
+  private photosInput!: ProductPhotosInputComponent;
 
   constructor(private route: ActivatedRoute, private store: Store) {}
 
@@ -61,43 +57,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.store.dispatch(ProductsActions.selectProduct({ productId: null }));
   }
 
-  updatePhotos() {
-    this.photosToDisplay = [];
-    for (const file of this.editForm.controls.photos.value.files) {
-      this.photosToDisplay.push({
-        name: file.name,
-        data: URL.createObjectURL(file),
-      });
-    }
-  }
-
-  deletePhoto(id: number) {
-    const photosToDelete = this.editForm.controls.photosToDelete.value;
-    photosToDelete.push(id);
-    this.editForm.controls.photosToDelete.setValue(photosToDelete);
-  }
-
-  restorePhoto(id: number) {
-    this.editForm.controls.photosToDelete.setValue(
-      this.editForm.controls.photosToDelete.value.filter(
-        (photoId) => photoId !== id,
-      ),
-    );
-  }
-
-  removePhoto(name: string) {
-    this.editForm.controls.photos.setValue(
-      new FileInput(
-        this.editForm.controls.photos.value.files.filter(
-          (file) => file.name !== name,
-        ),
-      ),
-    );
-    this.photosToDisplay = this.photosToDisplay.filter(
-      (photo) => photo.name !== name,
-    );
-  }
-
   async resetValues() {
     const product = await firstValueFrom(this.product$);
     if (!product) {
@@ -109,10 +68,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       price: product.price,
       stock: product.stock,
       visible: product.visible.toString(),
-      photos: new FileInput([]),
-      photosToDelete: [],
     });
-    this.updatePhotos();
   }
 
   async save() {
@@ -132,29 +88,6 @@ export class ProductComponent implements OnInit, OnDestroy {
         },
       }),
     );
-    await this.savePhotos(product.id);
-    await this.deletePhotos(product.id);
-  }
-
-  private async savePhotos(productId: number) {
-    for (const file of this.editForm.controls.photos.value.files) {
-      this.store.dispatch(
-        ProductsActions.addProductPhoto({
-          productId: productId,
-          data: file,
-        }),
-      );
-    }
-  }
-
-  private async deletePhotos(productId: number) {
-    for (const photoId of this.editForm.controls.photosToDelete.value) {
-      this.store.dispatch(
-        ProductsActions.deleteProductPhoto({
-          productId: productId,
-          photoId,
-        }),
-      );
-    }
+    await this.photosInput.save();
   }
 }

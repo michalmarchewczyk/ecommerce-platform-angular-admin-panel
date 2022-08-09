@@ -11,7 +11,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsActions } from '../../store';
 import { MatCardModule } from '@angular/material/card';
-import { FileInput, MaterialFileInputModule } from 'ngx-material-file-input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,7 +18,6 @@ import { ProductPhotoComponent } from '../product-photo/product-photo.component'
 import { SafeUrlPipe } from '../../../shared/pipes/safe-url.pipe';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatSelectHarness } from '@angular/material/select/testing';
-import { By } from '@angular/platform-browser';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { cold } from 'jasmine-marbles';
 import { first, skip } from 'rxjs';
@@ -40,7 +38,6 @@ describe('ProductComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         MatCardModule,
-        MaterialFileInputModule,
         FormsModule,
         ReactiveFormsModule,
         MatIconModule,
@@ -82,20 +79,6 @@ describe('ProductComponent', () => {
               },
             },
           },
-          // selectors: [
-          //   {
-          //     selector: selectSelectedProduct,
-          //     value: {
-          //       id: 1,
-          //       name: 'Product 1',
-          //       description: 'Description 1',
-          //       price: 1,
-          //       stock: 1,
-          //       visible: true,
-          //       photos: [{ id: 123 }],
-          //     },
-          //   },
-          // ],
         }),
       ],
     }).compileComponents();
@@ -145,55 +128,6 @@ describe('ProductComponent', () => {
     expect(await select.getValueText()).toBe('Visible');
   });
 
-  it('should display product photos', async () => {
-    fixture.detectChanges();
-    const images = fixture.debugElement.queryAll(By.css('app-product-photo'));
-    expect(images.length).toBe(1);
-    expect(images[0].attributes['ng-reflect-photo-id']).toBe('2');
-  });
-
-  it('should display input photos', async () => {
-    fixture.detectChanges();
-    const file = new File(['file'], 'test.jpg', {
-      type: 'image/jpeg',
-    });
-    component.editForm.controls.photos.setValue(new FileInput([file]));
-    component.updatePhotos();
-    fixture.detectChanges();
-    const images = fixture.debugElement.queryAll(By.css('img'));
-    expect(images.length).toBe(2);
-    expect(images[1].attributes['src']).toMatch('blob:');
-  });
-
-  it('should remove photo from input', async () => {
-    fixture.detectChanges();
-    const file = new File(['file'], 'test.jpg', {
-      type: 'image/jpeg',
-    });
-    component.editForm.controls.photos.setValue(new FileInput([file]));
-    component.updatePhotos();
-    fixture.detectChanges();
-    const images = fixture.debugElement.queryAll(By.css('img'));
-    expect(images.length).toBe(2);
-    component.removePhoto('test.jpg');
-    fixture.detectChanges();
-    const images2 = fixture.debugElement.queryAll(By.css('img'));
-    expect(images2.length).toBe(1);
-  });
-
-  it('should mark photos to delete', async () => {
-    fixture.detectChanges();
-    const images = fixture.debugElement.queryAll(By.css('app-product-photo'));
-    expect(images.length).toBe(1);
-    expect(images[0].classes['to-delete']).toBeFalsy();
-    component.deletePhoto(2);
-    fixture.detectChanges();
-    expect(images[0].classes['to-delete']).toBe(true);
-    component.restorePhoto(2);
-    fixture.detectChanges();
-    expect(images[0].classes['to-delete']).toBeFalsy();
-  });
-
   it('should dispatch save actions', async () => {
     fixture.detectChanges();
     const inputs = await loader.getAllHarnesses(MatInputHarness);
@@ -201,12 +135,6 @@ describe('ProductComponent', () => {
     await inputs[1].setValue('Description 2');
     await inputs[2].setValue('12345');
     await inputs[3].setValue('12345');
-    component.deletePhoto(2);
-    const file = new File(['file'], 'test.jpg', {
-      type: 'image/jpeg',
-    });
-    component.editForm.controls.photos.setValue(new FileInput([file]));
-    component.updatePhotos();
 
     fixture.detectChanges();
     const saveButton = await loader.getHarness(
@@ -224,22 +152,6 @@ describe('ProductComponent', () => {
             stock: 12345,
             visible: true,
           },
-        }),
-      );
-    });
-    store.scannedActions$.pipe(skip(2), first()).subscribe((action) => {
-      expect(action).toEqual(
-        ProductsActions.addProductPhoto({
-          productId: 1,
-          data: file,
-        }),
-      );
-    });
-    store.scannedActions$.pipe(skip(3), first()).subscribe((action) => {
-      expect(action).toEqual(
-        ProductsActions.deleteProductPhoto({
-          productId: 1,
-          photoId: 2,
         }),
       );
     });
