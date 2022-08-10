@@ -18,6 +18,11 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
 
   e2e-tests:
     runs-on: ubuntu-latest
@@ -61,11 +66,6 @@ jobs:
         run: npm ci
       - name: Run ESLint
         run: npm run lint
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
 
   build:
     needs: [ tests, e2e-tests ]
