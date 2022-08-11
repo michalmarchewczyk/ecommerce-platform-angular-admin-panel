@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-title-group>
-    <mat-card-title>{{ (product$ | async)?.name }} </mat-card-title>
+    <mat-card-title>
+      <button mat-button (click)="router.navigate(['/catalog/products'])">
+        <mat-icon>arrow_back</mat-icon></button
+      >{{ (product$ | async)?.name }}
+    </mat-card-title>
   </mat-card-title-group>
   <mat-tab-group dynamicHeight>
     <mat-tab label="General">

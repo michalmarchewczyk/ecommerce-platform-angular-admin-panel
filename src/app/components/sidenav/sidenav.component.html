@@ -14,12 +14,12 @@
       >
         <mat-divider></mat-divider>
         <a mat-list-item routerLink="/orders"> Orders </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/catalog/products"> Products </a>
       </ng-container>
       <ng-container
         *ngIf="['admin', 'manager'].includes((userRoles$ | async) ?? '')"
       >
-        <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/catalog/products"> Products </a>
         <a mat-list-item routerLink="/catalog/categories"> Categories </a>
       </ng-container>
       <ng-container *ngIf="['admin'].includes((userRoles$ | async) ?? '')">

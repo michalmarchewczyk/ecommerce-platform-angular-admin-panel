@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsActions, selectSelectedProduct } from '../../store';
 import { Store } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -11,7 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductComponent implements OnInit, OnDestroy {
   product$ = this.store.select(selectSelectedProduct);
 
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    public router: Router,
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(
