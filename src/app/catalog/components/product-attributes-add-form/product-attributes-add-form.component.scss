@@ -1,0 +1,26 @@
+mat-divider {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  margin-bottom: -12px;
+  gap: 12px;
+
+  mat-form-field:first-child {
+    flex-basis: 200px;
+  }
+
+  mat-form-field:nth-child(2) {
+    flex: 1;
+  }
+}
+
+button {
+  margin-top: 12px;
+  margin-left: 4px;
+  margin-right: 20px;
+}

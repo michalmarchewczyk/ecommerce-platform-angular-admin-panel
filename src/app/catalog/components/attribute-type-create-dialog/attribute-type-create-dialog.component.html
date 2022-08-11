@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Create new attribute type</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [formControl]="name" />
+    <mat-error>Invalid name</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Type</mat-label>
+    <mat-select [formControl]="type">
+      <mat-option *ngFor="let type of types" [value]="type">
+        {{ type | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary" (click)="onNoClick()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="create()">Create</button>
+</div>

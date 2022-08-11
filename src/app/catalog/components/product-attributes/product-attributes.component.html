@@ -1,1 +1,15 @@
-<p>product-attributes works!</p>
+<mat-list role="list">
+  <app-product-attribute-item
+    *ngFor="let attribute of product?.attributes"
+    [attribute]="attribute"
+    (delete)="onDelete($event)"
+    (update)="onUpdate($event.id, $event.value)"
+  ></app-product-attribute-item>
+</mat-list>
+
+<mat-divider></mat-divider>
+
+<app-product-attributes-add-form
+  [product]="product"
+  (add)="onAdd($event)"
+></app-product-attributes-add-form>

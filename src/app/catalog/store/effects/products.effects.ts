@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ProductsActions } from '../actions';
 import { ProductsApiService } from '../../../core/api';
 import { concatMap, exhaustMap, map, mergeMap } from 'rxjs/operators';
-import { catchError, combineLatest, of } from 'rxjs';
+import { catchError, combineLatest, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class ProductsEffects {
@@ -101,7 +101,7 @@ export class ProductsEffects {
   updateProductAttributes$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductsActions.updateProductAttributes),
-      concatMap(({ id, data }) =>
+      switchMap(({ id, data }) =>
         this.productsApi.updateProductAttributes(id, data).pipe(
           map(({ attributes }) =>
             ProductsActions.updateProductAttributesSuccess({ id, attributes }),

@@ -32,6 +32,12 @@ import { ProductPhotosInputComponent } from './components/product-photos-input/p
 import { ProductComponent } from './components/product/product.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ProductAttributesComponent } from './components/product-attributes/product-attributes.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { AttributeTypeCreateDialogComponent } from './components/attribute-type-create-dialog/attribute-type-create-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
+import { ProductAttributesAddFormComponent } from './components/product-attributes-add-form/product-attributes-add-form.component';
+import { ProductAttributeItemComponent } from './components/product-attribute-item/product-attribute-item.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,9 @@ import { ProductAttributesComponent } from './components/product-attributes/prod
     ProductPhotosInputComponent,
     ProductComponent,
     ProductAttributesComponent,
+    AttributeTypeCreateDialogComponent,
+    ProductAttributesAddFormComponent,
+    ProductAttributeItemComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +75,9 @@ import { ProductAttributesComponent } from './components/product-attributes/prod
     MatButtonModule,
     MatTooltipModule,
     MatTabsModule,
+    MatDividerModule,
+    MatDialogModule,
+    MatListModule,
   ],
 })
 export class CatalogModule {}

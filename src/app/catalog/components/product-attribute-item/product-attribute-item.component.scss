@@ -1,0 +1,27 @@
+
+.attribute-item {
+  height: 64px;
+}
+
+span {
+  margin-right: 12px;
+  flex-basis: 186px;
+  text-align: right;
+}
+
+mat-form-field {
+  flex: 1;
+  font-size: 14px;
+  height: 64px;
+  mat-label {
+    font-size: 16px;
+  }
+  input {
+    font-size: 16px;
+  }
+}
+
+button {
+  margin-left: 12px;
+}
+

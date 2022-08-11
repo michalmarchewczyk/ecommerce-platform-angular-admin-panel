@@ -13,7 +13,10 @@
     </mat-tab>
     <mat-tab label="Attributes">
       <mat-card-content>
-        <app-product-attributes></app-product-attributes>
+        <app-product-attributes
+          *ngIf="product$ | async"
+          [product]="(product$ | async) ?? null"
+        ></app-product-attributes>
       </mat-card-content>
     </mat-tab>
   </mat-tab-group>

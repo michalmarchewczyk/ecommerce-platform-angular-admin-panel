@@ -1,0 +1,38 @@
+<mat-list-item role="listitem" class="attribute-item" *ngIf="attribute">
+  <span class="mat-body-strong"
+    >{{ attribute.type.name }} ({{ attribute.type.valueType }}):</span
+  >
+  <mat-form-field appearance="outline">
+    <mat-label> Value </mat-label>
+    <input
+      matInput
+      type="text"
+      [formControl]="value"
+      *ngIf="valueType === 'string'"
+      (change)="onChange()"
+    />
+    <input
+      matInput
+      type="number"
+      [formControl]="value"
+      *ngIf="valueType === 'number'"
+      (change)="onChange()"
+    />
+    <input
+      matInput
+      type="color"
+      [formControl]="value"
+      *ngIf="valueType === 'color'"
+      (change)="onChange()"
+    />
+    <mat-select
+      [formControl]="value"
+      *ngIf="valueType === 'boolean'"
+      (selectionChange)="onChange()"
+    >
+      <mat-option value="true">True</mat-option>
+      <mat-option value="false">False</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button color="warn" (click)="onDelete()">Delete</button>
+</mat-list-item>
