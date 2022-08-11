@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { ProductComponent } from './pages/product/product.component';
 import { AuthRoleGuard } from '../core/auth/guards/auth-role.guard';
 import { PickTypeClass } from '../core/api';

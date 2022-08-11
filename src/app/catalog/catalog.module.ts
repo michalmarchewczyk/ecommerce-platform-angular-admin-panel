@@ -13,7 +13,7 @@ import {
   CategoriesEffects,
   ProductsEffects,
 } from './store/effects';
-import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
