@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
-import { ProductComponent } from './components/product/product.component';
+import { ProductComponent } from './pages/product/product.component';
 
 const routes: Routes = [
   {

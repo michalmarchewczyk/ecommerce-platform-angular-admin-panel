@@ -29,7 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProductPhotosInputComponent } from './components/product-photos-input/product-photos-input.component';
-import { ProductComponent } from './components/product/product.component';
+import { ProductComponent } from './pages/product/product.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ProductAttributesComponent } from './components/product-attributes/product-attributes.component';
 import { MatDividerModule } from '@angular/material/divider';
