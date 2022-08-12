@@ -42,7 +42,7 @@ describe('Products Reducer', () => {
 
       const result = reducer(initialState, action);
 
-      expect(result.list).toEqual([product]);
+      expect(result.list).toEqual([{ ...product, photos: [], attributes: [] }]);
     });
   });
 

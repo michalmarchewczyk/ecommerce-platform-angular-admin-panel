@@ -38,6 +38,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { ProductAttributesAddFormComponent } from './components/product-attributes-add-form/product-attributes-add-form.component';
 import { ProductAttributeItemComponent } from './components/product-attribute-item/product-attribute-item.component';
+import { CreateProductFormComponent } from './pages/create-product-form/create-product-form.component';
+import { NewProductPhotosInputComponent } from './components/new-product-photos-input/new-product-photos-input.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ProductAttributeItemComponent } from './components/product-attribute-it
     AttributeTypeCreateDialogComponent,
     ProductAttributesAddFormComponent,
     ProductAttributeItemComponent,
+    CreateProductFormComponent,
+    NewProductPhotosInputComponent,
   ],
   imports: [
     CommonModule,

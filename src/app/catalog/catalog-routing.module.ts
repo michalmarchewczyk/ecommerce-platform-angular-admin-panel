@@ -7,6 +7,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { AuthRoleGuard } from '../core/auth/guards/auth-role.guard';
 import { PickTypeClass } from '../core/api';
 import RoleEnum = PickTypeClass.RoleEnum;
+import { CreateProductFormComponent } from './pages/create-product-form/create-product-form.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,13 @@ const routes: Routes = [
     path: 'products',
     component: ProductsComponent,
     children: [
+      {
+        title: 'Create new product',
+        path: 'new',
+        canActivate: [AuthRoleGuard],
+        data: { roles: [RoleEnum.Admin, RoleEnum.Manager] },
+        component: CreateProductFormComponent,
+      },
       {
         title: 'Product',
         path: ':id',

@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>
+      <button mat-button routerLink="/catalog/products">
+        <mat-icon>arrow_back</mat-icon></button
+      >Create new product
+    </mat-card-title>
+  </mat-card-title-group>
+  <mat-card-content>
+    <form [formGroup]="addForm" (submit)="save()">
+      <div class="form-column">
+        <mat-form-field appearance="outline" class="product-name">
+          <mat-label>Product name</mat-label>
+          <input type="text" matInput required formControlName="name" />
+          <mat-error>Invalid product name</mat-error>
+        </mat-form-field>
+        <app-new-product-photos-input></app-new-product-photos-input>
+        <mat-form-field appearance="outline" class="product-description">
+          <mat-label>Product description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error>Invalid product description</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-column">
+        <mat-form-field appearance="outline" class="product-price">
+          <mat-label>Price</mat-label>
+          <input type="number" matInput required formControlName="price" />
+          <mat-error>Invalid price</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="product-stock">
+          <mat-label>Stock</mat-label>
+          <input type="number" matInput required formControlName="stock" />
+          <mat-error>Invalid stock</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="product-visible">
+          <mat-label>Visibility</mat-label>
+          <mat-select formControlName="visible">
+            <mat-option value="true">Visible</mat-option>
+            <mat-option value="false">Hidden</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button
+            mat-button
+            type="button"
+            routerLink="/catalog/products"
+            color="primary"
+          >
+            Cancel
+          </button>
+          <button
+            mat-flat-button
+            type="submit"
+            [disabled]="!addForm.valid || !addForm.dirty"
+            color="primary"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

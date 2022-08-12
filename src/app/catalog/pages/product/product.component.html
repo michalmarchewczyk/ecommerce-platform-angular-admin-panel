@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title-group>
     <mat-card-title>
-      <button mat-button (click)="router.navigate(['/catalog/products'])">
+      <button mat-button routerLink="/catalog/products">
         <mat-icon>arrow_back</mat-icon></button
       >{{ (product$ | async)?.name }}
     </mat-card-title>

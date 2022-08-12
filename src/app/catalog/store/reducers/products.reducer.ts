@@ -36,7 +36,7 @@ export const reducer = createReducer(
     ProductsActions.addProductSuccess,
     (state, { product }): State => ({
       ...state,
-      list: [...state.list, product],
+      list: [...state.list, { ...product, photos: [], attributes: [] }],
     }),
   ),
   on(

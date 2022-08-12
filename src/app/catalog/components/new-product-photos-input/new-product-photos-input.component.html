@@ -1,0 +1,23 @@
+<div class="product-photos">
+  <div *ngFor="let photo of photosToDisplay">
+    <img [src]="photo.data | safeUrl" alt="product photo" />
+    <button
+      mat-icon-button
+      matTooltip="Remove photo"
+      type="button"
+      (click)="removePhoto(photo.name)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Add photos</mat-label>
+    <ngx-mat-file-input
+      accept="image/*"
+      multiple
+      [formControl]="photosToSave"
+      (change)="updatePhotosToDisplay()"
+    ></ngx-mat-file-input>
+    <mat-icon matSuffix>add_photo_alternate</mat-icon>
+  </mat-form-field>
+</div>
