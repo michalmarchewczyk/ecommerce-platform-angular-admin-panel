@@ -35,6 +35,11 @@ describe('Products Selectors', () => {
       attributes: {
         list: [],
       },
+      status: {
+        loading: false,
+        error: null,
+        newProductId: null,
+      },
     };
   });
 

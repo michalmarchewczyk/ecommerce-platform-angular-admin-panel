@@ -5,7 +5,7 @@ import {
   selectUsersStatusState,
 } from './status.selectors';
 
-describe('Status Selectors', () => {
+describe('Users Status Selectors', () => {
   let initialState: UsersState;
 
   beforeEach(() => {

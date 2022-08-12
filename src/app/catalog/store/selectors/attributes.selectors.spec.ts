@@ -20,6 +20,11 @@ describe('Attributes Selectors', () => {
       attributes: {
         list: [],
       },
+      status: {
+        loading: false,
+        error: null,
+        newProductId: null,
+      },
     };
   });
 

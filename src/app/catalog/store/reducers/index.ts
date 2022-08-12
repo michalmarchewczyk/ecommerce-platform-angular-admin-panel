@@ -1,6 +1,7 @@
 import * as fromProducts from './products.reducer';
 import * as fromCategories from './categories.reducer';
 import * as fromAttributes from './attributes.reducer';
+import * as fromStatus from './status.reducer';
 import * as fromRoot from '../../../core/store';
 import { Action, combineReducers } from '@ngrx/store';
 
@@ -10,6 +11,7 @@ export interface CatalogState {
   [fromProducts.productsFeatureKey]: fromProducts.State;
   [fromCategories.categoriesFeatureKey]: fromCategories.State;
   [fromAttributes.attributesFeatureKey]: fromAttributes.State;
+  [fromStatus.statusFeatureKey]: fromStatus.State;
 }
 
 export interface State extends fromRoot.State {
@@ -21,4 +23,5 @@ export const reducers = (state: CatalogState | undefined, action: Action) =>
     [fromProducts.productsFeatureKey]: fromProducts.reducer,
     [fromCategories.categoriesFeatureKey]: fromCategories.reducer,
     [fromAttributes.attributesFeatureKey]: fromAttributes.reducer,
+    [fromStatus.statusFeatureKey]: fromStatus.reducer,
   })(state, action);
