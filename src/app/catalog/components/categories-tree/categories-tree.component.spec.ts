@@ -70,7 +70,7 @@ describe('CategoriesTreeComponent', () => {
   it('should render categories tree', async () => {
     const tree = await loader.getHarness(MatTreeHarness);
     const nodes = await tree.getNodes();
-    expect(nodes.length).toBe(3);
+    expect(nodes.length).toBe(4);
     expect(await nodes[1].getText()).toBe('Category A');
     expect(await nodes[2].getText()).toBe('Category A1');
   });
@@ -89,6 +89,12 @@ describe('CategoriesTreeComponent', () => {
 
     const nodes2 = await tree.getNodes();
     expect(await nodes2[4].getText()).toBe('Name *');
+
+    component.addCategory();
+    fixture.detectChanges();
+
+    const nodes3 = await tree.getNodes();
+    expect(await nodes3[3].getText()).toBe('Name *');
   });
 
   it('should dispatch add category action', async () => {

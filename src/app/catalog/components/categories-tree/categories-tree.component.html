@@ -51,3 +51,11 @@
     </div>
   </mat-nested-tree-node>
 </mat-tree>
+<button
+  mat-icon-button
+  class="add-button"
+  (click)="addCategory()"
+  *ngIf="!!newNode.parentCategory"
+>
+  <mat-icon>add</mat-icon>
+</button>

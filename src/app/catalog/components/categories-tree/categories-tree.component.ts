@@ -36,6 +36,7 @@ export class CategoriesTreeComponent implements OnInit, OnChanges {
   constructor(private store: Store) {}
 
   ngOnInit() {
+    this.tree = [...this.tree, this.newNode as Category];
     this.dataSource.data = this.tree;
   }
 
@@ -51,21 +52,28 @@ export class CategoriesTreeComponent implements OnInit, OnChanges {
 
   hasNoContent = (_: number, node: Category) => !node.name;
 
-  addCategory(category: Category) {
+  addCategory(category?: Category) {
     if (this.newNode.parentCategory) {
       this.newNode.parentCategory.childCategories =
         this.newNode.parentCategory.childCategories.filter(
           (c) => c !== this.newNode,
         );
     }
-    this.newNode = { name: '', parentCategory: category };
-    category.childCategories = [
-      ...category.childCategories,
-      this.newNode as Category,
-    ];
+    this.newNode.parentCategory = category ?? null;
+    this.tree = this.tree.filter((c) => c !== this.newNode);
+    if (category) {
+      category.childCategories = [
+        ...category.childCategories,
+        this.newNode as Category,
+      ];
+    } else {
+      this.tree = [...this.tree, this.newNode as Category];
+    }
     this.dataSource.data = [];
     this.dataSource.data = this.tree;
-    this.treeControl.expand(category);
+    if (category) {
+      this.treeControl.expand(category);
+    }
     this.newName.reset();
   }
 
