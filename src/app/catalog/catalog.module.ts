@@ -40,6 +40,8 @@ import { ProductAttributesAddFormComponent } from './components/product-attribut
 import { ProductAttributeItemComponent } from './components/product-attribute-item/product-attribute-item.component';
 import { CreateProductFormComponent } from './pages/create-product-form/create-product-form.component';
 import { NewProductPhotosInputComponent } from './components/new-product-photos-input/new-product-photos-input.component';
+import { CategoriesTreeComponent } from './components/categories-tree/categories-tree.component';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { NewProductPhotosInputComponent } from './components/new-product-photos-
     ProductAttributeItemComponent,
     CreateProductFormComponent,
     NewProductPhotosInputComponent,
+    CategoriesTreeComponent,
   ],
   imports: [
     CommonModule,
@@ -82,6 +85,7 @@ import { NewProductPhotosInputComponent } from './components/new-product-photos-
     MatDividerModule,
     MatDialogModule,
     MatListModule,
+    MatTreeModule,
   ],
 })
 export class CatalogModule {}

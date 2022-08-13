@@ -1,1 +1,11 @@
-Categories
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>Categories</mat-card-title>
+  </mat-card-title-group>
+  <mat-card-content>
+    <app-categories-tree
+      *ngIf="(categoriesTree$ | async)?.length"
+      [tree]="(categoriesTree$ | async) ?? []"
+    ></app-categories-tree>
+  </mat-card-content>
+</mat-card>
