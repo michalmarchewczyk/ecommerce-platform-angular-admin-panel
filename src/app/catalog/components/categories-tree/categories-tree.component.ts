@@ -19,7 +19,10 @@ import { CategoriesActions } from '../../store';
 })
 export class CategoriesTreeComponent implements OnInit, OnChanges {
   @Input() tree: Category[] = [];
-  treeControl = new NestedTreeControl<Category>((node) => node.childCategories);
+  treeControl = new NestedTreeControl<Category, number>(
+    (node) => node.childCategories,
+    { trackBy: (node) => node.id },
+  );
   dataSource = new MatTreeNestedDataSource<Category>();
   newNode: { name: string; parentCategory: null | Category } = {
     name: '',
