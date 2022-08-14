@@ -11,3 +11,15 @@ export const selectCategoriesList = createSelector(
   selectCategoriesState,
   (state) => state.list,
 );
+
+export const selectSelectedCategoryId = createSelector(
+  selectCategoriesState,
+  (state) => state.selectedCategoryId,
+);
+
+export const selectSelectedCategory = createSelector(
+  selectCategoriesList,
+  selectSelectedCategoryId,
+  (categories, selectedCategoryId) =>
+    categories.find((c) => c.id === selectedCategoryId) ?? null,
+);

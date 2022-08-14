@@ -16,6 +16,7 @@ describe('Attributes Selectors', () => {
       },
       categories: {
         list: [],
+        selectedCategoryId: null,
       },
       attributes: {
         list: [],

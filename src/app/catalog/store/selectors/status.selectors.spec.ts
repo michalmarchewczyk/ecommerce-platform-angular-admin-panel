@@ -18,6 +18,7 @@ describe('Catalog Status Selectors', () => {
       },
       categories: {
         list: [],
+        selectedCategoryId: null,
       },
       attributes: {
         list: [],

@@ -14,7 +14,7 @@ describe('Categories Reducer', () => {
   });
 
   describe('load categories success action', () => {
-    it('should est the list of categories', () => {
+    it('should set the list of categories', () => {
       const category = { id: '1', name: 'Category 1' } as any;
       const action = CategoriesActions.loadCategoriesSuccess({
         categories: [category],
@@ -25,6 +25,21 @@ describe('Categories Reducer', () => {
       expect(result).toEqual({
         ...initialState,
         list: [category],
+      });
+    });
+  });
+
+  describe('select category action', () => {
+    it('should set the selected category id', () => {
+      const action = CategoriesActions.selectCategory({
+        categoryId: 1,
+      });
+
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        selectedCategoryId: 1,
       });
     });
   });
@@ -97,6 +112,118 @@ describe('Categories Reducer', () => {
       expect(result).toEqual({
         ...initialState,
         list: [{ ...category, id: 2 }],
+      });
+    });
+  });
+
+  describe('get category products success action', () => {
+    it('should update the category in the list', () => {
+      const category = { id: 1, name: 'Category 1' } as Category;
+      const products = [{ id: 1, name: 'Product 1' } as any];
+      const action = CategoriesActions.getCategoryProductsSuccess({
+        categoryId: 1,
+        products,
+      });
+
+      const result = reducer(
+        {
+          ...initialState,
+          list: [
+            category,
+            {
+              ...category,
+              id: 2,
+            },
+          ],
+        },
+        action,
+      );
+
+      expect(result).toEqual({
+        ...initialState,
+        list: [
+          { ...category, products },
+          { ...category, id: 2 },
+        ],
+      });
+    });
+  });
+
+  describe('add category product success action', () => {
+    it('should add the product to the category in the list', () => {
+      const category = { id: 1, name: 'Category 1', products: [] } as any;
+      const product = { id: 1, name: 'Product 1' } as any;
+      const action = CategoriesActions.addCategoryProductSuccess({
+        categoryId: 1,
+        product,
+      });
+
+      const result = reducer(
+        {
+          ...initialState,
+          list: [
+            category,
+            {
+              ...category,
+              id: 2,
+            },
+          ],
+        },
+        action,
+      );
+
+      expect(result).toEqual({
+        ...initialState,
+        list: [
+          {
+            ...category,
+            products: [product],
+          },
+          { ...category, id: 2 },
+        ],
+      });
+    });
+  });
+
+  describe('delete category product success action', () => {
+    it('should delete the product from the category in the list', () => {
+      const product = { id: 1, name: 'Product 1' } as any;
+      const category = {
+        id: 1,
+        name: 'Category 1',
+        products: [product],
+      } as any;
+      const action = CategoriesActions.deleteCategoryProductSuccess({
+        categoryId: 1,
+        productId: 1,
+      });
+
+      const result = reducer(
+        {
+          ...initialState,
+          list: [
+            category,
+            {
+              ...category,
+              id: 2,
+            },
+          ],
+        },
+        action,
+      );
+
+      expect(result).toEqual({
+        ...initialState,
+        list: [
+          {
+            ...category,
+            products: [],
+          },
+          {
+            ...category,
+            id: 2,
+          },
+        ],
       });
     });
   });

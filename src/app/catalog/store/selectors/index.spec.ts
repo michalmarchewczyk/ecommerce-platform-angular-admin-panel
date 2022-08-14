@@ -13,6 +13,7 @@ describe('Catalog Selectors', () => {
       },
       categories: {
         list: [],
+        selectedCategoryId: null,
       },
       attributes: {
         list: [],

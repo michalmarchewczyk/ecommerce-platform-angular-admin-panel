@@ -18,6 +18,11 @@ export const loadCategoriesFailure = createAction(
   props<{ error: string }>(),
 );
 
+export const selectCategory = createAction(
+  '[Categories] Select Category',
+  props<{ categoryId: number | null }>(),
+);
+
 export const addCategory = createAction(
   '[Categories] Add Category',
   props<{ data: CategoryCreateDto }>(),
@@ -70,7 +75,7 @@ export const getCategoryProducts = createAction(
 
 export const getCategoryProductsSuccess = createAction(
   '[Categories] Get Category Products Success',
-  props<{ id: number; products: Product[] }>(),
+  props<{ categoryId: number; products: Product[] }>(),
 );
 
 export const getCategoryProductsFailure = createAction(

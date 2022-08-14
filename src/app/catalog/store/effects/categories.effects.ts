@@ -84,7 +84,10 @@ export class CategoriesEffects {
       exhaustMap(({ id }) =>
         this.categoriesApi.getCategoryProducts(id).pipe(
           map((products) =>
-            CategoriesActions.getCategoryProductsSuccess({ id, products }),
+            CategoriesActions.getCategoryProductsSuccess({
+              categoryId: id,
+              products,
+            }),
           ),
           catchError(({ error }) =>
             of(

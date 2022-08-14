@@ -199,7 +199,10 @@ describe('CategoriesEffects', () => {
 
       effects.getCategoryProducts$.subscribe((result) => {
         expect(result).toEqual(
-          CategoriesActions.getCategoryProductsSuccess({ id: 1, products: [] }),
+          CategoriesActions.getCategoryProductsSuccess({
+            categoryId: 1,
+            products: [],
+          }),
         );
         done();
       });
