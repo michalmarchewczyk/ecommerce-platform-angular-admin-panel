@@ -8,6 +8,8 @@ import { AuthRoleGuard } from '../core/auth/guards/auth-role.guard';
 import { PickTypeClass } from '../core/api';
 import RoleEnum = PickTypeClass.RoleEnum;
 import { CreateProductFormComponent } from './pages/create-product-form/create-product-form.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { CategoriesTreeComponent } from './pages/categories-tree/categories-tree.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,22 @@ const routes: Routes = [
     title: 'Categories',
     path: 'categories',
     component: CategoriesComponent,
+    children: [
+      {
+        title: 'Categories',
+        path: '',
+        canActivate: [AuthRoleGuard],
+        data: { roles: [RoleEnum.Admin, RoleEnum.Manager, RoleEnum.Sales] },
+        component: CategoriesTreeComponent,
+      },
+      {
+        title: 'Category',
+        path: ':id',
+        canActivate: [AuthRoleGuard],
+        data: { roles: [RoleEnum.Admin, RoleEnum.Manager] },
+        component: CategoryComponent,
+      },
+    ],
   },
   {
     path: '',

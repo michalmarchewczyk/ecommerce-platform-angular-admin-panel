@@ -1,0 +1,27 @@
+
+mat-card {
+  padding: 0;
+
+  mat-card-title {
+    button {
+      margin-top: -4px;
+      position: relative;
+      display: inline-block;
+      top: -4px;
+      padding-left: 0;
+      padding-right: 0;
+      width: 36px;
+      min-width: 36px;
+      margin-right: 12px;
+      margin-left: -6px;
+    }
+    padding: 16px 16px 6px;
+    margin-bottom: 0;
+  }
+
+  mat-card-content {
+    padding: 16px;
+    min-height: 120px;
+    margin-bottom: 0;
+  }
+}

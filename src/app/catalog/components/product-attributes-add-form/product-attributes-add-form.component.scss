@@ -6,7 +6,7 @@ mat-divider {
 :host {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: flex-start;
   margin-bottom: -12px;
   gap: 12px;
 

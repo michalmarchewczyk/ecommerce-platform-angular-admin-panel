@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>
+      <button mat-button routerLink="/catalog/categories">
+        <mat-icon>arrow_back</mat-icon></button
+      >{{ (category$ | async)?.name }}
+    </mat-card-title>
+  </mat-card-title-group>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="General">
+      <mat-card-content>
+        <app-category-details
+          *ngIf="category$ | async"
+          [category]="(category$ | async) ?? null"
+        ></app-category-details>
+      </mat-card-content>
+    </mat-tab>
+    <mat-tab label="Products">
+      <mat-card-content> </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

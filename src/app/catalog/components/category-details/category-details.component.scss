@@ -1,0 +1,28 @@
+
+
+form {
+  padding-bottom: 36px;
+}
+.category-name {
+  width: 100%;
+}
+
+.category-description {
+  width: 100%;
+  textarea {
+    height: 200px;
+  }
+}
+
+.category-slug {
+  width: 100%;
+}
+
+ div {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  button {
+    margin-left: 12px;
+  }
+}

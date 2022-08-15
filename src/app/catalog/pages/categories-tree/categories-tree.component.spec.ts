@@ -13,9 +13,9 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatTreeHarness } from '@angular/material/tree/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputHarness } from '@angular/material/input/testing';
-import { CategoriesActions } from '../../store';
+import { CategoriesActions, selectCategoriesList } from '../../store';
 import { cold } from 'jasmine-marbles';
-import { SimpleChange } from '@angular/core';
+import { Category } from '../../../core/api';
 
 describe('CategoriesTreeComponent', () => {
   let component: CategoriesTreeComponent;
@@ -36,28 +36,33 @@ describe('CategoriesTreeComponent', () => {
         FormsModule,
       ],
       declarations: [CategoriesTreeComponent],
-      providers: [provideMockStore()],
+      providers: [
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectCategoriesList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Category A',
+                  parentCategory: null,
+                },
+                {
+                  id: 2,
+                  name: 'Category B',
+                  parentCategory: {
+                    id: 1,
+                  },
+                },
+              ],
+            },
+          ],
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CategoriesTreeComponent);
     component = fixture.componentInstance;
-    component.tree = [
-      {
-        id: 1,
-        name: 'Category A',
-        parentCategory: null,
-        childCategories: [
-          {
-            id: 2,
-            name: 'Category A1',
-            parentCategory: {
-              id: 1,
-            },
-            childCategories: [],
-          },
-        ],
-      },
-    ] as any;
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
     store = TestBed.inject(MockStore);
@@ -67,12 +72,48 @@ describe('CategoriesTreeComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should create tree from categories', () => {
+    const categories = [
+      {
+        id: 1,
+        name: 'Category A',
+        parentCategory: null,
+      },
+      {
+        id: 2,
+        name: 'Category B',
+        parentCategory: {
+          id: 1,
+        },
+      },
+    ] as Category[];
+
+    const result = CategoriesTreeComponent.createTree(categories);
+    expect(result).toEqual([
+      {
+        id: 1,
+        name: 'Category A',
+        parentCategory: null,
+        childCategories: [
+          {
+            id: 2,
+            name: 'Category B',
+            parentCategory: {
+              id: 1,
+            },
+            childCategories: [],
+          },
+        ],
+      },
+    ] as any);
+  });
+
   it('should render categories tree', async () => {
     const tree = await loader.getHarness(MatTreeHarness);
     const nodes = await tree.getNodes();
     expect(nodes.length).toBe(4);
     expect(await nodes[1].getText()).toBe('Category A');
-    expect(await nodes[2].getText()).toBe('Category A1');
+    expect(await nodes[2].getText()).toBe('Category B');
   });
 
   it('should render new category input', async () => {
@@ -120,14 +161,12 @@ describe('CategoriesTreeComponent', () => {
   });
 
   it('should render categories after update', async () => {
-    component.tree = [];
+    store.overrideSelector(selectCategoriesList, []);
+    store.refreshState();
     fixture.detectChanges();
-    component.ngOnChanges({
-      tree: new SimpleChange(null, component.tree, false),
-    });
 
     const tree = await loader.getHarness(MatTreeHarness);
     const nodes = await tree.getNodes();
-    expect(nodes.length).toBe(0);
+    expect(nodes.length).toBe(1);
   });
 });

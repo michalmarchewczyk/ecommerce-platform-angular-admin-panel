@@ -1,0 +1,30 @@
+<form [formGroup]="editForm" (submit)="save()">
+  <mat-form-field appearance="outline" class="category-name">
+    <mat-label>Category name</mat-label>
+    <input matInput type="text" formControlName="name" />
+    <mat-error>Invalid category name</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="category-description">
+    <mat-label>Category description</mat-label>
+    <textarea matInput type="text" formControlName="description"></textarea>
+    <mat-error>Invalid category description</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="category-slug">
+    <mat-label>Category URL slug</mat-label>
+    <input matInput type="text" formControlName="slug" />
+    <mat-error>Invalid URL slug</mat-error>
+  </mat-form-field>
+  <div>
+    <button mat-button type="button" (click)="resetValues()" color="primary">
+      Cancel
+    </button>
+    <button
+      mat-flat-button
+      type="submit"
+      [disabled]="!editForm.valid || !editForm.dirty"
+      color="primary"
+    >
+      Save
+    </button>
+  </div>
+</form>

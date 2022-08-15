@@ -1,24 +1,28 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Category } from '../../../core/api';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { CategoriesActions } from '../../store';
+import { CategoriesActions, selectCategoriesList } from '../../store';
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-categories-tree',
   templateUrl: './categories-tree.component.html',
   styleUrls: ['./categories-tree.component.scss'],
 })
-export class CategoriesTreeComponent implements OnInit, OnChanges {
-  @Input() tree: Category[] = [];
+export class CategoriesTreeComponent implements OnInit, OnDestroy {
+  categories$ = this.store.select(selectCategoriesList);
+  categoriesTree$ = this.categories$.pipe(
+    map((categories) => {
+      return CategoriesTreeComponent.createTree(categories);
+    }),
+  );
+  private subscription!: Subscription;
+
+  tree: Category[] = [];
   treeControl = new NestedTreeControl<Category, number>(
     (node) => node.childCategories,
     { trackBy: (node) => node.id },
@@ -35,16 +39,35 @@ export class CategoriesTreeComponent implements OnInit, OnChanges {
 
   constructor(private store: Store) {}
 
-  ngOnInit() {
-    this.tree = [...this.tree, this.newNode as Category];
-    this.dataSource.data = this.tree;
+  static createTree(categories: Category[]): Category[] {
+    const hashTable = Object.create(null);
+    categories.forEach(
+      (category) =>
+        (hashTable[category.id] = { ...category, childCategories: [] }),
+    );
+    const dataTree: Category[] = [];
+    categories.forEach((category) => {
+      if (category.parentCategory?.id) {
+        hashTable[category.parentCategory.id].childCategories.push(
+          hashTable[category.id],
+        );
+      } else {
+        dataTree.push(hashTable[category.id]);
+      }
+    });
+    return dataTree;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['tree']) {
-      this.dataSource.data = [];
+  ngOnInit() {
+    this.subscription = this.categoriesTree$.subscribe((categories) => {
+      this.tree = [...categories, this.newNode as Category];
+      this.newNode.parentCategory = null;
       this.dataSource.data = this.tree;
-    }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   hasChild = (_: number, node: Category) =>
@@ -87,5 +110,6 @@ export class CategoriesTreeComponent implements OnInit, OnChanges {
         },
       }),
     );
+    this.newName.reset();
   }
 }

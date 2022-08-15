@@ -40,8 +40,10 @@ import { ProductAttributesAddFormComponent } from './components/product-attribut
 import { ProductAttributeItemComponent } from './components/product-attribute-item/product-attribute-item.component';
 import { CreateProductFormComponent } from './pages/create-product-form/create-product-form.component';
 import { NewProductPhotosInputComponent } from './components/new-product-photos-input/new-product-photos-input.component';
-import { CategoriesTreeComponent } from './components/categories-tree/categories-tree.component';
+import { CategoriesTreeComponent } from './pages/categories-tree/categories-tree.component';
 import { MatTreeModule } from '@angular/material/tree';
+import { CategoryComponent } from './pages/category/category.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { MatTreeModule } from '@angular/material/tree';
     CreateProductFormComponent,
     NewProductPhotosInputComponent,
     CategoriesTreeComponent,
+    CategoryComponent,
+    CategoryDetailsComponent,
   ],
   imports: [
     CommonModule,

@@ -59,6 +59,7 @@ div[role=group] .mat-nested-tree-node > .mat-tree-node {
 }
 
 .mat-tree-node {
+  cursor: pointer;
   .add-button {
     margin-left: 4px;
     opacity: 0;
