@@ -104,14 +104,24 @@ describe('Categories Reducer', () => {
               ...category,
               id: 2,
             },
-          ],
+            {
+              ...category,
+              id: 3,
+              parentCategory: {
+                id: 1,
+              },
+            },
+          ] as any[],
         },
         action,
       );
 
       expect(result).toEqual({
         ...initialState,
-        list: [{ ...category, id: 2 }],
+        list: [
+          { ...category, id: 2 },
+          { ...category, id: 3, parentCategory: undefined },
+        ],
       });
     });
   });

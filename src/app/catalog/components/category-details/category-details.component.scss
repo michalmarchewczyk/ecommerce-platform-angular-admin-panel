@@ -18,11 +18,15 @@ form {
   width: 100%;
 }
 
- div {
+div {
   position: absolute;
+  left: 16px;
   bottom: 16px;
   right: 16px;
+  button:first-child {
+    float: left;
+  }
   button {
-    margin-left: 12px;
+    float: right
   }
 }

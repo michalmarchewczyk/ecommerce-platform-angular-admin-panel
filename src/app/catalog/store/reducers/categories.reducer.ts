@@ -48,7 +48,11 @@ export const reducer = createReducer(
     CategoriesActions.deleteCategorySuccess,
     (state, { id }): State => ({
       ...state,
-      list: state.list.filter((c) => c.id !== id),
+      list: state.list
+        .filter((c) => c.id !== id)
+        .map((c) =>
+          c.parentCategory?.id === id ? { ...c, parentCategory: undefined } : c,
+        ),
     }),
   ),
   on(

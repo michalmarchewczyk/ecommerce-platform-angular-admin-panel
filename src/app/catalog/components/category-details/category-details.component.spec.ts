@@ -15,6 +15,10 @@ import { Category } from '../../../core/api';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { CategoriesActions } from '../../store';
 import { cold } from 'jasmine-marbles';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatDialogHarness } from '@angular/material/dialog/testing';
 
 describe('CategoryDetailsComponent', () => {
   let component: CategoryDetailsComponent;
@@ -32,8 +36,10 @@ describe('CategoryDetailsComponent', () => {
         MatButtonModule,
         ReactiveFormsModule,
         FormsModule,
+        MatDialogModule,
+        RouterTestingModule,
       ],
-      declarations: [CategoryDetailsComponent],
+      declarations: [CategoryDetailsComponent, ConfirmDialogComponent],
       providers: [provideMockStore()],
     }).compileComponents();
 
@@ -46,7 +52,7 @@ describe('CategoryDetailsComponent', () => {
       slug: 'category-1',
     } as Category;
     store = TestBed.inject(MockStore);
-    loader = TestbedHarnessEnvironment.loader(fixture);
+    loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
   });
 
   it('should create', () => {
@@ -109,6 +115,23 @@ describe('CategoryDetailsComponent', () => {
 
     expect(store.scannedActions$).toBeObservable(
       cold('a', { a: { type: '@ngrx/store/init' } }),
+    );
+  });
+
+  it('should dispatch delete category action', async () => {
+    const button = await loader.getHarness(
+      MatButtonHarness.with({ text: 'Delete' }),
+    );
+    await button.click();
+    const dialog = await loader.getHarness(MatDialogHarness);
+    const dialogButton = await dialog.getHarness(
+      MatButtonHarness.with({ text: 'Delete' }),
+    );
+    await dialogButton.click();
+    expect(store.scannedActions$).toBeObservable(
+      cold('a', {
+        a: CategoriesActions.deleteCategory({ id: 1 }),
+      }),
     );
   });
 });

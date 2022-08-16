@@ -15,8 +15,8 @@
     <mat-error>Invalid URL slug</mat-error>
   </mat-form-field>
   <div>
-    <button mat-button type="button" (click)="resetValues()" color="primary">
-      Cancel
+    <button mat-button type="button" (click)="delete()" color="warn">
+      Delete
     </button>
     <button
       mat-flat-button
@@ -25,6 +25,9 @@
       color="primary"
     >
       Save
+    </button>
+    <button mat-button type="button" (click)="resetValues()" color="primary">
+      Cancel
     </button>
   </div>
 </form>
