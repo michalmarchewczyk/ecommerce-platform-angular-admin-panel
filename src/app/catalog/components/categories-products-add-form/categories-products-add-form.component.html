@@ -1,0 +1,26 @@
+<form (submit)="add(); $event.preventDefault()">
+  <h2>Add products:</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>Products</mat-label>
+    <mat-select
+      multiple="true"
+      [formControl]="selectedProducts"
+      (openedChange)="productsFilter.setValue('')"
+    >
+      <mat-option>
+        <ngx-mat-select-search
+          [formControl]="productsFilter"
+          placeholderLabel="Search"
+          noEntriesFoundLabel="No products found"
+        ></ngx-mat-select-search>
+      </mat-option>
+      <mat-option
+        *ngFor="let product of filteredProducts$ | async"
+        [value]="product.id"
+      >
+        {{ product.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit">Add</button>
+</form>

@@ -1,0 +1,20 @@
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: -12px;
+
+  h2 {
+    display: inline-block;
+    margin-top: 12px;
+  }
+
+  mat-form-field {
+    flex: 1;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}

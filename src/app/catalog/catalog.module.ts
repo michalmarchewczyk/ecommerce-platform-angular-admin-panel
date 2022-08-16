@@ -44,6 +44,10 @@ import { CategoriesTreeComponent } from './pages/categories-tree/categories-tree
 import { MatTreeModule } from '@angular/material/tree';
 import { CategoryComponent } from './pages/category/category.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { CategoryProductsComponent } from './components/category-products/category-products.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { CategoriesProductsAddFormComponent } from './components/categories-products-add-form/categories-products-add-form.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +67,9 @@ import { CategoryDetailsComponent } from './components/category-details/category
     CategoriesTreeComponent,
     CategoryComponent,
     CategoryDetailsComponent,
+    CategoryProductsComponent,
+    ProductCardComponent,
+    CategoriesProductsAddFormComponent,
   ],
   imports: [
     CommonModule,
@@ -90,6 +97,7 @@ import { CategoryDetailsComponent } from './components/category-details/category
     MatDialogModule,
     MatListModule,
     MatTreeModule,
+    NgxMatSelectSearchModule,
   ],
 })
 export class CatalogModule {}

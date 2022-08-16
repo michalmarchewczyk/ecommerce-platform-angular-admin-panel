@@ -1,0 +1,21 @@
+mat-card {
+  width: 184px;
+  height: 278px;
+  cursor: pointer;
+
+  app-product-photo {
+    width: 184px;
+    height: 184px;
+    background: #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  mat-card-title {
+    font-size: 20px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

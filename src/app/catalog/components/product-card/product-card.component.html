@@ -1,0 +1,15 @@
+<mat-card *ngIf="product" [routerLink]="['/catalog/products', product.id]">
+  <app-product-photo mat-card-image [product]="product"></app-product-photo>
+  <mat-card-title>
+    {{ product.name }}
+  </mat-card-title>
+  <mat-card-actions align="end">
+    <button
+      mat-button
+      color="primary"
+      (click)="delete.emit(product.id); $event.stopPropagation()"
+    >
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>

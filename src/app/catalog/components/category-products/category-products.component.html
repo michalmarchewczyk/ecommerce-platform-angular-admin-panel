@@ -1,0 +1,16 @@
+<div class="products-list">
+  <app-product-card
+    *ngFor="let product of category?.products ?? []"
+    [product]="product"
+    (delete)="deleteProduct($event)"
+  ></app-product-card>
+  <span *ngIf="category?.products?.length === 0" class="mat-headline">
+    No products in this category
+  </span>
+</div>
+
+<mat-divider></mat-divider>
+
+<app-categories-products-add-form
+  [category]="category"
+></app-categories-products-add-form>

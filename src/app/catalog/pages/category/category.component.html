@@ -16,7 +16,12 @@
       </mat-card-content>
     </mat-tab>
     <mat-tab label="Products">
-      <mat-card-content> </mat-card-content>
+      <mat-card-content>
+        <app-category-products
+          *ngIf="category$ | async"
+          [category]="(category$ | async) ?? null"
+        ></app-category-products
+      ></mat-card-content>
     </mat-tab>
   </mat-tab-group>
 </mat-card>
