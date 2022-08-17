@@ -97,6 +97,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       }),
     );
     await this.photosInput.save();
+    await this.editForm.markAsPristine();
   }
 
   delete() {

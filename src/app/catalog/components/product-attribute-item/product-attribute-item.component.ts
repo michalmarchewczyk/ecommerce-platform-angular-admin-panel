@@ -31,7 +31,10 @@ export class ProductAttributeItemComponent implements OnInit {
     if (!this.attribute || this.value.invalid) {
       return;
     }
-    this.update.emit({ id: this.attribute.id, value: this.value.value });
+    this.update.emit({
+      id: this.attribute.id,
+      value: this.value.value.toString(),
+    });
   }
 
   onDelete() {

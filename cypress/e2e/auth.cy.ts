@@ -1,12 +1,13 @@
 describe('Auth', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('/');
+    cy.fixture('admin-user.json').as('adminUser');
   });
 
-  it('login and logout user user', () => {
+  it('login and logout user user', function () {
     cy.contains('Login');
-    cy.get('input[type="email"]').type('admin@test.local');
-    cy.get('input[type="password"]').type('test1234');
+    cy.get('input[type="email"]').type(this['adminUser'].email);
+    cy.get('input[type="password"]').type(this['adminUser'].password);
     cy.get('button[type="submit"]').click();
     cy.location('pathname').should('eq', '/');
     cy.contains('Dashboard');
@@ -31,8 +32,8 @@ describe('Auth', () => {
     cy.contains('Password is required');
   });
 
-  it('try to login with wrong credentials', () => {
-    cy.get('input[type="email"]').type('admin@test.local');
+  it('try to login with wrong credentials', function () {
+    cy.get('input[type="email"]').type(this['adminUser'].email);
     cy.get('input[type="password"]').type('test123456');
     cy.get('button[type="submit"]').click();
     cy.contains('Wrong email or password');

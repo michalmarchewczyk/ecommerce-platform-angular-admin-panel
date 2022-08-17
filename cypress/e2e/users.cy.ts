@@ -1,8 +1,12 @@
 describe('Users', () => {
   beforeEach(() => {
+    cy.fixture('admin-user.json').as('adminUser');
+  });
+
+  beforeEach(function () {
     cy.visit('/');
-    cy.get('input[type="email"]').type('admin@test.local');
-    cy.get('input[type="password"]').type('test1234');
+    cy.get('input[type="email"]').type(this['adminUser'].email);
+    cy.get('input[type="password"]').type(this['adminUser'].password);
     cy.get('button[type="submit"]').click();
     cy.location('pathname').should('eq', '/');
     cy.visit('/users');
