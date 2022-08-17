@@ -120,7 +120,7 @@ describe('CategoryDetailsComponent', () => {
 
   it('should dispatch delete category action', async () => {
     const button = await loader.getHarness(
-      MatButtonHarness.with({ text: 'Delete' }),
+      MatButtonHarness.with({ text: 'Delete category' }),
     );
     await button.click();
     const dialog = await loader.getHarness(MatDialogHarness);

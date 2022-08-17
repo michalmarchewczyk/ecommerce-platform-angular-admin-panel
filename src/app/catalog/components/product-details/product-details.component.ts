@@ -1,16 +1,27 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductsActions } from '../../store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductPhotosInputComponent } from '../product-photos-input/product-photos-input.component';
 import { Product } from '../../../core/api';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { Router } from '@angular/router';
+import { map, startWith } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @Input() product: Product | null = null;
 
   editForm = new FormGroup({
@@ -37,10 +48,23 @@ export class ProductDetailsComponent implements OnInit {
   @ViewChild(ProductPhotosInputComponent)
   photosInput!: ProductPhotosInputComponent;
 
-  constructor(private store: Store) {}
+  newPhotos$ = of(0);
+
+  constructor(
+    private store: Store,
+    private dialog: MatDialog,
+    private router: Router,
+  ) {}
 
   async ngOnInit() {
     await this.resetValues();
+  }
+
+  ngAfterViewInit() {
+    this.newPhotos$ = this.photosInput.photosToSave.valueChanges.pipe(
+      map((v) => v.files.length),
+      startWith(0),
+    );
   }
 
   async resetValues() {
@@ -73,5 +97,24 @@ export class ProductDetailsComponent implements OnInit {
       }),
     );
     await this.photosInput.save();
+  }
+
+  delete() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete product',
+        message: 'Are you sure you want to delete this product?',
+        confirmButton: 'Delete',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && this.product) {
+        this.store.dispatch(
+          ProductsActions.deleteProduct({ id: this.product.id }),
+        );
+        await this.router.navigate(['/catalog/products']);
+      }
+    });
   }
 }

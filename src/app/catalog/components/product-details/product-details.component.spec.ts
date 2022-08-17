@@ -21,7 +21,10 @@ import { cold } from 'jasmine-marbles';
 import { first, skip } from 'rxjs';
 import { Product } from '../../../core/api';
 import { ProductPhotosInputComponent } from '../product-photos-input/product-photos-input.component';
-import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { FileInput, MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialogHarness } from '@angular/material/dialog/testing';
 
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
@@ -42,11 +45,14 @@ describe('ProductDetailsComponent', () => {
         ReactiveFormsModule,
         MatIconModule,
         MaterialFileInputModule,
+        MatDialogModule,
+        RouterTestingModule,
       ],
       declarations: [
         ProductDetailsComponent,
         SafeUrlPipe,
         ProductPhotosInputComponent,
+        ConfirmDialogComponent,
       ],
       providers: [
         provideMockStore({
@@ -91,7 +97,7 @@ describe('ProductDetailsComponent', () => {
     } as Product;
     // fixture.detectChanges();
     store = TestBed.inject(MockStore);
-    loader = TestbedHarnessEnvironment.loader(fixture);
+    loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
   });
 
   it('should create', () => {
@@ -157,11 +163,29 @@ describe('ProductDetailsComponent', () => {
   it('should ignore save when product is not loaded', async () => {
     component.product = null;
     fixture.detectChanges();
+    component.photosInput.photosToSave.setValue(new FileInput([]));
     spyOn(component.photosInput, 'save');
     await component.save();
     expect(component.photosInput.save).not.toHaveBeenCalled();
     expect(store.scannedActions$).toBeObservable(
       cold('a', { a: { type: '@ngrx/store/init' } }),
+    );
+  });
+
+  it('should dispatch delete category action', async () => {
+    const button = await loader.getHarness(
+      MatButtonHarness.with({ text: 'Delete product' }),
+    );
+    await button.click();
+    const dialog = await loader.getHarness(MatDialogHarness);
+    const dialogButton = await dialog.getHarness(
+      MatButtonHarness.with({ text: 'Delete' }),
+    );
+    await dialogButton.click();
+    expect(store.scannedActions$).toBeObservable(
+      cold('a', {
+        a: ProductsActions.deleteProduct({ id: 1 }),
+      }),
     );
   });
 });

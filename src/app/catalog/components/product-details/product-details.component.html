@@ -30,6 +30,9 @@
         <mat-option value="false">Hidden</mat-option>
       </mat-select>
     </mat-form-field>
+    <button mat-flat-button type="button" (click)="delete()" color="warn">
+      Delete product
+    </button>
     <div>
       <button mat-button type="button" (click)="resetValues()" color="primary">
         Cancel
@@ -37,7 +40,9 @@
       <button
         mat-flat-button
         type="submit"
-        [disabled]="!editForm.valid || !editForm.dirty"
+        [disabled]="
+          (!editForm.valid || !editForm.dirty) && (newPhotos$ | async) === 0
+        "
         color="primary"
       >
         Save

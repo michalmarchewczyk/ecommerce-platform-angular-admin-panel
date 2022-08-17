@@ -18,6 +18,12 @@ form {
     flex-basis: 200px;
     overflow: hidden;
 
+    > button {
+      position: absolute;
+      bottom: 64px;
+      right: 16px;
+    }
+
     > div {
       position: absolute;
       bottom: 16px;
