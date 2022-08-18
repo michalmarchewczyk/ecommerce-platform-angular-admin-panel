@@ -106,6 +106,6 @@ describe('Products', () => {
     cy.get('.cdk-dialog-container button').contains('Delete').click();
 
     cy.location('pathname').should('eq', '/catalog/products');
-    cy.get('.mat-row').contains('Test Cypress Product 2').should('not.exist');
+    cy.contains('.mat-row', 'Test Cypress Product 2').should('not.exist');
   });
 });
