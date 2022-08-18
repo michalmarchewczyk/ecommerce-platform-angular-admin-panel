@@ -82,6 +82,7 @@
     mat-fab
     color="primary"
     routerLink="/catalog/products/new"
+    [appAuthRole]="['admin', 'manager']"
   >
     <mat-icon>add</mat-icon>
   </button>

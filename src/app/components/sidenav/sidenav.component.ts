@@ -3,8 +3,6 @@ import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Store } from '@ngrx/store';
-import { selectUserRole } from '../../core/auth/store';
 
 @Component({
   selector: 'app-sidenav',
@@ -14,11 +12,10 @@ import { selectUserRole } from '../../core/auth/store';
 export class SidenavComponent {
   matchesMedium: Observable<boolean>;
   matchesSmall: Observable<boolean>;
-  userRoles$ = this.store.select(selectUserRole);
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
-  constructor(breakpointObserver: BreakpointObserver, private store: Store) {
+  constructor(breakpointObserver: BreakpointObserver) {
     this.matchesMedium = breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
       .pipe(map((v) => v.matches));

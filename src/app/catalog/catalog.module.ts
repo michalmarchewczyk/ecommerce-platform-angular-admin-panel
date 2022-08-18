@@ -48,6 +48,7 @@ import { CategoryProductsComponent } from './components/category-products/catego
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CategoriesProductsAddFormComponent } from './components/categories-products-add-form/categories-products-add-form.component';
+import { AuthModule } from '../core/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { CategoriesProductsAddFormComponent } from './components/categories-prod
     MatListModule,
     MatTreeModule,
     NgxMatSelectSearchModule,
+    AuthModule,
   ],
 })
 export class CatalogModule {}

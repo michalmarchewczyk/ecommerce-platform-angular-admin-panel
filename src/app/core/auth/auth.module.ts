@@ -12,9 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthRoleDirective } from './directives/auth-role.directive';
 
 @NgModule({
-  declarations: [LoginFormComponent, LoginComponent],
+  declarations: [LoginFormComponent, LoginComponent, AuthRoleDirective],
   providers: [],
   imports: [
     CommonModule,
@@ -27,5 +28,6 @@ import { LoginComponent } from './pages/login/login.component';
     MatInputModule,
     AuthRoutingModule,
   ],
+  exports: [AuthRoleDirective],
 })
 export class AuthModule {}

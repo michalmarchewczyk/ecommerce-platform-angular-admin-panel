@@ -15,7 +15,12 @@
         [routerLink]="['/catalog/categories', node.id]"
       >
         {{ node.name }}
-        <button mat-icon-button class="add-button" (click)="addCategory(node)">
+        <button
+          mat-icon-button
+          class="add-button"
+          (click)="addCategory(node)"
+          [appAuthRole]="['admin', 'manager']"
+        >
           <mat-icon>add</mat-icon>
         </button>
       </mat-tree-node>
@@ -23,6 +28,7 @@
       <mat-tree-node
         *matTreeNodeDef="let node; when: hasNoContent"
         class="new-node"
+        [appAuthRole]="['admin', 'manager']"
       >
         <form (submit)="add(); $event.preventDefault()">
           <mat-form-field appearance="outline">
@@ -54,6 +60,7 @@
             mat-icon-button
             class="add-button"
             (click)="addCategory(node)"
+            [appAuthRole]="['admin', 'manager']"
           >
             <mat-icon>add</mat-icon>
           </button>
@@ -71,6 +78,7 @@
       class="add-button"
       (click)="addCategory()"
       *ngIf="!!newNode.parentCategory"
+      [appAuthRole]="['admin', 'manager']"
     >
       <mat-icon>add</mat-icon>
     </button>
