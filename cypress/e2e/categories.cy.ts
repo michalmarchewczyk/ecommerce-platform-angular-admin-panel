@@ -77,7 +77,7 @@ describe('Categories', () => {
     cy.get('.mat-tab-label').contains('Products').click();
 
     cy.get('app-category-products .mat-select-trigger').click();
-    cy.contains('mat-option', 'Test Cypress Product').click();
+    cy.contains('mat-option', 'Test Cypress Product').click({ force: true });
     cy.get('app-category-products button')
       .contains('Add')
       .click({ force: true });
