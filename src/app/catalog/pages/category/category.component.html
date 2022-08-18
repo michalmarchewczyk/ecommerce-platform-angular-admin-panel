@@ -7,7 +7,11 @@
     </mat-card-title>
   </mat-card-title-group>
   <mat-tab-group dynamicHeight>
-    <mat-tab label="General">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">info</mat-icon>
+        General
+      </ng-template>
       <mat-card-content>
         <app-category-details
           *ngIf="category$ | async"
@@ -15,7 +19,11 @@
         ></app-category-details>
       </mat-card-content>
     </mat-tab>
-    <mat-tab label="Products">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">inventory_2</mat-icon>
+        Products
+      </ng-template>
       <mat-card-content>
         <app-category-products
           *ngIf="category$ | async"

@@ -13,7 +13,7 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-  width: 200px;
+  width: 220px;
   padding-top: 12px;
 }
 
@@ -26,4 +26,11 @@ mat-sidenav-content {
 
 mat-divider {
   margin: 12px 0;
+}
+
+.mat-list-item {
+  mat-icon {
+    color: rgba(0, 0, 0, 0.54);
+    margin-right: 8px;
+  }
 }

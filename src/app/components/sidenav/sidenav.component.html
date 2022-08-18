@@ -6,25 +6,52 @@
     [opened]="(matchesMedium | async) === false"
   >
     <mat-nav-list>
-      <a mat-list-item routerLink="/">Home</a>
+      <a mat-list-item routerLink="/">
+        <mat-icon mat-list-icon>home</mat-icon>
+        Home
+      </a>
       <ng-container
         *ngIf="
           ['admin', 'manager', 'sales'].includes((userRoles$ | async) ?? '')
         "
       >
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/orders"> Orders </a>
+        <a mat-list-item routerLink="/orders">
+          <mat-icon mat-list-icon>receipt</mat-icon>
+          Orders
+        </a>
+        <a mat-list-item routerLink="/orders">
+          <mat-icon mat-list-icon>cancel</mat-icon>
+          Returns
+        </a>
+        <a mat-list-item routerLink="/orders">
+          <mat-icon mat-list-icon>payments</mat-icon>
+          Payment methods
+        </a>
+        <a mat-list-item routerLink="/orders">
+          <mat-icon mat-list-icon>local_shipping</mat-icon>
+          Delivery methods
+        </a>
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/catalog/products"> Products </a>
+        <a mat-list-item routerLink="/catalog/products">
+          <mat-icon mat-list-icon>inventory_2</mat-icon>
+          Products
+        </a>
       </ng-container>
       <ng-container
         *ngIf="['admin', 'manager'].includes((userRoles$ | async) ?? '')"
       >
-        <a mat-list-item routerLink="/catalog/categories"> Categories </a>
+        <a mat-list-item routerLink="/catalog/categories">
+          <mat-icon mat-list-icon>local_offer</mat-icon>
+          Categories
+        </a>
       </ng-container>
       <ng-container *ngIf="['admin'].includes((userRoles$ | async) ?? '')">
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/users"> Users </a>
+        <a mat-list-item routerLink="/users">
+          <mat-icon mat-list-icon>people</mat-icon>
+          Users
+        </a>
       </ng-container>
     </mat-nav-list>
   </mat-sidenav>
