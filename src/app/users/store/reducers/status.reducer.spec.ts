@@ -1,7 +1,7 @@
 import { reducer, initialState } from './status.reducer';
 import { UsersActions } from '../actions';
 
-describe('Status Reducer', () => {
+describe('Users Status Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
