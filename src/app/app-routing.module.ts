@@ -35,12 +35,12 @@ const routes: Routes = [
           import('./catalog/catalog.module').then((m) => m.CatalogModule),
       },
       {
-        title: 'Orders',
-        path: 'orders',
+        title: 'Sales',
+        path: 'sales',
         canActivate: [AuthRoleGuard],
         data: { roles: [RoleEnum.Admin, RoleEnum.Manager, RoleEnum.Sales] },
         loadChildren: () =>
-          import('./orders/orders.module').then((m) => m.OrdersModule),
+          import('./sales/sales.module').then((m) => m.SalesModule),
       },
     ],
   },

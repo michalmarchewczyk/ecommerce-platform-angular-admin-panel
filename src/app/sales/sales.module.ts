@@ -11,9 +11,30 @@ import {
   PaymentsEffects,
   ReturnsEffects,
 } from './store/effects';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { ReturnsComponent } from './pages/returns/returns.component';
+import { PaymentMethodsComponent } from './pages/payment-methods/payment-methods.component';
+import { DeliveryMethodsComponent } from './pages/delivery-methods/delivery-methods.component';
+import { OrderComponent } from './pages/order/order.component';
+import { OrdersListComponent } from './pages/orders-list/orders-list.component';
+import { CreateOrderFormComponent } from './pages/create-order-form/create-order-form.component';
+import { CreateReturnFormComponent } from './pages/create-return-form/create-return-form.component';
+import { ReturnsListComponent } from './pages/returns-list/returns-list.component';
+import { ReturnComponent } from './pages/return/return.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    OrdersComponent,
+    ReturnsComponent,
+    PaymentMethodsComponent,
+    DeliveryMethodsComponent,
+    OrderComponent,
+    OrdersListComponent,
+    CreateOrderFormComponent,
+    CreateReturnFormComponent,
+    ReturnsListComponent,
+    ReturnComponent,
+  ],
   imports: [
     CommonModule,
     SalesRoutingModule,

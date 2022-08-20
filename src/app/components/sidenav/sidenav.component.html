@@ -14,7 +14,7 @@
       <mat-divider [appAuthRole]="['admin', 'manager', 'sales']"></mat-divider>
       <a
         mat-list-item
-        routerLink="/orders"
+        routerLink="/sales/orders"
         [appAuthRole]="['admin', 'manager', 'sales']"
       >
         <mat-icon mat-list-icon>receipt</mat-icon>
@@ -22,17 +22,25 @@
       </a>
       <a
         mat-list-item
-        routerLink="/orders"
+        routerLink="/sales/returns"
         [appAuthRole]="['admin', 'manager', 'sales']"
       >
         <mat-icon mat-list-icon>cancel</mat-icon>
         Returns
       </a>
-      <a mat-list-item routerLink="/orders" [appAuthRole]="['admin']">
+      <a
+        mat-list-item
+        routerLink="/sales/payment-methods"
+        [appAuthRole]="['admin']"
+      >
         <mat-icon mat-list-icon>payments</mat-icon>
         Payment methods
       </a>
-      <a mat-list-item routerLink="/orders" [appAuthRole]="['admin']">
+      <a
+        mat-list-item
+        routerLink="/sales/delivery-methods"
+        [appAuthRole]="['admin']"
+      >
         <mat-icon mat-list-icon>local_shipping</mat-icon>
         Delivery methods
       </a>
