@@ -21,6 +21,13 @@ import { CreateOrderFormComponent } from './pages/create-order-form/create-order
 import { CreateReturnFormComponent } from './pages/create-return-form/create-return-form.component';
 import { ReturnsListComponent } from './pages/returns-list/returns-list.component';
 import { ReturnComponent } from './pages/return/return.component';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthModule } from '../core/auth/auth.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { SharedModule } from '../shared/shared.module';
+import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -45,6 +52,13 @@ import { ReturnComponent } from './pages/return/return.component';
       PaymentsEffects,
       DeliveriesEffects,
     ]),
+    MatButtonModule,
+    AuthModule,
+    MatIconModule,
+    MatTableModule,
+    SharedModule,
+    MatSortModule,
+    MatCardModule,
   ],
 })
 export class SalesModule {}

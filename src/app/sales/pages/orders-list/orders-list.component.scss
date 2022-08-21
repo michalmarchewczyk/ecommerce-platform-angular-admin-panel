@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+  max-width: 100%;
+}
+
+tr.order-row:hover {
+  background: whitesmoke;
+}
+
+tr.order-row:active {
+  background: #efefef;
+}
+
+
+.mat-column-id {
+  padding-left: 12px;
+}
+.mat-column-contact-phone {
+  padding-right: 12px !important;
+}
+
+.mat-row {
+  .mat-cell {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.add-button {
+  position: sticky;
+  float: right;
+  margin-top: -64px;
+  margin-right: -45px;
+  bottom: 36px;
+}

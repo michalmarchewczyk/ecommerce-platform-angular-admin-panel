@@ -76,7 +76,7 @@ describe('ProductsListComponent', () => {
     ]);
   });
 
-  it('should render user row', async () => {
+  it('should render product row', async () => {
     const row = await loader.getHarness(MatRowHarness);
     expect(row).toBeTruthy();
     expect(await row.getCellTextByIndex()).toEqual([
