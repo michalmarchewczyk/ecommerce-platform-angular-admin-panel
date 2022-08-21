@@ -13,6 +13,7 @@ import {
   MatRowHarness,
   MatTableHarness,
 } from '@angular/material/table/testing';
+import { DatePipe } from '@angular/common';
 
 describe('OrdersListComponent', () => {
   let component: OrdersListComponent;
@@ -78,7 +79,8 @@ describe('OrdersListComponent', () => {
     expect(row).toBeTruthy();
     expect(await row.getCellTextByIndex()).toEqual([
       '1',
-      'Aug 21, 2022, 6:21:38 PM',
+      new DatePipe('en-US').transform('2022-08-21T16:21:38.277Z', 'medium') ??
+        '',
       'pending',
       'Test Test',
       'test@test.local',
