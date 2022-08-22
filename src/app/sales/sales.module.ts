@@ -28,6 +28,11 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
+import { PaymentMethodsListComponent } from './components/payment-methods-list/payment-methods-list.component';
+import { PaymentMethodDetailComponent } from './components/payment-method-detail/payment-method-detail.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,8 @@ import { MatCardModule } from '@angular/material/card';
     CreateReturnFormComponent,
     ReturnsListComponent,
     ReturnComponent,
+    PaymentMethodsListComponent,
+    PaymentMethodDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -59,6 +66,9 @@ import { MatCardModule } from '@angular/material/card';
     SharedModule,
     MatSortModule,
     MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
 })
 export class SalesModule {}
