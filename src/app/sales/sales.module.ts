@@ -33,6 +33,7 @@ import { PaymentMethodDetailComponent } from './components/payment-method-detail
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { PaymentMethodAddFormComponent } from './components/payment-method-add-form/payment-method-add-form.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MatInputModule } from '@angular/material/input';
     ReturnComponent,
     PaymentMethodsListComponent,
     PaymentMethodDetailComponent,
+    PaymentMethodAddFormComponent,
   ],
   imports: [
     CommonModule,

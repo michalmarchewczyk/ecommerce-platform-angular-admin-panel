@@ -1,0 +1,13 @@
+mat-card-content {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 12px;
+  flex-wrap: wrap;
+  mat-form-field {
+    width: 240px;
+    &:nth-child(2) {
+      flex-grow: 1;
+    }
+  }
+}
