@@ -34,6 +34,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { PaymentMethodAddFormComponent } from './components/payment-method-add-form/payment-method-add-form.component';
+import { DeliveryMethodsListComponent } from './components/delivery-methods-list/delivery-methods-list.component';
+import { DeliveryMethodDetailComponent } from './components/delivery-method-detail/delivery-method-detail.component';
+import { DeliveryMethodAddFormComponent } from './components/delivery-method-add-form/delivery-method-add-form.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { PaymentMethodAddFormComponent } from './components/payment-method-add-f
     PaymentMethodsListComponent,
     PaymentMethodDetailComponent,
     PaymentMethodAddFormComponent,
+    DeliveryMethodsListComponent,
+    DeliveryMethodDetailComponent,
+    DeliveryMethodAddFormComponent,
   ],
   imports: [
     CommonModule,

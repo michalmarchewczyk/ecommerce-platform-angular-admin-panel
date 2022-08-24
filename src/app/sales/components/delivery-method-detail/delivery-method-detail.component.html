@@ -1,0 +1,40 @@
+<form (submit)="save()" [formGroup]="editForm">
+  <div class="method-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" required />
+      <mat-error *ngIf="editForm.controls.name.invalid">
+        Invalid name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>description</mat-label>
+      <input matInput type="text" formControlName="description" />
+      <mat-error *ngIf="editForm.controls.description.invalid">
+        Invalid description
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" formControlName="price" />
+      <mat-error *ngIf="editForm.controls.price.invalid">
+        Invalid price
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="method-actions">
+    <button mat-flat-button color="warn" (click)="delete()" type="button">
+      Delete
+    </button>
+    <div class="method-actions-spacer"></div>
+    <button
+      mat-button
+      color="primary"
+      (click)="cancel.emit(); resetValues()"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button mat-flat-button color="primary" type="submit">Save</button>
+  </div>
+</form>
