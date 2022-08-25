@@ -1,1 +1,35 @@
-<p>order works!</p>
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>
+      <button mat-button routerLink="/sales/orders">
+        <mat-icon>arrow_back</mat-icon></button
+      >Order #{{ (order$ | async)?.id }}
+    </mat-card-title>
+  </mat-card-title-group>
+  <mat-tab-group dynamicHeight>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">info</mat-icon>
+        General
+      </ng-template>
+      <mat-card-content> </mat-card-content>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">shopping_cart</mat-icon>
+        Items
+      </ng-template>
+      <mat-card-content> </mat-card-content>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">edit</mat-icon>
+        Edit
+      </ng-template>
+      <mat-card-content> </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+<pre>
+  {{ order$ | async | json }}
+</pre>

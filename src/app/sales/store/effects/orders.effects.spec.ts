@@ -96,6 +96,17 @@ describe('OrdersEffects', () => {
     });
   });
 
+  describe('selectOrder$', () => {
+    it('should dispatch getOrder action', (done) => {
+      actions$ = of(OrdersActions.selectOrder({ orderId: 1 }));
+
+      effects.selectOrder$.subscribe((result) => {
+        expect(result).toEqual(OrdersActions.getOrder({ orderId: 1 }));
+        done();
+      });
+    });
+  });
+
   describe('createOrder$', () => {
     it('should return a createOrderSuccess action', (done) => {
       actions$ = of(

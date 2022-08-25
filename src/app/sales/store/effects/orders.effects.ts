@@ -37,6 +37,13 @@ export class OrdersEffects {
     );
   });
 
+  selectOrder$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(OrdersActions.selectOrderNumber),
+      map(({ orderId }) => OrdersActions.getOrder({ orderId })),
+    );
+  });
+
   createOrder$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(OrdersActions.createOrder),

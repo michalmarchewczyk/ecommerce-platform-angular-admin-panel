@@ -15,6 +15,11 @@ export const loadOrdersFailure = createAction(
 
 export const selectOrder = createAction(
   '[Orders] Select Order',
+  props<{ orderId: number | null }>(),
+);
+
+export const selectOrderNumber = createAction(
+  '[Orders] Select Order',
   props<{ orderId: number }>(),
 );
 

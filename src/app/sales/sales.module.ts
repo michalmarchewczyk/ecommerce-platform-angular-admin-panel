@@ -37,6 +37,7 @@ import { PaymentMethodAddFormComponent } from './components/payment-method-add-f
 import { DeliveryMethodsListComponent } from './components/delivery-methods-list/delivery-methods-list.component';
 import { DeliveryMethodDetailComponent } from './components/delivery-method-detail/delivery-method-detail.component';
 import { DeliveryMethodAddFormComponent } from './components/delivery-method-add-form/delivery-method-add-form.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { DeliveryMethodAddFormComponent } from './components/delivery-method-add
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatTabsModule,
   ],
 })
 export class SalesModule {}
