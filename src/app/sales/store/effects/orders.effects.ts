@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { OrdersApiService } from '../../../core/api';
 import { OrdersActions } from '../actions';
-import { exhaustMap, map } from 'rxjs/operators';
+import { exhaustMap, filter, map } from 'rxjs/operators';
 import { catchError, of } from 'rxjs';
 
 @Injectable()
@@ -40,6 +40,7 @@ export class OrdersEffects {
   selectOrder$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(OrdersActions.selectOrderNumber),
+      filter(({ orderId }) => orderId !== null),
       map(({ orderId }) => OrdersActions.getOrder({ orderId })),
     );
   });

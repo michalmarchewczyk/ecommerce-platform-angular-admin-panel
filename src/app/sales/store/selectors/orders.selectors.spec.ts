@@ -1,7 +1,7 @@
 import { SalesState } from '../reducers';
-import { Order } from '../../../core/api';
 import {
   selectOrdersList,
+  selectOrdersListWithItems,
   selectOrdersState,
   selectSelectedOrder,
   selectSelectedOrderId,
@@ -18,7 +18,14 @@ describe('Orders Selectors', () => {
             id: 1,
             status: 'pending',
             fullName: 'test',
-          } as Order,
+            items: [
+              {
+                id: 1,
+                price: 2,
+                quantity: 2,
+              },
+            ],
+          } as any,
         ],
         selectedOrderId: 1,
       },
@@ -50,6 +57,21 @@ describe('Orders Selectors', () => {
     it('should select the orders list', () => {
       const result = selectOrdersList.projector(initialState.orders);
       expect(result).toEqual(initialState.orders.list);
+    });
+  });
+
+  describe('selectOrdersListWithItems', () => {
+    it('should select the orders list with items data', () => {
+      const result = selectOrdersListWithItems.projector(
+        initialState.orders.list,
+      );
+      expect(result).toEqual([
+        {
+          ...initialState.orders.list[0],
+          itemsCount: 2,
+          itemsTotal: 4,
+        },
+      ]);
     });
   });
 
