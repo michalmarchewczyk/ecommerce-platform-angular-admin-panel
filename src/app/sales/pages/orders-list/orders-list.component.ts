@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OrdersActions, selectOrdersList } from '../../store';
+import { OrdersActions, selectOrdersListWithItems } from '../../store';
 import { MatTableDataSource } from '@angular/material/table';
 import { Order } from '../../../core/api';
 import { firstValueFrom, Subscription } from 'rxjs';
@@ -18,7 +18,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./orders-list.component.scss'],
 })
 export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
-  orders$ = this.store.select(selectOrdersList);
+  orders$ = this.store.select(selectOrdersListWithItems);
   dataSource = new MatTableDataSource<Order>();
   subscription!: Subscription;
 

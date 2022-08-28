@@ -8,12 +8,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { provideMockStore } from '@ngrx/store/testing';
-import { selectOrdersList } from '../../store';
+import { selectOrdersListWithItems } from '../../store';
 import {
   MatRowHarness,
   MatTableHarness,
 } from '@angular/material/table/testing';
 import { DatePipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('OrdersListComponent', () => {
   let component: OrdersListComponent;
@@ -27,13 +28,14 @@ describe('OrdersListComponent', () => {
         HttpClientTestingModule,
         MatCardModule,
         MatTableModule,
+        MatIconModule,
       ],
       declarations: [OrdersListComponent],
       providers: [
         provideMockStore({
           selectors: [
             {
-              selector: selectOrdersList,
+              selector: selectOrdersListWithItems,
               value: [
                 {
                   id: 1,
@@ -42,6 +44,25 @@ describe('OrdersListComponent', () => {
                   fullName: 'Test Test',
                   contactEmail: 'test@test.local',
                   contactPhone: '123456789',
+                  items: [
+                    {
+                      id: 1,
+                      quantity: 2,
+                      price: 2,
+                    },
+                  ],
+                  itemsCount: 2,
+                  itemsTotal: 4,
+                  payment: {
+                    method: {
+                      name: 'payment-test',
+                    },
+                  },
+                  delivery: {
+                    method: {
+                      name: 'delivery-test',
+                    },
+                  },
                 },
               ],
             },
@@ -67,10 +88,12 @@ describe('OrdersListComponent', () => {
     expect(await row.getCellTextByIndex()).toEqual([
       'ID',
       'Created',
+      'Items',
+      'Total price',
       'Status',
-      'Full Name',
-      'Contact Email',
-      'Contact Phone',
+      'Full name',
+      'Delivery',
+      'Payment',
     ]);
   });
 
@@ -81,10 +104,12 @@ describe('OrdersListComponent', () => {
       '1',
       new DatePipe('en-US').transform('2022-08-21T16:21:38.277Z', 'medium') ??
         '',
+      '2',
+      '4.00',
       'pending',
       'Test Test',
-      'test@test.local',
-      '123456789',
+      'delivery-test',
+      'payment-test',
     ]);
   });
 });

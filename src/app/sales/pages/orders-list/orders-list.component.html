@@ -21,6 +21,22 @@
           {{ order.created | date: 'medium' }}
         </td>
       </ng-container>
+      <ng-container matColumnDef="itemsCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="itemsCount">
+          Items
+        </th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.itemsCount }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="itemsTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="itemsTotal">
+          Total price
+        </th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.itemsTotal | number: '1.2-2' }}
+        </td>
+      </ng-container>
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="status">
           Status
@@ -29,21 +45,25 @@
       </ng-container>
       <ng-container matColumnDef="fullName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="fullName">
-          Full Name
+          Full name
         </th>
         <td mat-cell *matCellDef="let order">{{ order.fullName }}</td>
       </ng-container>
-      <ng-container matColumnDef="contactEmail">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="contactEmail">
-          Contact Email
+      <ng-container matColumnDef="delivery">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="delivery">
+          Delivery
         </th>
-        <td mat-cell *matCellDef="let order">{{ order.contactEmail }}</td>
+        <td mat-cell *matCellDef="let order">
+          {{ order.delivery.method.name }}
+        </td>
       </ng-container>
-      <ng-container matColumnDef="contactPhone">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="contactPhone">
-          Contact Phone
+      <ng-container matColumnDef="payment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="payment">
+          Payment
         </th>
-        <td mat-cell *matCellDef="let order">{{ order.contactPhone }}</td>
+        <td mat-cell *matCellDef="let order">
+          {{ order.payment.method.name }}
+        </td>
       </ng-container>
 
       <tr
@@ -51,10 +71,12 @@
         *matHeaderRowDef="[
           'id',
           'created',
+          'itemsCount',
+          'itemsTotal',
           'status',
           'fullName',
-          'contactEmail',
-          'contactPhone'
+          'delivery',
+          'payment'
         ]"
       ></tr>
       <tr
@@ -65,10 +87,12 @@
           columns: [
             'id',
             'created',
+            'itemsCount',
+            'itemsTotal',
             'status',
             'fullName',
-            'contactEmail',
-            'contactPhone'
+            'delivery',
+            'payment'
           ]
         "
         class="order-row"
@@ -80,7 +104,6 @@
     mat-fab
     color="primary"
     routerLink="/sales/orders/new"
-    [appAuthRole]="['admin', 'manager']"
   >
     <mat-icon>add</mat-icon>
   </button>
