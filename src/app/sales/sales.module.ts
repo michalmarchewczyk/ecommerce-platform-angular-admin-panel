@@ -38,6 +38,7 @@ import { DeliveryMethodsListComponent } from './components/delivery-methods-list
 import { DeliveryMethodDetailComponent } from './components/delivery-method-detail/delivery-method-detail.component';
 import { DeliveryMethodAddFormComponent } from './components/delivery-method-add-form/delivery-method-add-form.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     DeliveryMethodsListComponent,
     DeliveryMethodDetailComponent,
     DeliveryMethodAddFormComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,

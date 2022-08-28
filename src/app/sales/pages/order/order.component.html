@@ -12,7 +12,12 @@
         <mat-icon class="mat-tab-icon">info</mat-icon>
         General
       </ng-template>
-      <mat-card-content> </mat-card-content>
+      <mat-card-content>
+        <app-order-details
+          *ngIf="order$ | async"
+          [order]="(order$ | async) ?? null"
+        ></app-order-details
+      ></mat-card-content>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
