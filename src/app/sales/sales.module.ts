@@ -39,6 +39,8 @@ import { DeliveryMethodDetailComponent } from './components/delivery-method-deta
 import { DeliveryMethodAddFormComponent } from './components/delivery-method-add-form/delivery-method-add-form.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { OrderItemsComponent } from './components/order-items/order-items.component';
+import { CatalogModule } from '../catalog/catalog.module';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     DeliveryMethodDetailComponent,
     DeliveryMethodAddFormComponent,
     OrderDetailsComponent,
+    OrderItemsComponent,
   ],
   imports: [
     CommonModule,
@@ -81,6 +84,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     ReactiveFormsModule,
     MatInputModule,
     MatTabsModule,
+    CatalogModule,
   ],
 })
 export class SalesModule {}

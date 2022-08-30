@@ -101,5 +101,6 @@ import { AuthModule } from '../core/auth/auth.module';
     NgxMatSelectSearchModule,
     AuthModule,
   ],
+  exports: [ProductPhotoComponent],
 })
 export class CatalogModule {}

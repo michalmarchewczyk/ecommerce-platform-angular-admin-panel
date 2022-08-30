@@ -24,7 +24,12 @@
         <mat-icon class="mat-tab-icon">shopping_cart</mat-icon>
         Items
       </ng-template>
-      <mat-card-content> </mat-card-content>
+      <mat-card-content>
+        <app-order-items
+          *ngIf="(order$ | async)?.items"
+          [order]="(order$ | async) ?? null"
+        ></app-order-items>
+      </mat-card-content>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
