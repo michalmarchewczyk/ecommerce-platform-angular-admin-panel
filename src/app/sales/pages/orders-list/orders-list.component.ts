@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Order } from '../../../core/api';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
+import { ProductsActions } from '../../../catalog/store';
 
 @Component({
   selector: 'app-orders-list',
@@ -28,6 +29,7 @@ export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.dataSource.data = [];
+    this.store.dispatch(ProductsActions.loadProducts());
   }
 
   ngOnDestroy() {
