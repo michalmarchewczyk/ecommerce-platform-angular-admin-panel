@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { PaymentsApiService } from '../../../core/api';
-import { PaymentsActions } from '../actions';
+import { OrdersActions, PaymentsActions } from '../actions';
 import { exhaustMap, map } from 'rxjs/operators';
 import { catchError, of } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class PaymentsEffects {
 
   loadPaymentMethods$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(PaymentsActions.loadPaymentMethods),
+      ofType(PaymentsActions.loadPaymentMethods, OrdersActions.loadOrders),
       exhaustMap(() =>
         this.paymentsApi.getPaymentMethods().pipe(
           map((paymentMethods) =>

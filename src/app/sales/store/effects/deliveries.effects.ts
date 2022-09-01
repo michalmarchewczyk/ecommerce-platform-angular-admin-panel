@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { DeliveriesApiService } from '../../../core/api';
-import { DeliveriesActions } from '../actions';
+import { DeliveriesActions, OrdersActions } from '../actions';
 import { exhaustMap, map } from 'rxjs/operators';
 import { catchError, of } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class DeliveriesEffects {
 
   loadDeliveryMethods$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DeliveriesActions.loadDeliveryMethods),
+      ofType(DeliveriesActions.loadDeliveryMethods, OrdersActions.loadOrders),
       exhaustMap(() =>
         this.deliveriesApi.getDeliveryMethods().pipe(
           map((deliveryMethods) =>
