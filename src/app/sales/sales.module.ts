@@ -41,6 +41,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { OrderItemsComponent } from './components/order-items/order-items.component';
 import { CatalogModule } from '../catalog/catalog.module';
+import { EditOrderFormComponent } from './components/edit-order-form/edit-order-form.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,7 @@ import { CatalogModule } from '../catalog/catalog.module';
     DeliveryMethodAddFormComponent,
     OrderDetailsComponent,
     OrderItemsComponent,
+    EditOrderFormComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +89,8 @@ import { CatalogModule } from '../catalog/catalog.module';
     MatInputModule,
     MatTabsModule,
     CatalogModule,
+    MatSelectModule,
+    MatDividerModule,
   ],
 })
 export class SalesModule {}

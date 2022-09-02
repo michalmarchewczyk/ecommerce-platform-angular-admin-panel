@@ -6,7 +6,7 @@
       >Order #{{ (order$ | async)?.id }}
     </mat-card-title>
   </mat-card-title-group>
-  <mat-tab-group dynamicHeight>
+  <mat-tab-group dynamicHeight selectedIndex="2">
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="mat-tab-icon">info</mat-icon>
@@ -36,7 +36,12 @@
         <mat-icon class="mat-tab-icon">edit</mat-icon>
         Edit
       </ng-template>
-      <mat-card-content> </mat-card-content>
+      <mat-card-content>
+        <app-edit-order-form
+          *ngIf="order$ | async"
+          [order]="(order$ | async) ?? null"
+        ></app-edit-order-form>
+      </mat-card-content>
     </mat-tab>
   </mat-tab-group>
 </mat-card>
