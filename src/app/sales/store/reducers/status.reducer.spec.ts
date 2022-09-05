@@ -55,4 +55,20 @@ describe('Sales Status Reducer', () => {
       });
     });
   });
+
+  describe('create order success action', () => {
+    it('should set the new order id', () => {
+      const action = OrdersActions.createOrderSuccess({
+        order: { id: 1 } as any,
+      });
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        loading: false,
+        error: null,
+        newOrderId: 1,
+      });
+    });
+  });
 });

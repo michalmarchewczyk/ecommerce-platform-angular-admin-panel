@@ -16,3 +16,8 @@ export const selectSalesLoading = createSelector(
   selectSalesStatusState,
   (state) => state.loading,
 );
+
+export const selectNewOrderId = createSelector(
+  selectSalesStatusState,
+  (state) => state.newOrderId,
+);

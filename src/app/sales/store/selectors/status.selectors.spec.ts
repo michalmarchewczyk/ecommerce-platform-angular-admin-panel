@@ -1,5 +1,6 @@
 import { SalesState } from '../reducers';
 import {
+  selectNewOrderId,
   selectSalesError,
   selectSalesLoading,
   selectSalesStatusState,
@@ -27,6 +28,7 @@ describe('Sales Status Selectors', () => {
       status: {
         loading: false,
         error: 'error',
+        newOrderId: 1,
       },
     };
   });
@@ -52,6 +54,14 @@ describe('Sales Status Selectors', () => {
       const result = selectSalesLoading.projector(initialState.status);
 
       expect(result).toBe(initialState.status.loading);
+    });
+  });
+
+  describe('selectNewOrderId', () => {
+    it('should select the new order id', () => {
+      const result = selectNewOrderId.projector(initialState.status);
+
+      expect(result).toBe(initialState.status.newOrderId);
     });
   });
 });

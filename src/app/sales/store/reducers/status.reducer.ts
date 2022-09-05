@@ -11,11 +11,13 @@ export const statusFeatureKey = 'status';
 export interface State {
   error: string | null;
   loading: boolean;
+  newOrderId: number | null;
 }
 
 export const initialState: State = {
   error: null,
   loading: false,
+  newOrderId: null,
 };
 
 export const reducer = createReducer(
@@ -87,6 +89,13 @@ export const reducer = createReducer(
       ...state,
       loading: false,
       error,
+    }),
+  ),
+  on(
+    OrdersActions.createOrderSuccess,
+    (state, { order }): State => ({
+      ...state,
+      newOrderId: order.id,
     }),
   ),
 );

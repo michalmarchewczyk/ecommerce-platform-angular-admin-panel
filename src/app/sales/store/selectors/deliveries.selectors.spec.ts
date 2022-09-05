@@ -32,6 +32,7 @@ describe('Deliveries Selectors', () => {
       status: {
         loading: false,
         error: null,
+        newOrderId: 1,
       },
     };
   });
