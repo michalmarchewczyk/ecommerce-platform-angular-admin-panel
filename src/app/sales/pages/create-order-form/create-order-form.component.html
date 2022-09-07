@@ -1,1 +1,119 @@
-<p>create-order-form works!</p>
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>
+      <button mat-button routerLink="/sales/orders">
+        <mat-icon>arrow_back</mat-icon></button
+      >Create new order
+    </mat-card-title>
+  </mat-card-title-group>
+  <mat-card-content>
+    <form [formGroup]="createForm" (submit)="save()">
+      <div class="contact">
+        <h2>Contact data</h2>
+        <mat-form-field appearance="outline">
+          <mat-label> Contact Email </mat-label>
+          <input matInput type="email" formControlName="contactEmail" />
+          <mat-error *ngIf="createForm.controls.contactEmail.invalid">
+            Invalid email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label> Contact Phone number </mat-label>
+          <input matInput type="tel" formControlName="contactPhone" />
+          <mat-error *ngIf="createForm.controls.contactPhone.invalid">
+            Invalid phone number
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label> Full name </mat-label>
+          <input matInput type="text" formControlName="fullName" />
+          <mat-error *ngIf="createForm.controls.fullName.invalid">
+            Invalid full name
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label> Message </mat-label>
+          <textarea matInput formControlName="message"></textarea>
+          <mat-error *ngIf="createForm.controls.message.invalid">
+            Invalid message
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="details">
+        <h2>Delivery details</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>Delivery method</mat-label>
+          <mat-select formControlName="deliveryMethodId">
+            <mat-option
+              *ngFor="let method of deliveryMethods$ | async"
+              [value]="method.id"
+            >
+              {{ method.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Delivery address</mat-label>
+          <input matInput type="text" formControlName="deliveryAddress" />
+          <mat-error *ngIf="createForm.controls.deliveryAddress.invalid">
+            Invalid delivery address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Delivery city</mat-label>
+          <input matInput type="text" formControlName="deliveryCity" />
+          <mat-error *ngIf="createForm.controls.deliveryCity.invalid">
+            Invalid delivery city
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Delivery postal code</mat-label>
+          <input matInput type="text" formControlName="deliveryPostalCode" />
+          <mat-error *ngIf="createForm.controls.deliveryPostalCode.invalid">
+            Invalid delivery postal code
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Delivery country</mat-label>
+          <input matInput type="text" formControlName="deliveryCountry" />
+          <mat-error *ngIf="createForm.controls.deliveryCountry.invalid">
+            Invalid delivery country
+          </mat-error>
+        </mat-form-field>
+
+        <h2>Payment details</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>Payment method</mat-label>
+          <mat-select formControlName="paymentMethodId">
+            <mat-option
+              *ngFor="let method of paymentMethods$ | async"
+              [value]="method.id"
+            >
+              {{ method.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="buttons">
+          <button
+            mat-button
+            type="button"
+            routerLink="/sales/orders"
+            color="primary"
+          >
+            Cancel
+          </button>
+          <button
+            mat-flat-button
+            type="submit"
+            [disabled]="!createForm.valid || !createForm.dirty"
+            color="primary"
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
