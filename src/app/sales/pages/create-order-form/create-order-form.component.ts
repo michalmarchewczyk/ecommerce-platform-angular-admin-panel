@@ -31,7 +31,7 @@ export class CreateOrderFormComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    message: new FormControl(''),
+    message: new FormControl<string | null>(null),
     deliveryMethodId: new FormControl(0, {
       nonNullable: true,
       validators: [Validators.required],
