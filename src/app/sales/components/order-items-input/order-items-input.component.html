@@ -1,0 +1,86 @@
+<table mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let item">{{ item.product.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let item">
+      <app-product-photo [product]="item.product"></app-product-photo>
+      {{ item.product.name }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let item">{{ item.product.price }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef>Qty</th>
+    <td mat-cell *matCellDef="let item">
+      <mat-form-field appearance="outline">
+        <mat-label>Qty</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="item.quantity"
+          (change)="updateQuantity(item)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef>Total</th>
+    <td mat-cell *matCellDef="let item">
+      {{ item.product.price * item.quantity }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-icon-button type="button" (click)="deleteItem(item)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr
+    mat-header-row
+    *matHeaderRowDef="['id', 'name', 'price', 'quantity', 'total', 'delete']"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="
+      let row;
+      columns: ['id', 'name', 'price', 'quantity', 'total', 'delete']
+    "
+  ></tr>
+</table>
+
+<mat-form-field appearance="outline">
+  <mat-label>Add product</mat-label>
+  <mat-select
+    (openedChange)="productsFilter.setValue('')"
+    (selectionChange)="addProduct($event.value)"
+    [formControl]="selectProduct"
+  >
+    <mat-option>
+      <ngx-mat-select-search
+        [formControl]="productsFilter"
+        placeholderLabel="Search"
+        noEntriesFoundLabel="No products found"
+      ></ngx-mat-select-search>
+    </mat-option>
+    <mat-option
+      *ngFor="let product of filteredProducts$ | async"
+      [value]="product.id"
+    >
+      #{{ product.id }} {{ product.name }} (stock: {{ product.stock }}) -
+      {{ product.price }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

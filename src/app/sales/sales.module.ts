@@ -31,7 +31,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PaymentMethodsListComponent } from './components/payment-methods-list/payment-methods-list.component';
 import { PaymentMethodDetailComponent } from './components/payment-method-detail/payment-method-detail.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { PaymentMethodAddFormComponent } from './components/payment-method-add-form/payment-method-add-form.component';
 import { DeliveryMethodsListComponent } from './components/delivery-methods-list/delivery-methods-list.component';
@@ -44,6 +44,8 @@ import { CatalogModule } from '../catalog/catalog.module';
 import { EditOrderFormComponent } from './components/edit-order-form/edit-order-form.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { OrderItemsInputComponent } from './components/order-items-input/order-items-input.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { MatDividerModule } from '@angular/material/divider';
     OrderDetailsComponent,
     OrderItemsComponent,
     EditOrderFormComponent,
+    OrderItemsInputComponent,
   ],
   imports: [
     CommonModule,
@@ -91,6 +94,8 @@ import { MatDividerModule } from '@angular/material/divider';
     CatalogModule,
     MatSelectModule,
     MatDividerModule,
+    NgxMatSelectSearchModule,
+    FormsModule,
   ],
 })
 export class SalesModule {}

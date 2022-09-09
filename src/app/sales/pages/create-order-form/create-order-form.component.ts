@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   OrdersActions,
@@ -8,9 +8,9 @@ import {
 } from '../../store';
 import { ProductsActions, selectProductsList } from '../../../catalog/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { OrderItemDto } from '../../../core/api';
 import { Router } from '@angular/router';
 import { first, take } from 'rxjs';
+import { OrderItemsInputComponent } from '../../components/order-items-input/order-items-input.component';
 
 @Component({
   selector: 'app-create-order-form',
@@ -55,7 +55,7 @@ export class CreateOrderFormComponent implements OnInit {
     }),
   });
 
-  items: OrderItemDto[] = [];
+  @ViewChild(OrderItemsInputComponent) itemsInput!: OrderItemsInputComponent;
 
   deliveryMethods$ = this.store.select(selectDeliveriesList);
   paymentMethods$ = this.store.select(selectPaymentsList);
@@ -86,7 +86,7 @@ export class CreateOrderFormComponent implements OnInit {
           payment: {
             methodId: this.createForm.controls.paymentMethodId.value,
           },
-          items: this.items,
+          items: this.itemsInput.items,
         },
       }),
     );

@@ -8,6 +8,11 @@
   </mat-card-title-group>
   <mat-card-content>
     <form [formGroup]="createForm" (submit)="save()">
+      <div class="items">
+        <h2>Items</h2>
+        <app-order-items-input></app-order-items-input>
+      </div>
+
       <div class="contact">
         <h2>Contact data</h2>
         <mat-form-field appearance="outline">
