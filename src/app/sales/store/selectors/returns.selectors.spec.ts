@@ -1,6 +1,7 @@
 import { SalesState } from '../reducers';
 import {
   selectReturnsList,
+  selectReturnsListWithItems,
   selectReturnsState,
   selectSelectedReturn,
   selectSelectedReturnId,
@@ -21,6 +22,15 @@ describe('Returns Selectors', () => {
           {
             id: 1,
             status: 'open',
+            order: {
+              items: [
+                {
+                  id: 1,
+                  price: 2,
+                  quantity: 2,
+                },
+              ],
+            },
           } as Return,
         ],
         selectedReturnId: 1,
@@ -50,6 +60,21 @@ describe('Returns Selectors', () => {
     it('should select the returns list', () => {
       const result = selectReturnsList.projector(initialState.returns);
       expect(result).toEqual(initialState.returns.list);
+    });
+  });
+
+  describe('selectReturnsListWithItems', () => {
+    it('should select the returns list with items', () => {
+      const result = selectReturnsListWithItems.projector(
+        initialState.returns.list,
+      );
+      expect(result).toEqual([
+        {
+          ...initialState.returns.list[0],
+          itemsCount: 2,
+          itemsTotal: 4,
+        },
+      ]);
     });
   });
 

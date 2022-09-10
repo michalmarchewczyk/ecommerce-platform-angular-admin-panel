@@ -12,6 +12,19 @@ export const selectReturnsList = createSelector(
   (state) => state.list,
 );
 
+export const selectReturnsListWithItems = createSelector(
+  selectReturnsList,
+  (returns) =>
+    returns.map((r) => ({
+      ...r,
+      itemsCount: r.order.items.reduce((acc, item) => acc + item.quantity, 0),
+      itemsTotal: r.order.items.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0,
+      ),
+    })),
+);
+
 export const selectSelectedReturnId = createSelector(
   selectReturnsState,
   (state) => state.selectedReturnId,
