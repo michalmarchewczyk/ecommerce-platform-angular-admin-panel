@@ -56,7 +56,6 @@ export class OrderItemsInputComponent {
   }
 
   async deleteItem(item: { product: Product; quantity: number }) {
-    console.log('deleteItem', item);
     this.items = this.items.filter((i) => i.productId !== item.product.id);
     this.dataSource = this.dataSource.filter(
       (i) => i.product.id !== item.product.id,

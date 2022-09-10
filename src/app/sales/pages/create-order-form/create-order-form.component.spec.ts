@@ -21,6 +21,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
+import { OrderItemsInputComponent } from '../../components/order-items-input/order-items-input.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatTableModule } from '@angular/material/table';
+import { selectProductsList } from '../../../catalog/store';
 
 describe('CreateOrderFormComponent', () => {
   let component: CreateOrderFormComponent;
@@ -39,8 +43,10 @@ describe('CreateOrderFormComponent', () => {
         MatCardModule,
         MatSelectModule,
         RouterTestingModule,
+        NgxMatSelectSearchModule,
+        MatTableModule,
       ],
-      declarations: [CreateOrderFormComponent],
+      declarations: [CreateOrderFormComponent, OrderItemsInputComponent],
       providers: [
         provideMockStore({
           selectors: [
@@ -65,6 +71,10 @@ describe('CreateOrderFormComponent', () => {
             {
               selector: selectNewOrderId,
               value: 1,
+            },
+            {
+              selector: selectProductsList,
+              value: [],
             },
           ],
         }),
@@ -91,8 +101,8 @@ describe('CreateOrderFormComponent', () => {
     await inputs[5].setValue('Test city');
     await inputs[7].setValue('Test country');
     const selects = await loader.getAllHarnesses(MatSelectHarness);
-    await selects[0].clickOptions({ text: 'delivery-test' });
-    await selects[1].clickOptions({ text: 'payment-test' });
+    await selects[1].clickOptions({ text: 'delivery-test' });
+    await selects[2].clickOptions({ text: 'payment-test' });
 
     const button = await loader.getHarness(
       MatButtonHarness.with({ text: 'Create' }),
