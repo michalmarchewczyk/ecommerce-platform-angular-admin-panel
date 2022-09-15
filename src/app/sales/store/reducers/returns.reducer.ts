@@ -51,7 +51,7 @@ export const reducer = createReducer(
     (state, action): State => ({
       ...state,
       list: state.list.map((r) =>
-        r.id === action.returnId ? action.return : r,
+        r.id === action.returnId ? { ...r, ...action.return } : r,
       ),
     }),
   ),

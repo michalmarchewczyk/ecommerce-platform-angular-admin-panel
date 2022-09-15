@@ -46,6 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { OrderItemsInputComponent } from './components/order-items-input/order-items-input.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { ReturnDetailComponent } from './components/return-detail/return-detail.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     OrderItemsComponent,
     EditOrderFormComponent,
     OrderItemsInputComponent,
+    ReturnDetailComponent,
   ],
   imports: [
     CommonModule,

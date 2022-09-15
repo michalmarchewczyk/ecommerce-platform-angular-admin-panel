@@ -1,1 +1,134 @@
-<p>returns-list works!</p>
+<mat-card>
+  <mat-card-title>Returns</mat-card-title>
+  <mat-card-content>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      multiTemplateDataRows
+      matSort
+      matSortActive="id"
+      matSortDirection="asc"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="created">
+          Created
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.created }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="status">
+          Status
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      </ng-container>
+      <ng-container matColumnDef="order_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="order_id">
+          Order ID
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.order.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="order_created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="order_created">
+          Order Created
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.order.created }}</td>
+      </ng-container>
+      <ng-container matColumnDef="itemsCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="itemsCount">
+          Quantity
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.itemsCount }}</td>
+      </ng-container>
+      <ng-container matColumnDef="itemsTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="itemsTotal">
+          Total
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.itemsTotal }}</td>
+      </ng-container>
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+          &nbsp;
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            aria-label="expand row"
+            (click)="
+              expandedReturn = expandedReturn === element ? null : element;
+              $event.stopPropagation()
+            "
+          >
+            <mat-icon *ngIf="expandedReturn !== element">
+              keyboard_arrow_down
+            </mat-icon>
+            <mat-icon *ngIf="expandedReturn === element"
+              >keyboard_arrow_up</mat-icon
+            >
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="7">
+          <div
+            class="element-detail"
+            [@detailExpand]="
+              element && element === expandedReturn ? 'expanded' : 'collapsed'
+            "
+          >
+            <app-return-detail
+              [return]="element"
+              (cancel)="expandedReturn = null"
+            ></app-return-detail>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="[
+          'id',
+          'created',
+          'status',
+          'order_id',
+          'order_created',
+          'itemsCount',
+          'itemsTotal',
+          'expand'
+        ]"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="
+          let element;
+          columns: [
+            'id',
+            'created',
+            'status',
+            'order_id',
+            'order_created',
+            'itemsCount',
+            'itemsTotal',
+            'expand'
+          ]
+        "
+        class="return-row"
+        [class.return-expanded-row]="expandedReturn === element"
+        (click)="expandedReturn = expandedReturn === element ? null : element"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="return-detail-row"
+      ></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<pre
+  >{{ returns$ | async | json }}
+</pre>

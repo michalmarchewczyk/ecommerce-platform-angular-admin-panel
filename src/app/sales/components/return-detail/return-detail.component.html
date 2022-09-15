@@ -1,0 +1,36 @@
+<form (submit)="save()" [formGroup]="editForm">
+  <div class="return-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="open">Open</mat-option>
+        <mat-option value="accepted">Accepted</mat-option>
+        <mat-option value="rejected">Rejected</mat-option>
+        <mat-option value="cancelled">Cancelled</mat-option>
+        <mat-option value="completed">Completed</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.controls.status.invalid"
+        >Invalid status</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea matInput formControlName="message"></textarea>
+      <mat-error *ngIf="editForm.controls.message.invalid"
+        >Invalid message</mat-error
+      >
+    </mat-form-field>
+  </div>
+  <div class="return-actions">
+    <div class="return-actions-spacer"></div>
+    <button
+      mat-button
+      color="primary"
+      (click)="cancel.emit(); resetValues()"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button type="submit" mat-flat-button color="primary">Save</button>
+  </div>
+</form>
