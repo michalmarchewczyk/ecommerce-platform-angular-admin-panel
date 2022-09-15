@@ -94,7 +94,9 @@ describe('Categories', () => {
     cy.visit('/catalog/products');
     cy.get('.mat-row').contains('Test Cypress Product').parent().click();
     cy.get('button').contains('Delete').click();
-    cy.get('.cdk-dialog-container button').contains('Cancel').click();
+    cy.intercept('DELETE', '/products/*').as('deleteRequest');
+    cy.get('.cdk-dialog-container button').contains('Delete').click();
+    cy.wait('@deleteRequest');
   });
 
   it('deleting categories', () => {
