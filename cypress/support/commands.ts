@@ -9,3 +9,33 @@ Cypress.Commands.add('loginAdmin', () => {
     });
   });
 });
+
+Cypress.Commands.add('createTestProduct', () => {
+  cy.request({
+    method: 'POST',
+    url: `${Cypress.env('API_URL')}/products`,
+    body: {
+      name: 'Test Cypress Product',
+      price: 100,
+      description: 'Test Cypress Product Description',
+      stock: 10,
+    },
+  });
+});
+
+Cypress.Commands.add('deleteTestProduct', () => {
+  cy.request({
+    method: 'GET',
+    url: `${Cypress.env('API_URL')}/products`,
+  }).then((response) => {
+    const testProduct = response.body.find(
+      (p: any) => p.name === 'Test Cypress Product',
+    );
+    if (testProduct) {
+      cy.request({
+        method: 'DELETE',
+        url: `${Cypress.env('API_URL')}/products/${testProduct.id}`,
+      });
+    }
+  });
+});
