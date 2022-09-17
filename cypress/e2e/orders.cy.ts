@@ -42,12 +42,12 @@ describe('Orders', () => {
       'Test Test',
     );
     cy.get('app-order-items-input .mat-select-trigger').click();
-    cy.contains('Test Cypress Product').click({ force: true });
+    cy.contains('Cypress Test Product').click({ force: true });
 
     cy.get(
       'mat-select[formControlName="deliveryMethodId"] .mat-select-trigger',
     ).click();
-    cy.contains('Test Cypress Delivery Method').click({ force: true });
+    cy.contains('Test Cypress Order Delivery Method').click({ force: true });
     cy.get(
       'app-create-order-form input[formControlName="deliveryAddress"]',
     ).type('Test address');
@@ -64,7 +64,7 @@ describe('Orders', () => {
     cy.get(
       'mat-select[formControlName="paymentMethodId"] .mat-select-trigger',
     ).click();
-    cy.contains('Test Cypress Payment Method').click({ force: true });
+    cy.contains('Test Cypress Order Payment Method').click({ force: true });
 
     cy.intercept('POST', `/orders`).as('createOrder');
     cy.get('app-create-order-form button[type="submit"]')
