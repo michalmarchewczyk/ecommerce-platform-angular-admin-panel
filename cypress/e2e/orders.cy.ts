@@ -11,7 +11,7 @@ describe('Orders', () => {
       method: 'POST',
       url: `${Cypress.env('API_URL')}/deliveries`,
       body: {
-        name: 'Test Order Cypress Delivery Method',
+        name: 'Test Cypress Order Delivery Method',
         description: 'Test Cypress Order Delivery Method Description',
         price: 100,
       },
