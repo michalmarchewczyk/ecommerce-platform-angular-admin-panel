@@ -11,8 +11,8 @@ describe('Orders', () => {
       method: 'POST',
       url: `${Cypress.env('API_URL')}/deliveries`,
       body: {
-        name: 'Test Cypress Delivery Method',
-        description: 'Test Cypress Delivery Method Description',
+        name: 'Test Order Cypress Delivery Method',
+        description: 'Test Cypress Order Delivery Method Description',
         price: 100,
       },
     });
@@ -20,8 +20,8 @@ describe('Orders', () => {
       method: 'POST',
       url: `${Cypress.env('API_URL')}/payments`,
       body: {
-        name: 'Test Cypress Payment Method',
-        description: 'Test Cypress Payment Method Description',
+        name: 'Test Cypress Order Payment Method',
+        description: 'Test Cypress Order Payment Method Description',
         price: 100,
       },
     });
@@ -74,8 +74,11 @@ describe('Orders', () => {
 
     cy.visit('/sales/orders');
     cy.get('table').should('contain.text', 'Test Test');
-    cy.get('table').should('contain.text', 'Test Cypress Payment Method');
-    cy.get('table').should('contain.text', 'Test Cypress Delivery Method');
+    cy.get('table').should('contain.text', 'Test Cypress Order Payment Method');
+    cy.get('table').should(
+      'contain.text',
+      'Test Cypress Order Delivery Method',
+    );
   });
 
   it('editing order', () => {

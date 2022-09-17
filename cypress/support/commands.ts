@@ -15,9 +15,9 @@ Cypress.Commands.add('createTestProduct', () => {
     method: 'POST',
     url: `${Cypress.env('API_URL')}/products`,
     body: {
-      name: 'Test Cypress Product',
+      name: 'Cypress Test Product',
       price: 100,
-      description: 'Test Cypress Product Description',
+      description: 'Cypress Test Product Description',
       stock: 10,
     },
   });
@@ -29,7 +29,7 @@ Cypress.Commands.add('deleteTestProduct', () => {
     url: `${Cypress.env('API_URL')}/products`,
   }).then((response) => {
     const testProduct = response.body.find(
-      (p: any) => p.name === 'Test Cypress Product',
+      (p: any) => p.name === 'Cypress Test Product',
     );
     if (testProduct) {
       cy.request({
