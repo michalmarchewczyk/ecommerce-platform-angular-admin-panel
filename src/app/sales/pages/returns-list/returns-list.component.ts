@@ -18,6 +18,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { ReturnAddDialogComponent } from '../../components/return-add-dialog/return-add-dialog.component';
 
 @Component({
   selector: 'app-returns-list',
@@ -47,7 +49,7 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.store.dispatch(ReturnsActions.loadReturns());
@@ -64,5 +66,14 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
       this.dataSource.data = returns;
     });
     this.dataSource.sort = this.sort;
+  }
+
+  addReturn() {
+    this.dialog.open(ReturnAddDialogComponent, {
+      data: {
+        orderId: null,
+      },
+      width: '360px',
+    });
   }
 }

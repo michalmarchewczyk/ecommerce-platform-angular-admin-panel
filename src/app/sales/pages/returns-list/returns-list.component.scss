@@ -43,3 +43,11 @@ tr.return-row:not(.return-detail-row):active {
     overflow: hidden;
   }
 }
+
+.add-button {
+  position: sticky;
+  float: right;
+  margin-top: -64px;
+  margin-right: -45px;
+  bottom: 36px;
+}

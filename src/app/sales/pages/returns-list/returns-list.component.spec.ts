@@ -5,13 +5,21 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatTableModule } from '@angular/material/table';
 import { provideMockStore } from '@ngrx/store/testing';
-import { selectReturnsListWithItems } from '../../store';
+import {
+  selectOrdersListWithItems,
+  selectReturnsList,
+  selectReturnsListWithItems,
+} from '../../store';
 import {
   MatRowHarness,
   MatTableHarness,
 } from '@angular/material/table/testing';
 import { MatCardModule } from '@angular/material/card';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReturnAddDialogComponent } from '../../components/return-add-dialog/return-add-dialog.component';
+import { MatDialogHarness } from '@angular/material/dialog/testing';
+import { MatButtonHarness } from '@angular/material/button/testing';
 
 describe('ReturnsListComponent', () => {
   let component: ReturnsListComponent;
@@ -20,8 +28,13 @@ describe('ReturnsListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatTableModule, MatCardModule, NoopAnimationsModule],
-      declarations: [ReturnsListComponent],
+      imports: [
+        MatTableModule,
+        MatCardModule,
+        NoopAnimationsModule,
+        MatDialogModule,
+      ],
+      declarations: [ReturnsListComponent, ReturnAddDialogComponent],
       providers: [
         provideMockStore({
           selectors: [
@@ -39,6 +52,14 @@ describe('ReturnsListComponent', () => {
                 },
               ],
             },
+            {
+              selector: selectOrdersListWithItems,
+              value: [],
+            },
+            {
+              selector: selectReturnsList,
+              value: [],
+            },
           ],
         }),
       ],
@@ -47,7 +68,7 @@ describe('ReturnsListComponent', () => {
     fixture = TestBed.createComponent(ReturnsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    loader = TestbedHarnessEnvironment.loader(fixture);
+    loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
   });
 
   it('should create', () => {
@@ -84,5 +105,15 @@ describe('ReturnsListComponent', () => {
       'keyboard_arrow_down',
     ]);
     expect(expandRow).toBeTruthy();
+  });
+
+  it('should open return add dialog', async () => {
+    const button = await loader.getHarness(
+      MatButtonHarness.with({ text: 'add' }),
+    );
+    await button.click();
+
+    const dialog = await loader.getHarness(MatDialogHarness);
+    expect(dialog).toBeTruthy();
   });
 });

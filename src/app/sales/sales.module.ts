@@ -47,6 +47,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { OrderItemsInputComponent } from './components/order-items-input/order-items-input.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ReturnDetailComponent } from './components/return-detail/return-detail.component';
+import { ReturnAddDialogComponent } from './components/return-add-dialog/return-add-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { ReturnDetailComponent } from './components/return-detail/return-detail.
     EditOrderFormComponent,
     OrderItemsInputComponent,
     ReturnDetailComponent,
+    ReturnAddDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -98,6 +101,7 @@ import { ReturnDetailComponent } from './components/return-detail/return-detail.
     MatDividerModule,
     NgxMatSelectSearchModule,
     FormsModule,
+    MatDialogModule,
   ],
 })
 export class SalesModule {}

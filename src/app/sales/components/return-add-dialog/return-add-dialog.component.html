@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Create return</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Select order</mat-label>
+    <mat-select [(ngModel)]="orderId">
+      <mat-option
+        *ngFor="let order of ordersFiltered$ | async"
+        [value]="order.id"
+      >
+        #{{ order.id }} {{ order.created | date: 'short' }} -
+        {{ order.itemsTotal }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Message</mat-label>
+    <textarea matInput [(ngModel)]="message"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" color="primary">Cancel</button>
+  <button
+    mat-flat-button
+    (click)="add()"
+    color="primary"
+    [disabled]="orderId === null"
+  >
+    Create
+  </button>
+</div>
