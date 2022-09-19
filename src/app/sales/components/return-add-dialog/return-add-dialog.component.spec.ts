@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { cold } from 'jasmine-marbles';
+import { DatePipe } from '@angular/common';
 
 describe('AddReturnDialogComponent', () => {
   let component: ReturnAddDialogComponent;
@@ -116,7 +117,9 @@ describe('AddReturnDialogComponent', () => {
 
   it('should dispatch createReturn action', async () => {
     const select = await loader.getHarness(MatSelectHarness);
-    await select.clickOptions({ text: `#2 1/1/70, 1:00 AM - 200` });
+    await select.clickOptions({
+      text: `#2 ${new DatePipe('en').transform('0', 'short')} - 200`,
+    });
 
     const button = await loader.getHarness(
       MatButtonHarness.with({ text: 'Create' }),
