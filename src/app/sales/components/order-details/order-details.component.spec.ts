@@ -7,22 +7,67 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideMockStore } from '@ngrx/store/testing';
+import { selectOrdersListWithItems, selectReturnsList } from '../../store';
+import { Router } from '@angular/router';
 
 describe('OrderDetailsComponent', () => {
   let component: OrderDetailsComponent;
   let fixture: ComponentFixture<OrderDetailsComponent>;
   let loader: HarnessLoader;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatDialogModule, MatButtonHarness],
+      imports: [
+        MatDialogModule,
+        MatButtonModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+      ],
       declarations: [OrderDetailsComponent, ReturnAddDialogComponent],
+      providers: [
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectOrdersListWithItems,
+              value: [],
+            },
+            {
+              selector: selectReturnsList,
+              value: [],
+            },
+          ],
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OrderDetailsComponent);
     component = fixture.componentInstance;
+    component.order = {
+      id: 1,
+      status: 'open',
+      return: null,
+      delivery: {
+        deliveryStatus: 'pending',
+        method: {
+          name: 'test',
+        },
+      },
+      payment: {
+        paymentStatus: 'pending',
+        method: {
+          name: 'test',
+        },
+      },
+      items: [],
+    } as any;
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
+    router = TestBed.inject(Router);
   });
 
   it('should create', () => {
@@ -35,7 +80,14 @@ describe('OrderDetailsComponent', () => {
     );
     await button.click();
 
+    const navigateSpy = spyOn(router, 'navigate');
+
     const dialog = await loader.getHarness(MatDialogHarness);
     expect(dialog).toBeTruthy();
+    const dialogButton = await dialog.getHarness(
+      MatButtonHarness.with({ text: 'Create' }),
+    );
+    await dialogButton.click();
+    expect(navigateSpy).toHaveBeenCalledWith(['/sales/returns']);
   });
 });
