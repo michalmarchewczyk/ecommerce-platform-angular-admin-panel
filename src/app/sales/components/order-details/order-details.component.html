@@ -29,6 +29,16 @@
       {{ order.message || '-' }}
     </p>
   </section>
+  <section *ngIf="order">
+    <button
+      *ngIf="order.return === null"
+      mat-flat-button
+      color="primary"
+      (click)="addReturn()"
+    >
+      Add return
+    </button>
+  </section>
 </div>
 
 <div>

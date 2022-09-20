@@ -57,6 +57,6 @@ export class ReturnAddDialogComponent implements OnInit {
         },
       }),
     );
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }
