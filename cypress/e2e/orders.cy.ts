@@ -105,4 +105,18 @@ describe('Orders', () => {
     cy.get('app-order-details').should('contain.text', 'Test delivery status');
     cy.get('app-order-details').should('contain.text', 'Test payment status');
   });
+
+  it('creating return for order', () => {
+    cy.get('table').contains('Test Test').click();
+
+    cy.get('button').contains('Add return').click();
+
+    cy.get('.cdk-dialog-container textarea').type('test message');
+    cy.get('.cdk-dialog-container button').contains('Create').click();
+
+    cy.get('app-order-details').should('not.contain.text', 'Add return');
+
+    cy.visit('/sales/returns');
+    cy.get('table').should('contain.text', '100');
+  });
 });
