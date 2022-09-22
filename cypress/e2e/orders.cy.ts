@@ -114,6 +114,9 @@ describe('Orders', () => {
     cy.get('.cdk-dialog-container textarea').type('test message');
     cy.get('.cdk-dialog-container button').contains('Create').click();
 
+    cy.visit('/sales/orders');
+    cy.get('table').contains('Test Test').click();
+
     cy.get('app-order-details').should('not.contain.text', 'Add return');
 
     cy.visit('/sales/returns');
