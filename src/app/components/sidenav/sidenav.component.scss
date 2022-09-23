@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+
+
 :host {
   flex: 1;
   display: flex;
@@ -14,7 +17,12 @@ mat-sidenav-container {
 
 mat-sidenav {
   width: 220px;
-  padding-top: 12px;
+  padding-top: 0;
+
+  mat-nav-list {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }
 
 mat-sidenav-content {
@@ -22,6 +30,7 @@ mat-sidenav-content {
   height: auto;
   overflow-y: scroll;
   flex: 1;
+  background: map-get(mat.$blue-gray-palette, 50);
 }
 
 mat-divider {
@@ -33,4 +42,8 @@ mat-divider {
     color: rgba(0, 0, 0, 0.54);
     margin-right: 8px;
   }
+}
+
+a.active {
+  background: map-get(mat.$gray-palette, 100);
 }
