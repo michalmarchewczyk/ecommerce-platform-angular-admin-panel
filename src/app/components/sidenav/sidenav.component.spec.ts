@@ -9,6 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../../core/auth/store/reducers/user.reducer';
 import { selectUserRole } from '../../core/auth/store';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SidenavComponent', () => {
   let component: SidenavComponent;
@@ -17,7 +18,12 @@ describe('SidenavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatSidenavModule, NoopAnimationsModule, MatListModule],
+      imports: [
+        MatSidenavModule,
+        NoopAnimationsModule,
+        MatListModule,
+        RouterTestingModule,
+      ],
       providers: [
         provideMockStore({
           initialState: { auth: { user: initialState } },

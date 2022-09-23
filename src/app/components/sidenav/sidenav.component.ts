@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -16,11 +16,7 @@ export class SidenavComponent {
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
-  constructor(
-    breakpointObserver: BreakpointObserver,
-    public route: ActivatedRoute,
-    public router: Router,
-  ) {
+  constructor(breakpointObserver: BreakpointObserver, public router: Router) {
     this.matchesMedium = breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
       .pipe(map((v) => v.matches));
