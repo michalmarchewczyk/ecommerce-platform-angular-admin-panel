@@ -4,8 +4,20 @@ mat-card-content {
   flex-direction: row;
   column-gap: 12px;
   flex-wrap: wrap;
+  margin-bottom: 0;
   mat-form-field {
     flex: 1;
     min-width: 180px;
+  }
+}
+
+mat-card-actions {
+  margin-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  button {
+    text-transform: uppercase;
   }
 }

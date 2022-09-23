@@ -1,8 +1,7 @@
 <mat-card>
   <mat-card-title> Users </mat-card-title>
   <mat-card-content>
-    <table
-      mat-table
+    <mat-table
       [dataSource]="dataSource"
       multiTemplateDataRows
       matSort
@@ -10,34 +9,40 @@
       matSortDirection="asc"
     >
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
-        <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+        <mat-header-cell *matHeaderCellDef mat-sort-header="id"
+          >ID</mat-header-cell
+        >
+        <mat-cell *matCellDef="let user">{{ user.id }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="email">Email</th>
-        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+        <mat-header-cell *matHeaderCellDef mat-sort-header="email"
+          >Email</mat-header-cell
+        >
+        <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="firstName">
           First name
-        </th>
-        <td mat-cell *matCellDef="let user">{{ user.firstName }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="LastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="LastName">
           Last name
-        </th>
-        <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="role">Role</th>
-        <td mat-cell *matCellDef="let user">{{ user.role | roleName }}</td>
+        <mat-header-cell *matHeaderCellDef mat-sort-header="role"
+          >Role</mat-header-cell
+        >
+        <mat-cell *matCellDef="let user">{{ user.role | roleName }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="expand">
-        <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+        <mat-header-cell *matHeaderCellDef aria-label="row actions">
           &nbsp;
-        </th>
-        <td mat-cell *matCellDef="let user">
+        </mat-header-cell>
+        <mat-cell *matCellDef="let user">
           <button
             mat-icon-button
             aria-label="expand row"
@@ -51,11 +56,11 @@
             </mat-icon>
             <mat-icon *ngIf="expandedUser === user">keyboard_arrow_up</mat-icon>
           </button>
-        </td>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let user" [attr.colspan]="7">
+        <mat-cell *matCellDef="let user" [attr.colspan]="7">
           <div
             class="user-detail"
             [@detailExpand]="
@@ -67,11 +72,10 @@
               (cancel)="expandedUser = null"
             ></app-user-detail>
           </div>
-        </td>
+        </mat-cell>
       </ng-container>
 
-      <tr
-        mat-header-row
+      <mat-header-row
         *matHeaderRowDef="[
           'id',
           'email',
@@ -80,9 +84,8 @@
           'role',
           'expand'
         ]"
-      ></tr>
-      <tr
-        mat-row
+      ></mat-header-row>
+      <mat-row
         *matRowDef="
           let user;
           columns: ['id', 'email', 'firstName', 'lastName', 'role', 'expand']
@@ -90,12 +93,11 @@
         class="user-row"
         [class.user-expanded-row]="expandedUser === user"
         (click)="expandedUser = expandedUser === user ? null : user"
-      ></tr>
-      <tr
-        mat-row
+      ></mat-row>
+      <mat-row
         *matRowDef="let row; columns: ['expandedDetail']"
         class="user-detail-row"
-      ></tr>
-    </table>
+      ></mat-row>
+    </mat-table>
   </mat-card-content>
 </mat-card>

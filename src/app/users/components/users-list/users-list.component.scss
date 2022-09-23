@@ -1,45 +1,74 @@
+mat-card {
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+mat-card-content {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
 table {
   width: 100%;
   max-width: 100%;
 }
 
-tr.user-detail-row {
-  height: 0;
+mat-row.user-detail-row {
+  min-height: 0;
 }
 
-tr.user-row:not(.user-detail-row):hover {
+mat-row.user-row:not(.user-detail-row):hover {
   background: whitesmoke;
 }
 
-tr.user-row:not(.user-detail-row):active {
+mat-row.user-row:not(.user-detail-row):active {
   background: #efefef;
 }
 
-.user-row td {
+.user-row {
   border-bottom-width: 0;
 }
 
+mat-row:last-child {
+  border-bottom-width: 0;
+}
+
+
+mat-row, mat-header-row {
+  gap: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.mat-column-id {
+  padding-left: 8px;
+  flex-basis: 48px;
+  flex-grow: 0.2;
+}
+.mat-column-email {
+  flex-grow: 1.5;
+}
+.mat-column-role {
+  flex-basis: 112px;
+  flex-grow: 0.2;
+  flex-shrink: 1;
+}
+.mat-column-expand {
+  flex-basis: 48px;
+  flex-grow: 0;
+}
+.mat-column-expandedDetail {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 .user-detail {
   overflow: hidden;
   display: flex;
+  width: 100%;
 }
 
 
-.mat-column-id {
-  padding-left: 12px;
-}
-.mat-column-expand {
-  padding-right: 12px !important;
-}
-.mat-column-expandedDetail {
-  padding-left: 12px !important;
-  padding-right: 12px !important;
+mat-cell, mat-header-cell {
+  white-space: nowrap;
 }
 
-.mat-row {
-  .mat-cell {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-}
