@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthRoleDirective } from './directives/auth-role.directive';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [LoginFormComponent, LoginComponent, AuthRoleDirective],
@@ -27,6 +28,7 @@ import { AuthRoleDirective } from './directives/auth-role.directive';
     MatButtonModule,
     MatInputModule,
     AuthRoutingModule,
+    SharedModule,
   ],
   exports: [AuthRoleDirective],
 })

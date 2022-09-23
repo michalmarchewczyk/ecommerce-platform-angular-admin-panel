@@ -27,12 +27,14 @@
     <mat-card-actions align="end">
       <button
         type="submit"
-        mat-flat-button
+        mat-raised-button
         color="primary"
         [disabled]="loginForm.invalid && (error$ | async) === null"
       >
-        Login
+        LOGIN
       </button>
     </mat-card-actions>
   </form>
 </mat-card>
+
+<app-background></app-background>

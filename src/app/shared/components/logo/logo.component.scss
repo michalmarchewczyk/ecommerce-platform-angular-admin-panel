@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+h1 {
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  background: none;
+  color: map-get(mat.$gray-palette, 900);
+  line-height: 1.1;
+  padding: 36px;
+
+  &:first-line {
+    color: map-get(mat.$indigo-palette, 700);
+  }
+}
