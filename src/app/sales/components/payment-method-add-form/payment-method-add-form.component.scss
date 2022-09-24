@@ -4,10 +4,24 @@ mat-card-content {
   flex-direction: row;
   column-gap: 12px;
   flex-wrap: wrap;
+  margin-bottom: 0;
   mat-form-field {
-    width: 240px;
+    flex: 1;
+    flex-basis: 120px;
+    flex-shrink: 0;
     &:nth-child(2) {
-      flex-grow: 1;
+      flex-grow: 2;
+    }
+    &:nth-child(3) {
+      flex-shrink: 1;
     }
   }
+}
+
+mat-card-actions {
+  margin-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }

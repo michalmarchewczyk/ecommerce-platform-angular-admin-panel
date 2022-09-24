@@ -12,8 +12,14 @@
   flex-wrap: wrap;
   mat-form-field {
     flex: 1;
-    min-width: 120px;
-    max-width: 240px;
+    flex-basis: 120px;
+    flex-shrink: 0;
+    &:nth-child(2) {
+      flex-grow: 2;
+    }
+    &:nth-child(3) {
+      flex-shrink: 1;
+    }
   }
 }
 
