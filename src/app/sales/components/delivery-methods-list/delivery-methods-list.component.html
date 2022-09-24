@@ -1,8 +1,7 @@
 <mat-card>
   <mat-card-title> Delivery methods </mat-card-title>
   <mat-card-content>
-    <table
-      mat-table
+    <mat-table
       [dataSource]="dataSource"
       multiTemplateDataRows
       matSort
@@ -10,37 +9,43 @@
       matSortDirection="asc"
     >
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
-        <td mat-cell *matCellDef="let deliveryMethod">
-          {{ deliveryMethod.id }}
-        </td>
+        <mat-header-cell *matHeaderCellDef mat-sort-header="id"
+          >ID</mat-header-cell
+        >
+        <mat-cell *matCellDef="let deliveryMethod">{{
+          deliveryMethod.id
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Name</th>
-        <td mat-cell *matCellDef="let deliveryMethod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="name"
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let deliveryMethod">
           {{ deliveryMethod.name }}
-        </td>
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="description">
           Description
-        </th>
-        <td mat-cell *matCellDef="let deliveryMethod">
+        </mat-header-cell>
+        <mat-cell *matCellDef="let deliveryMethod">
           {{ deliveryMethod.description }}
-        </td>
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="price">Price</th>
-        <td mat-cell *matCellDef="let deliveryMethod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="price"
+          >Price</mat-header-cell
+        >
+        <mat-cell *matCellDef="let deliveryMethod">
           {{ deliveryMethod.price }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="expand">
-        <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+        <mat-header-cell *matHeaderCellDef aria-label="row actions">
           &nbsp;
-        </th>
-        <td mat-cell *matCellDef="let deliveryMethod">
+        </mat-header-cell>
+        <mat-cell *matCellDef="let deliveryMethod">
           <button
             mat-icon-button
             aria-label="expand row"
@@ -59,11 +64,11 @@
               >keyboard_arrow_up</mat-icon
             >
           </button>
-        </td>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let deliveryMethod" [attr.colspan]="7">
+        <mat-cell *matCellDef="let deliveryMethod" [attr.colspan]="7">
           <div
             class="deliveryMethod-detail"
             [@detailExpand]="
@@ -77,15 +82,13 @@
               (cancel)="expandedDeliveryMethod = null"
             ></app-delivery-method-detail>
           </div>
-        </td>
+        </mat-cell>
       </ng-container>
 
-      <tr
-        mat-header-row
+      <mat-header-row
         *matHeaderRowDef="['id', 'name', 'description', 'price', 'expand']"
-      ></tr>
-      <tr
-        mat-row
+      ></mat-header-row>
+      <mat-row
         *matRowDef="
           let deliveryMethod;
           columns: ['id', 'name', 'description', 'price', 'expand']
@@ -98,12 +101,11 @@
           expandedDeliveryMethod =
             expandedDeliveryMethod === deliveryMethod ? null : deliveryMethod
         "
-      ></tr>
-      <tr
-        mat-row
+      ></mat-row>
+      <mat-row
         *matRowDef="let row; columns: ['expandedDetail']"
         class="deliveryMethod-detail-row"
-      ></tr>
-    </table>
+      ></mat-row>
+    </mat-table>
   </mat-card-content>
 </mat-card>
