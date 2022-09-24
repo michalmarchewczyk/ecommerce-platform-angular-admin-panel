@@ -29,10 +29,6 @@ mat-row.user-row:not(.user-detail-row):active {
   border-bottom-width: 0;
 }
 
-mat-row:last-child {
-  border-bottom-width: 0;
-}
-
 
 mat-row, mat-header-row {
   gap: 16px;

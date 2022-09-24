@@ -21,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserAddFormComponent } from './components/user-add-form/user-add-form.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UserAddFormComponent } from './components/user-add-form/user-add-form.c
     SharedModule,
     MatSortModule,
     MatSnackBarModule,
+    MatPaginatorModule,
   ],
 })
 export class UsersModule {}

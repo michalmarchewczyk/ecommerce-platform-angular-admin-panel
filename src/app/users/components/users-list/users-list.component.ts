@@ -19,6 +19,7 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { firstValueFrom, Subscription } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users-list',
@@ -46,6 +47,7 @@ export class UsersListComponent implements OnInit, AfterViewInit, OnDestroy {
   subscription!: Subscription;
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private store: Store) {}
 
@@ -59,10 +61,12 @@ export class UsersListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   async ngAfterViewInit() {
     this.dataSource.data = await firstValueFrom(this.users$);
+    this.dataSource.paginator = this.paginator;
     this.subscription = this.users$.subscribe((users) => {
       this.dataSource.data = users;
     });
     this.store.dispatch(UsersActions.loadUsers());
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }
