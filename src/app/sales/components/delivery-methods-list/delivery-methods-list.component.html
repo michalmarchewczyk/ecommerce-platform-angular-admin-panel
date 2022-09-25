@@ -7,6 +7,7 @@
       matSort
       matSortActive="id"
       matSortDirection="asc"
+      (matSortChange)="expandedDeliveryMethod = null"
     >
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header="id"
@@ -70,6 +71,7 @@
       <ng-container matColumnDef="expandedDetail">
         <mat-cell *matCellDef="let deliveryMethod" [attr.colspan]="7">
           <div
+            *ngIf="expandedDeliveryMethod === deliveryMethod"
             class="deliveryMethod-detail"
             [@detailExpand]="
               deliveryMethod && deliveryMethod === expandedDeliveryMethod

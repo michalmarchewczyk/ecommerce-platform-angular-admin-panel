@@ -7,6 +7,7 @@
       matSort
       matSortActive="id"
       matSortDirection="asc"
+      (matSortChange)="expandedPaymentMethod = null"
     >
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header="id"
@@ -68,6 +69,7 @@
       <ng-container matColumnDef="expandedDetail">
         <mat-cell *matCellDef="let paymentMethod" [attr.colspan]="7">
           <div
+            *ngIf="expandedPaymentMethod === paymentMethod"
             class="paymentMethod-detail"
             [@detailExpand]="
               paymentMethod && paymentMethod === expandedPaymentMethod

@@ -8,6 +8,7 @@
       matSort
       matSortActive="id"
       matSortDirection="asc"
+      (matSortChange)="expandedReturn = null"
     >
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
@@ -75,6 +76,7 @@
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="7">
           <div
+            *ngIf="expandedReturn === element"
             class="element-detail"
             [@detailExpand]="
               element && element === expandedReturn ? 'expanded' : 'collapsed'
