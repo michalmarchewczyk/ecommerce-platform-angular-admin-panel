@@ -20,17 +20,16 @@
         >Invalid message</mat-error
       >
     </mat-form-field>
-  </div>
-  <div class="return-actions">
-    <div class="return-actions-spacer"></div>
-    <button
-      mat-button
-      color="primary"
-      (click)="cancel.emit(); resetValues()"
-      type="button"
-    >
-      Cancel
-    </button>
-    <button type="submit" mat-flat-button color="primary">Save</button>
+    <div class="return-actions">
+      <button
+        mat-button
+        color="primary"
+        (click)="cancel.emit(); resetValues()"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button type="submit" mat-flat-button color="primary">Save</button>
+    </div>
   </div>
 </form>

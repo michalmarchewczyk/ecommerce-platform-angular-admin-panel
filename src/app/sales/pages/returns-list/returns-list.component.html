@@ -1,8 +1,7 @@
 <mat-card>
   <mat-card-title>Returns</mat-card-title>
   <mat-card-content>
-    <table
-      mat-table
+    <mat-table
       [dataSource]="dataSource"
       multiTemplateDataRows
       matSort
@@ -11,50 +10,66 @@
       (matSortChange)="expandedReturn = null"
     >
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        <mat-header-cell *matHeaderCellDef mat-sort-header="id"
+          >ID</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="created">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="created">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="created">
           Created
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.created }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{
+          element.created | date: 'd MMM yyyy, HH:mm'
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="status">
           Status
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="order_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="order_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="order_id">
           Order ID
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.order.id }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.order.id }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="order_created">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="order_created">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="order_created">
           Order Created
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.order.created }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{
+          element.order.created | date: 'd MMM yyyy, HH:mm'
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="itemsCount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="itemsCount">
+        <mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header="itemsCount"
+          arrowPosition="before"
+        >
           Quantity
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.itemsCount }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.itemsCount }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="itemsTotal">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="itemsTotal">
+        <mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header="itemsTotal"
+          arrowPosition="before"
+        >
           Total
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.itemsTotal }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{
+          element.itemsTotal | number: '1.2-2'
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="expand">
-        <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+        <mat-header-cell *matHeaderCellDef aria-label="row actions">
           &nbsp;
-        </th>
-        <td mat-cell *matCellDef="let element">
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
           <button
             mat-icon-button
             aria-label="expand row"
@@ -70,11 +85,11 @@
               >keyboard_arrow_up</mat-icon
             >
           </button>
-        </td>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let element" [attr.colspan]="7">
+        <mat-cell *matCellDef="let element" [attr.colspan]="7">
           <div
             *ngIf="expandedReturn === element"
             class="element-detail"
@@ -87,11 +102,10 @@
               (cancel)="expandedReturn = null"
             ></app-return-detail>
           </div>
-        </td>
+        </mat-cell>
       </ng-container>
 
-      <tr
-        mat-header-row
+      <mat-header-row
         *matHeaderRowDef="[
           'id',
           'created',
@@ -102,9 +116,8 @@
           'itemsTotal',
           'expand'
         ]"
-      ></tr>
-      <tr
-        mat-row
+      ></mat-header-row>
+      <mat-row
         *matRowDef="
           let element;
           columns: [
@@ -121,13 +134,12 @@
         class="return-row"
         [class.return-expanded-row]="expandedReturn === element"
         (click)="expandedReturn = expandedReturn === element ? null : element"
-      ></tr>
-      <tr
-        mat-row
+      ></mat-row>
+      <mat-row
         *matRowDef="let row; columns: ['expandedDetail']"
         class="return-detail-row"
-      ></tr>
-    </table>
+      ></mat-row>
+    </mat-table>
   </mat-card-content>
   <button class="add-button" mat-fab color="primary" (click)="addReturn()">
     <mat-icon>add</mat-icon>
