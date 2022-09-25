@@ -73,16 +73,19 @@ describe('Orders', () => {
     cy.wait('@createOrder');
 
     cy.visit('/sales/orders');
-    cy.get('table').should('contain.text', 'Test Test');
-    cy.get('table').should('contain.text', 'Test Cypress Order Payment Method');
-    cy.get('table').should(
+    cy.get('app-orders-list').should('contain.text', 'Test Test');
+    cy.get('app-orders-list').should(
+      'contain.text',
+      'Test Cypress Order Payment Method',
+    );
+    cy.get('app-orders-list').should(
       'contain.text',
       'Test Cypress Order Delivery Method',
     );
   });
 
   it('editing order', () => {
-    cy.get('table').contains('Test Test').click();
+    cy.get('app-orders-list').contains('Test Test').click();
     cy.get('.mat-tab-label').contains('Edit').click();
 
     cy.get('mat-select[formControlName="status"] .mat-select-trigger').click();
@@ -107,7 +110,7 @@ describe('Orders', () => {
   });
 
   it('creating return for order', () => {
-    cy.get('table').contains('Test Test').click();
+    cy.get('app-orders-list').contains('Test Test').click();
 
     cy.get('button').contains('Add return').click();
 
@@ -115,11 +118,11 @@ describe('Orders', () => {
     cy.get('.cdk-dialog-container button').contains('Create').click();
 
     cy.visit('/sales/orders');
-    cy.get('table').contains('Test Test').click();
+    cy.get('app-returns-list').contains('Test Test').click();
 
     cy.get('app-order-details').should('not.contain.text', 'Add return');
 
     cy.visit('/sales/returns');
-    cy.get('table').should('contain.text', '100');
+    cy.get('app-orders-list').should('contain.text', '100');
   });
 });

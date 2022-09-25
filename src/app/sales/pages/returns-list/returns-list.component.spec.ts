@@ -101,7 +101,7 @@ describe('ReturnsListComponent', () => {
       '2',
       '',
       '3',
-      '6',
+      '6.00',
       'keyboard_arrow_down',
     ]);
     expect(expandRow).toBeTruthy();
