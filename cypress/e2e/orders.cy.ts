@@ -118,11 +118,11 @@ describe('Orders', () => {
     cy.get('.cdk-dialog-container button').contains('Create').click();
 
     cy.visit('/sales/orders');
-    cy.get('app-returns-list').contains('Test Test').click();
+    cy.get('app-orders-list').contains('Test Test').click();
 
     cy.get('app-order-details').should('not.contain.text', 'Add return');
 
     cy.visit('/sales/returns');
-    cy.get('app-orders-list').should('contain.text', '100');
+    cy.get('app-returns-list').should('contain.text', '100');
   });
 });
