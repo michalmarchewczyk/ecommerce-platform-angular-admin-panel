@@ -82,7 +82,12 @@ mat-cell, mat-header-cell {
 .add-button {
   position: sticky;
   float: right;
-  margin-top: -96px;
+  margin-top: -144px;
   margin-right: -45px;
-  bottom: 36px;
+  bottom: 16px;
+}
+
+
+mat-paginator {
+  border-radius: 4px;
 }

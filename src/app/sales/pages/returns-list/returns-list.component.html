@@ -140,6 +140,12 @@
         class="return-detail-row"
       ></mat-row>
     </mat-table>
+    <mat-paginator
+      showFirstLastButtons
+      hidePageSize="true"
+      pageSize="50"
+      (page)="expandedReturn = null"
+    ></mat-paginator>
   </mat-card-content>
   <button class="add-button" mat-fab color="primary" (click)="addReturn()">
     <mat-icon>add</mat-icon>

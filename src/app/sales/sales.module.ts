@@ -49,6 +49,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ReturnDetailComponent } from './components/return-detail/return-detail.component';
 import { ReturnAddDialogComponent } from './components/return-add-dialog/return-add-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgxMatSelectSearchModule,
     FormsModule,
     MatDialogModule,
+    MatPaginatorModule,
   ],
 })
 export class SalesModule {}

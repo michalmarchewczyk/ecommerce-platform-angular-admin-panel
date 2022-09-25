@@ -20,6 +20,7 @@ import {
 } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { ReturnAddDialogComponent } from '../../components/return-add-dialog/return-add-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-returns-list',
@@ -48,6 +49,7 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscription!: Subscription;
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private store: Store, private dialog: MatDialog) {}
 
@@ -66,6 +68,7 @@ export class ReturnsListComponent implements OnInit, OnDestroy, AfterViewInit {
       this.dataSource.data = returns;
     });
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   addReturn() {
