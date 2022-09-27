@@ -84,7 +84,7 @@ describe('ProductsListComponent', () => {
       '',
       'Product 1',
       'Product 1 description',
-      '100',
+      '100.00',
       '10',
       'Visible',
     ]);
