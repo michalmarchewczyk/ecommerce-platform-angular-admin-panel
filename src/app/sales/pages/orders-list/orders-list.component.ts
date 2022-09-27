@@ -12,6 +12,7 @@ import { Order } from '../../../core/api';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { ProductsActions } from '../../../catalog/store';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-orders-list',
@@ -24,6 +25,7 @@ export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
   subscription!: Subscription;
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private store: Store) {}
 
@@ -43,5 +45,6 @@ export class OrdersListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.store.dispatch(OrdersActions.loadOrders());
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }
