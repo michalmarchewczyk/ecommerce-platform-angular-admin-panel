@@ -49,6 +49,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CategoriesProductsAddFormComponent } from './components/categories-products-add-form/categories-products-add-form.component';
 import { AuthModule } from '../core/auth/auth.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { AuthModule } from '../core/auth/auth.module';
     MatTreeModule,
     NgxMatSelectSearchModule,
     AuthModule,
+    MatPaginatorModule,
   ],
   exports: [ProductPhotoComponent],
 })
