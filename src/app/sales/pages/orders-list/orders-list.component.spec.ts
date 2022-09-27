@@ -88,9 +88,9 @@ describe('OrdersListComponent', () => {
     expect(await row.getCellTextByIndex()).toEqual([
       'ID',
       'Created',
+      'Status',
       'Items',
       'Total price',
-      'Status',
       'Full name',
       'Delivery',
       'Payment',
@@ -102,11 +102,13 @@ describe('OrdersListComponent', () => {
     expect(row).toBeTruthy();
     expect(await row.getCellTextByIndex()).toEqual([
       '1',
-      new DatePipe('en-US').transform('2022-08-21T16:21:38.277Z', 'medium') ??
-        '',
+      new DatePipe('en-US').transform(
+        '2022-08-21T16:21:38.277Z',
+        'd MMM yyyy, HH:mm',
+      ) ?? '',
+      'pending',
       '2',
       '4.00',
-      'pending',
       'Test Test',
       'delivery-test',
       'payment-test',
