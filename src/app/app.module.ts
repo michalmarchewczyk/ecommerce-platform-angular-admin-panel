@@ -12,17 +12,10 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { StoreModule } from '@ngrx/store';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './core/auth/auth.module';
@@ -46,27 +39,19 @@ export const apiConfigFactory = () => {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
     ApiModule.forRoot(apiConfigFactory),
     BrowserAnimationsModule,
-    MatToolbarModule,
+    AuthModule,
     MatIconModule,
+    MatToolbarModule,
     MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    LayoutModule,
     MatSidenavModule,
     MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    AuthModule,
     StoreModule.forRoot([], {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    ReactiveFormsModule,
     EffectsModule.forRoot([]),
   ],
   providers: [],
