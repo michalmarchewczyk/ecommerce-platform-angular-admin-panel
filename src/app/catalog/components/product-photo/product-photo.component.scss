@@ -1,10 +1,20 @@
+@use '@angular/material' as mat;
+
+:host {
+  overflow: hidden;
+  border-radius: 4px;
+  background: mat.get-color-from-palette(mat.$gray-palette, 100);
+}
+
 img {
+  display: block;
   max-width: 100%;
   max-height: 100%;
+  border-radius: 4px;
 }
 
 :host > mat-icon {
   color: #7f7f7f;
-  margin: 0 auto;
+  margin: 12px auto;
   display: block;
 }

@@ -1,8 +1,7 @@
 <mat-card>
   <mat-card-title>Products</mat-card-title>
   <mat-card-content>
-    <table
-      mat-table
+    <mat-table
       [dataSource]="dataSource"
       multiTemplateDataRows
       matSort
@@ -10,44 +9,61 @@
       matSortDirection="asc"
     >
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
-        <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+        <mat-header-cell *matHeaderCellDef mat-sort-header="id"
+          >ID</mat-header-cell
+        >
+        <mat-cell *matCellDef="let product">{{ product.id }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="photo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="photo">Photo</th>
-        <td mat-cell *matCellDef="let product">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="photo"
+          >Photo</mat-header-cell
+        >
+        <mat-cell *matCellDef="let product">
           <app-product-photo [product]="product"></app-product-photo>
-        </td>
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Name</th>
-        <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+        <mat-header-cell *matHeaderCellDef mat-sort-header="name"
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="description">
           Description
-        </th>
-        <td mat-cell *matCellDef="let product">{{ product.description }}</td>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.description }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="price">Price</th>
-        <td mat-cell *matCellDef="let product">{{ product.price }}</td>
+        <mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header="price"
+          arrowPosition="before"
+          >Price</mat-header-cell
+        >
+        <mat-cell *matCellDef="let product">{{
+          product.price | number: '1.2-2'
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="stock">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="stock">Stock</th>
-        <td mat-cell *matCellDef="let product">{{ product.stock }}</td>
+        <mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header="stock"
+          arrowPosition="before"
+          >Stock</mat-header-cell
+        >
+        <mat-cell *matCellDef="let product">{{ product.stock }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="visible">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="visible">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="visible">
           Visibility
-        </th>
-        <td mat-cell *matCellDef="let product">
+        </mat-header-cell>
+        <mat-cell *matCellDef="let product">
           {{ product.visible | booleanText: 'Visible':'Hidden' }}
-        </td>
+        </mat-cell>
       </ng-container>
 
-      <tr
-        mat-header-row
+      <mat-header-row
         *matHeaderRowDef="[
           'id',
           'photo',
@@ -57,10 +73,9 @@
           'stock',
           'visible'
         ]"
-      ></tr>
-      <tr
+      ></mat-header-row>
+      <mat-row
         [routerLink]="['/catalog/products', product.id]"
-        mat-row
         *matRowDef="
           let product;
           columns: [
@@ -74,8 +89,8 @@
           ]
         "
         class="product-row"
-      ></tr>
-    </table>
+      ></mat-row>
+    </mat-table>
   </mat-card-content>
   <button
     class="add-button"
