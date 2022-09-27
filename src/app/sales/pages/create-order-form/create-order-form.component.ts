@@ -81,7 +81,7 @@ export class CreateOrderFormComponent implements OnInit {
             city: this.createForm.controls.deliveryCity.value,
             country: this.createForm.controls.deliveryCountry.value,
             postalCode:
-              this.createForm.controls.deliveryPostalCode.value ?? undefined,
+              this.createForm.controls.deliveryPostalCode.value || undefined,
           },
           payment: {
             methodId: this.createForm.controls.paymentMethodId.value,
