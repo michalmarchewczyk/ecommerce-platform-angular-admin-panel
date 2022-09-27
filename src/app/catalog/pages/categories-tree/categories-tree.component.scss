@@ -1,3 +1,8 @@
+@use '@angular/material' as mat;
+
+mat-card-content {
+  margin-top: 8px;
+}
 .categories-tree-invisible {
   display: none;
 }
@@ -21,8 +26,8 @@
     left: -5px;
     bottom: 22px;
     width: 8px;
-    border-left: 2px solid #e0e0e0;
-    border-bottom: 2px solid #e0e0e0;
+    border-left: 2px solid mat.get-color-from-palette(mat.$gray-palette, 300);
+    border-bottom: 2px solid mat.get-color-from-palette(mat.$gray-palette, 300);
   }
 }
 
@@ -32,41 +37,61 @@ div[role=group] .mat-tree-node {
     content: "";
     position: absolute;
     top: 24px;
-    left: -8px;
+    left: -32px;
     bottom: 0;
     width: 32px;
     height: 2px;
-    background: #e0e0e0;
+    background: mat.get-color-from-palette(mat.$gray-palette, 300);
   }
 }
 
 div[role=group] .mat-nested-tree-node > .mat-tree-node {
   &::after {
     width: 8px;
+    left: -8px;
   }
 }
 
 .categories-tree div[role=group] > .mat-tree-node {
-  padding-left: 40px;
+  margin-left: 24px;
+  padding-left: 16px;
 }
 
 .mat-tree-node {
-  padding-left: 40px;
+  margin-left: 24px;
+  padding-left: 16px;
 }
 
 .mat-nested-tree-node .mat-tree-node {
+  margin-left: 0;
   padding-left: 0;
 }
 
-.mat-tree-node {
+.mat-tree-node:not(.new-node) {
   cursor: pointer;
+  border-radius: 4px;
   .add-button {
     margin-left: 4px;
     opacity: 0;
   }
   &:hover {
+    background: mat.get-color-from-palette(mat.$gray-palette, 100);
     .add-button {
       opacity: 1;
     }
+  }
+}
+
+.new-node {
+  height: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  button {
+    margin-left: 8px;
+    margin-top: 10px;
+    vertical-align: top;
+  }
+  mat-form-field {
+    height: 60px;
   }
 }

@@ -18,6 +18,7 @@
         <button
           mat-icon-button
           class="add-button"
+          color="primary"
           (click)="addCategory(node)"
           [appAuthRole]="['admin', 'manager']"
         >
@@ -35,7 +36,7 @@
             <mat-label>Name</mat-label>
             <input matInput type="text" [formControl]="newName" />
           </mat-form-field>
-          <button mat-button color="primary">Add</button>
+          <button mat-flat-button color="primary">Add</button>
         </form>
       </mat-tree-node>
 
@@ -59,6 +60,7 @@
           <button
             mat-icon-button
             class="add-button"
+            color="primary"
             (click)="addCategory(node)"
             [appAuthRole]="['admin', 'manager']"
           >
@@ -76,6 +78,7 @@
     <button
       mat-icon-button
       class="add-button"
+      color="primary"
       (click)="addCategory()"
       *ngIf="!!newNode.parentCategory"
       [appAuthRole]="['admin', 'manager']"
