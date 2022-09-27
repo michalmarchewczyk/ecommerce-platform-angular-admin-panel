@@ -1,36 +1,67 @@
-table {
-  width: 100%;
-  max-width: 100%;
+mat-card {
+  padding-bottom: 0;
+}
+mat-card-content {
+  margin-left: -16px;
+  margin-right: -16px;
 }
 
-tr.order-row:hover {
+mat-row.order-row:hover {
   background: whitesmoke;
 }
-
-tr.order-row:active {
+mat-row.order-row:active {
   background: #efefef;
 }
+mat-row, mat-header-row {
+  gap: 16px;
+  padding-left: 16px;
+  padding-right: 24px;
+}
 
+.mat-column-itemsCount, .mat-column-itemsTotal {
+  text-align: right;
+  justify-content: flex-end;
+}
 
 .mat-column-id {
-  padding-left: 12px;
+  padding-left: 8px;
+  flex-basis: 48px;
+  flex-grow: 0.1;
 }
-.mat-column-contact-phone {
-  padding-right: 12px !important;
+.mat-column-created, {
+  flex-basis: 120px;
+  flex-grow: 0.2;
+}
+.mat-column-status {
+  flex-basis: 64px;
+  flex-grow: 0.2;
+}
+.mat-column-itemsCount {
+  flex-basis: 48px;
+  flex-grow: 0.2;
+}
+.mat-column-itemsTotal {
+  flex-basis: 64px;
+  flex-grow: 0.4;
+}
+.mat-column-fullName {
+  flex-basis: 120px;
+  flex-grow: 0.4;
+}
+.mat-column-delivery, .mat-column-payment {
+  flex-basis: 64px;
+  flex-grow: 0.2;
 }
 
-.mat-row {
-  .mat-cell {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
+mat-cell, mat-header-cell {
+  white-space: nowrap;
 }
 
 .add-button {
   position: sticky;
   float: right;
-  margin-top: -64px;
+  margin-top: -144px;
   margin-right: -45px;
-  bottom: 36px;
+  bottom: 16px;
 }
+
