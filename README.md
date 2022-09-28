@@ -1,27 +1,46 @@
-# EcommercePlatformAngularAdminPanel
+# E-Commerce Platform - Angular Admin Panel
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+Admin Panel for the E-commerce Platform project.
 
-## Development server
+[![GitHub](https://img.shields.io/github/license/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](LICENSE)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/michalmarchewczyk/ecommerce-platform-angular-admin-panel/Continuous%20Integration?label=CI)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel/actions/workflows/main.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](https://app.codecov.io/github/michalmarchewczyk/ecommerce-platform-angular-admin-panel)
+[![GitHub last commit](https://img.shields.io/github/last-commit/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel/commits/master)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](package.json)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Used technologies
+- [Angular](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
+- [NgRx](https://ngrx.io/)
+- [Cypress](https://www.cypress.io/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Installation
+```bash
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Running the app
+```bash
+npm run start
+```
 
-## Running unit tests
+## Building the app
+```bash
+npm run build
+```
+Built app is available in the `dist` folder.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Test
+```bash
+# unit tests
+npm run test
+# e2e tests
+npm run cypress:open
+```
 
-## Running end-to-end tests
+## License
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[MIT license](LICENSE).
