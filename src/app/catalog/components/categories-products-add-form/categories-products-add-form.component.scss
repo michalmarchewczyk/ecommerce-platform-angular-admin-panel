@@ -3,11 +3,11 @@ form {
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: -12px;
+  margin-bottom: -20px;
 
   h2 {
     display: inline-block;
-    margin-top: 12px;
+    margin-top: 13px;
   }
 
   mat-form-field {
@@ -15,6 +15,6 @@ form {
   }
 
   button {
-    margin-top: 10px;
+    margin-top: 11px;
   }
 }
