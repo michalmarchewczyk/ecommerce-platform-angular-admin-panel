@@ -38,7 +38,7 @@
   mat-flat-button
   color="primary"
   (click)="save()"
-  [disabled]="type.invalid || value.invalid"
+  [disabled]="!type.value || type.invalid || value.invalid"
 >
   Add
 </button>

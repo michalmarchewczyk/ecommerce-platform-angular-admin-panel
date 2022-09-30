@@ -5,6 +5,9 @@
     (delete)="onDelete($event)"
     (update)="onUpdate($event.id, $event.value)"
   ></app-product-attribute-item>
+  <span *ngIf="product?.attributes?.length === 0" class="mat-headline">
+    No attributes
+  </span>
 </mat-list>
 
 <mat-divider></mat-divider>
