@@ -18,6 +18,8 @@ export class OrderItemsInputComponent {
   selectProduct = new FormControl<number>(-1);
   products$ = this.store.select(selectProductsList);
   productsFilter = new FormControl('');
+  itemsQuantity = 0;
+  itemsTotal = 0;
 
   dataSource: { product: Product; quantity: number }[] = [];
 
@@ -53,6 +55,7 @@ export class OrderItemsInputComponent {
     });
     this.table.renderRows();
     this.selectProduct.reset();
+    this.updateTotals();
   }
 
   async deleteItem(item: { product: Product; quantity: number }) {
@@ -60,6 +63,7 @@ export class OrderItemsInputComponent {
     this.dataSource = this.dataSource.filter(
       (i) => i.product.id !== item.product.id,
     );
+    this.updateTotals();
   }
 
   async updateQuantity(item: { product: Product; quantity: number }) {
@@ -67,5 +71,17 @@ export class OrderItemsInputComponent {
     if (orderItem) {
       orderItem.quantity = item.quantity;
     }
+    this.updateTotals();
+  }
+
+  updateTotals() {
+    this.itemsQuantity = this.dataSource.reduce(
+      (acc, i) => acc + i.quantity,
+      0,
+    );
+    this.itemsTotal = this.dataSource.reduce(
+      (acc, i) => acc + i.quantity * i.product.price,
+      0,
+    );
   }
 }

@@ -1,16 +1,65 @@
-mat-form-field {
-  width: 100%;
+mat-row, mat-header-row, mat-footer-row {
+  gap: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
-table {
-  width: 100%;
-}
-td {
-  mat-form-field {
-    width: 80px;
-  }
+.mat-column-price, .mat-column-quantity, .mat-column-total {
+  text-align: right;
+  justify-content: flex-end;
 }
 
+.mat-column-id {
+  padding-left: 8px;
+  flex-basis: 48px;
+  flex-grow: 0.1;
+}
 .mat-column-name {
-  height: 40px;
+  flex-basis: 80px;
+  flex-grow: 1.2;
+  app-product-photo {
+    display: block;
+    max-width: 60px;
+    max-height: 60px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    min-width: 40px;
+    margin-right: 8px;
+  }
+}
+.mat-column-price {
+  flex-basis: 80px;
+  flex-grow: 0.2;
+  flex-shrink: 0;
+}
+.mat-column-quantity {
+  flex-basis: 80px;
+  flex-grow: 0.2;
+  flex-shrink: 0;
+  padding-left: 16px;
+  mat-form-field {
+    max-height: 60px;
+    width: 100%;
+    //text-align: right;
+  }
+}
+.mat-column-total {
+  flex-basis: 80px;
+  flex-grow: 0.2;
+  flex-shrink: 0;
+}
+.mat-column-delete {
+  flex-basis: 42px;
+  flex-grow: 0.1;
+}
+mat-cell, mat-header-cell, mat-footer-cell {
   white-space: nowrap;
+}
+mat-footer-row {
+  font-weight: 500;
+  border-bottom-width: 0;
+}
+.add-field {
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
 }
