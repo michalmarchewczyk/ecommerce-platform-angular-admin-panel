@@ -132,9 +132,9 @@ describe('OrderItemsInputComponent', () => {
     expect(await row.getCellTextByIndex()).toEqual([
       '1',
       'Product 1',
-      '10',
-      'Qty',
-      '10',
+      '10.00',
+      'Quantity',
+      '10.00',
       'delete',
     ]);
   });
