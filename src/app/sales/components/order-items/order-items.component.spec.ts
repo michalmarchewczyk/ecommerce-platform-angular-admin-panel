@@ -37,7 +37,6 @@ describe('OrderItemsComponent', () => {
     const [row] = await table.getHeaderRows();
     expect(await row.getCellTextByIndex()).toEqual([
       'ID',
-      'Photo',
       'Name',
       'Price',
       'Quantity',
@@ -67,7 +66,6 @@ describe('OrderItemsComponent', () => {
     expect(row).toBeTruthy();
     expect(await row.getCellTextByIndex()).toEqual([
       '1',
-      '',
       'Product 1',
       '100.00',
       '2',
