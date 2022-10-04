@@ -19,6 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './core/auth/auth.module';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 export const apiConfigFactory = () => {
   const params: ConfigurationParameters = {
@@ -53,6 +54,7 @@ export const apiConfigFactory = () => {
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    MatSelectCountryModule.forRoot('en'),
   ],
   providers: [],
   bootstrap: [AppComponent],

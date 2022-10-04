@@ -79,14 +79,12 @@
             Invalid delivery postal code
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Delivery country</mat-label>
-          <input matInput type="text" formControlName="deliveryCountry" />
-          <mat-error *ngIf="createForm.controls.deliveryCountry.invalid">
-            Invalid delivery country
-          </mat-error>
-        </mat-form-field>
-
+        <mat-select-country
+          appearance="outline"
+          label="Delivery country *"
+          formControlName="deliveryCountry"
+          [itemsLoadSize]="0.1"
+        ></mat-select-country>
         <h2>Payment details</h2>
         <mat-form-field appearance="outline">
           <mat-label>Payment method</mat-label>

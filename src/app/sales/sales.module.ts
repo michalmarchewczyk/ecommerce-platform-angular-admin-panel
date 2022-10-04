@@ -50,6 +50,8 @@ import { ReturnDetailComponent } from './components/return-detail/return-detail.
 import { ReturnAddDialogComponent } from './components/return-add-dialog/return-add-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -104,6 +106,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatSelectCountryModule,
+    HttpClientModule,
   ],
 })
 export class SalesModule {}

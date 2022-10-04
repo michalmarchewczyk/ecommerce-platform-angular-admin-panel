@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first, take } from 'rxjs';
 import { OrderItemsInputComponent } from '../../components/order-items-input/order-items-input.component';
+import { Country } from '@angular-material-extensions/select-country';
 
 @Component({
   selector: 'app-create-order-form',
@@ -44,7 +45,7 @@ export class CreateOrderFormComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    deliveryCountry: new FormControl('', {
+    deliveryCountry: new FormControl<Country | undefined>(undefined, {
       nonNullable: true,
       validators: [Validators.required],
     }),
@@ -79,7 +80,8 @@ export class CreateOrderFormComponent implements OnInit {
             methodId: this.createForm.controls.deliveryMethodId.value,
             address: this.createForm.controls.deliveryAddress.value,
             city: this.createForm.controls.deliveryCity.value,
-            country: this.createForm.controls.deliveryCountry.value,
+            country:
+              this.createForm.controls.deliveryCountry.value?.alpha2Code ?? '',
             postalCode:
               this.createForm.controls.deliveryPostalCode.value || undefined,
           },

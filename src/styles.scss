@@ -16,3 +16,7 @@ body {
 .mat-button, .mat-flat-button, .mat-raised-button {
   text-transform: uppercase;
 }
+
+mat-select-country .mat-form-field {
+  width: 100%;
+}

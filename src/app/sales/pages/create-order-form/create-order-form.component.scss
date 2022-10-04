@@ -65,8 +65,9 @@ form {
     flex-basis: 180px;
     overflow: hidden;
     padding-bottom: 36px;
-    mat-form-field {
+    mat-form-field, mat-select-country {
       width: 100%;
+      display: inline-block;
     }
 
     > div.buttons {
