@@ -1,67 +1,74 @@
 <form [formGroup]="editForm" (submit)="save()">
-  <mat-form-field appearance="outline" class="order-status">
-    <mat-label>Status</mat-label>
-    <mat-select formControlName="status">
-      <mat-option value="pending">Pending</mat-option>
-      <mat-option value="failed">Failed</mat-option>
-      <mat-option value="confirmed">Confirmed</mat-option>
-      <mat-option value="open">Open</mat-option>
-      <mat-option value="cancelled">Cancelled</mat-option>
-      <mat-option value="delivered">Delivered</mat-option>
-      <mat-option value="refunded">Refunded</mat-option>
-    </mat-select>
-    <mat-error *ngIf="editForm.controls.status.invalid">
-      Invalid status
-    </mat-error>
-  </mat-form-field>
-  <h3>Delivery</h3>
-  <mat-form-field appearance="outline" class="order-delivery-status">
-    <mat-label>Delivery status</mat-label>
-    <input type="text" matInput formControlName="deliveryStatus" />
-    <mat-error *ngIf="editForm.controls.deliveryStatus.invalid">
-      Invalid delivery status
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="order-delivery-method">
-    <mat-label>Delivery method</mat-label>
-    <mat-select formControlName="deliveryMethod">
-      <mat-option
-        *ngFor="let method of deliveryMethods$ | async"
-        [value]="method.id"
-      >
-        {{ method.name }}
-      </mat-option>
-    </mat-select>
-    <mat-error *ngIf="editForm.controls.deliveryMethod.invalid">
-      Invalid delivery method
-    </mat-error>
-  </mat-form-field>
-  <h3>Payment</h3>
-  <mat-form-field appearance="outline" class="order-payment-status">
-    <mat-label>Payment status</mat-label>
-    <input type="text" matInput formControlName="paymentStatus" />
-    <mat-error *ngIf="editForm.controls.paymentStatus.invalid">
-      Invalid payment status
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="order-payment-method">
-    <mat-label>Payment method</mat-label>
-    <mat-select formControlName="paymentMethod">
-      <mat-option
-        *ngFor="let method of paymentMethods$ | async"
-        [value]="method.id"
-      >
-        {{ method.name }}
-      </mat-option>
-    </mat-select>
-    <mat-error *ngIf="editForm.controls.paymentMethod.invalid">
-      Invalid payment method
-    </mat-error>
-  </mat-form-field>
-  <div class="buttons">
-    <button mat-button color="primary" type="button" (click)="resetValues()">
-      Cancel
-    </button>
-    <button mat-raised-button color="primary" type="submit">Save</button>
+  <div class="status">
+    <h2>Status</h2>
+    <mat-form-field appearance="outline" class="order-status">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="pending">Pending</mat-option>
+        <mat-option value="failed">Failed</mat-option>
+        <mat-option value="confirmed">Confirmed</mat-option>
+        <mat-option value="open">Open</mat-option>
+        <mat-option value="cancelled">Cancelled</mat-option>
+        <mat-option value="delivered">Delivered</mat-option>
+        <mat-option value="refunded">Refunded</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.controls.status.invalid">
+        Invalid status
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="delivery">
+    <h2>Delivery</h2>
+    <mat-form-field appearance="outline" class="order-delivery-status">
+      <mat-label>Delivery status</mat-label>
+      <input type="text" matInput formControlName="deliveryStatus" />
+      <mat-error *ngIf="editForm.controls.deliveryStatus.invalid">
+        Invalid delivery status
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="order-delivery-method">
+      <mat-label>Delivery method</mat-label>
+      <mat-select formControlName="deliveryMethod">
+        <mat-option
+          *ngFor="let method of deliveryMethods$ | async"
+          [value]="method.id"
+        >
+          {{ method.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.controls.deliveryMethod.invalid">
+        Invalid delivery method
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="payment">
+    <h2>Payment</h2>
+    <mat-form-field appearance="outline" class="order-payment-status">
+      <mat-label>Payment status</mat-label>
+      <input type="text" matInput formControlName="paymentStatus" />
+      <mat-error *ngIf="editForm.controls.paymentStatus.invalid">
+        Invalid payment status
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="order-payment-method">
+      <mat-label>Payment method</mat-label>
+      <mat-select formControlName="paymentMethod">
+        <mat-option
+          *ngFor="let method of paymentMethods$ | async"
+          [value]="method.id"
+        >
+          {{ method.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.controls.paymentMethod.invalid">
+        Invalid payment method
+      </mat-error>
+    </mat-form-field>
+    <div class="buttons">
+      <button mat-button color="primary" type="button" (click)="resetValues()">
+        Cancel
+      </button>
+      <button mat-flat-button color="primary" type="submit">Save</button>
+    </div>
   </div>
 </form>

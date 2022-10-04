@@ -3,6 +3,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 16px;
+  margin-bottom: -16px !important;
+  margin-top: -8px !important;
 
   div:first-child {
     flex-grow: 1;
@@ -10,6 +12,7 @@
   }
   div:nth-child(2) {
     flex: 0;
+    flex-grow: 0.2;
     flex-basis: 240px;
   }
   div {
