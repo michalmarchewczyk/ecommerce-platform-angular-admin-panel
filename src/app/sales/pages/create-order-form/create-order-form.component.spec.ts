@@ -25,6 +25,13 @@ import { OrderItemsInputComponent } from '../../components/order-items-input/ord
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatTableModule } from '@angular/material/table';
 import { selectProductsList } from '../../../catalog/store';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import {
+  MatSelectCountryLangToken,
+  MatSelectCountryModule,
+} from '@angular-material-extensions/select-country';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('CreateOrderFormComponent', () => {
   let component: CreateOrderFormComponent;
@@ -45,6 +52,10 @@ describe('CreateOrderFormComponent', () => {
         RouterTestingModule,
         NgxMatSelectSearchModule,
         MatTableModule,
+        NgxMatIntlTelInputComponent,
+        MatSelectCountryModule,
+        HttpClientTestingModule,
+        MatIconModule,
       ],
       declarations: [CreateOrderFormComponent, OrderItemsInputComponent],
       providers: [
@@ -78,6 +89,10 @@ describe('CreateOrderFormComponent', () => {
             },
           ],
         }),
+        {
+          provide: MatSelectCountryLangToken,
+          useValue: 'en',
+        },
       ],
     }).compileComponents();
 
@@ -95,11 +110,14 @@ describe('CreateOrderFormComponent', () => {
   it('should dispatch createOrder action', async () => {
     const inputs = await loader.getAllHarnesses(MatInputHarness);
     await inputs[0].setValue('test@test.local');
-    await inputs[1].setValue('+48 123456789');
+    await inputs[1].setValue('+48123456789');
     await inputs[2].setValue('Test Test');
     await inputs[4].setValue('Test address');
     await inputs[5].setValue('Test city');
-    await inputs[7].setValue('Test country');
+    await inputs[7].setValue('Poland');
+    component.createForm.controls.deliveryCountry.setValue({
+      alpha2Code: 'PL',
+    } as any);
     const selects = await loader.getAllHarnesses(MatSelectHarness);
     await selects[1].clickOptions({ text: 'delivery-test' });
     await selects[2].clickOptions({ text: 'payment-test' });
@@ -113,14 +131,14 @@ describe('CreateOrderFormComponent', () => {
       a: OrdersActions.createOrder({
         data: {
           contactEmail: 'test@test.local',
-          contactPhone: '+48 123456789',
+          contactPhone: '+48123456789',
           fullName: 'Test Test',
           message: undefined,
           delivery: {
             methodId: 1,
             address: 'Test address',
             city: 'Test city',
-            country: 'Test country',
+            country: 'PL',
             postalCode: undefined,
           },
           payment: {
