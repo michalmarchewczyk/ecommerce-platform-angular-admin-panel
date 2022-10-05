@@ -20,3 +20,31 @@ body {
 mat-select-country .mat-form-field {
   width: 100%;
 }
+
+ngx-mat-intl-tel-input {
+  .country-selector {
+    width: 85px !important;
+    left: -10px !important;
+    top: -7px !important;
+    .mat-button-wrapper {
+      top: 2px !important;
+      position: relative;
+    }
+  }
+  input {
+    padding-left: 80px !important;
+    top: -2px !important;
+  }
+  .country-selector-flag {
+    filter: none !important;
+  }
+}
+.country-list-button {
+  .flag {
+    filter: none !important;
+  }
+}
+
+input.country-search {
+  margin-top: -7px !important;
+}

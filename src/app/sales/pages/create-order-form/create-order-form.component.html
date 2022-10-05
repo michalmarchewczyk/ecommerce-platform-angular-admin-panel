@@ -24,7 +24,11 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label> Contact Phone number </mat-label>
-          <input matInput type="tel" formControlName="contactPhone" />
+          <ngx-mat-intl-tel-input
+            formControlName="contactPhone"
+            [enableSearch]="true"
+            [preferredCountries]="['us']"
+          ></ngx-mat-intl-tel-input>
           <mat-error *ngIf="createForm.controls.contactPhone.invalid">
             Invalid phone number
           </mat-error>

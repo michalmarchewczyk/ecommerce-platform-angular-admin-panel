@@ -52,6 +52,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatSelectCountryModule,
     HttpClientModule,
+    NgxMatIntlTelInputComponent,
   ],
 })
 export class SalesModule {}
