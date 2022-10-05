@@ -35,7 +35,7 @@ describe('Orders', () => {
     cy.get('app-create-order-form input[formControlName="contactEmail"]').type(
       'test@test.local',
     );
-    cy.get('app-create-order-form input[formControlName="contactPhone"]').type(
+    cy.get('app-create-order-form [formControlName="contactPhone"]').type(
       '+48123456789',
     );
     cy.get('app-create-order-form input[formControlName="fullName"]').type(
@@ -57,9 +57,10 @@ describe('Orders', () => {
     cy.get(
       'app-create-order-form input[formControlName="deliveryPostalCode"]',
     ).type('12345');
-    cy.get(
-      'app-create-order-form input[formControlName="deliveryCountry"]',
-    ).type('PL');
+    cy.get('app-create-order-form [formControlName="deliveryCountry"]').type(
+      'Poland',
+    );
+    cy.get('mat-option').contains('Poland').click({ force: true });
 
     cy.get(
       'mat-select[formControlName="paymentMethodId"] .mat-select-trigger',
