@@ -8,6 +8,7 @@ import {
   selectDeliveriesList,
   selectNewOrderId,
   selectPaymentsList,
+  selectSalesLoading,
 } from '../../store';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatInputHarness } from '@angular/material/input/testing';
@@ -82,6 +83,10 @@ describe('CreateOrderFormComponent', () => {
             {
               selector: selectNewOrderId,
               value: 1,
+            },
+            {
+              selector: selectSalesLoading,
+              value: false,
             },
             {
               selector: selectProductsList,
