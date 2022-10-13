@@ -1,5 +1,6 @@
 import { CatalogState } from '../reducers';
 import {
+  selectCategoriesGroups,
   selectCategoriesList,
   selectCategoriesState,
   selectSelectedCategory,
@@ -24,6 +25,7 @@ describe('Categories Selectors', () => {
             name: 'Category 1',
           },
         ] as Category[],
+        groups: [{ name: 'test' } as any],
         selectedCategoryId: 1,
       },
       attributes: {
@@ -48,6 +50,13 @@ describe('Categories Selectors', () => {
     it('should select the categories list', () => {
       const result = selectCategoriesList.projector(initialState.categories);
       expect(result).toEqual(initialState.categories.list);
+    });
+  });
+
+  describe('selectCategoryGroups', () => {
+    it('should select the categories groups', () => {
+      const result = selectCategoriesGroups.projector(initialState.categories);
+      expect(result).toEqual(initialState.categories.groups);
     });
   });
 

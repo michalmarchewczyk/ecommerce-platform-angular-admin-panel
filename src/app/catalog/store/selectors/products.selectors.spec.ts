@@ -31,6 +31,7 @@ describe('Products Selectors', () => {
       },
       categories: {
         list: [],
+        groups: [],
         selectedCategoryId: null,
       },
       attributes: {

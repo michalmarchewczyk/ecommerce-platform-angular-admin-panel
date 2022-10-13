@@ -65,6 +65,42 @@ describe('CategoriesEffects', () => {
     });
   });
 
+  describe('loadCategoryGroups$', () => {
+    it('should return a loadCategoryGroupsSuccess action', (done) => {
+      actions$ = of(CategoriesActions.loadCategoryGroups());
+
+      effects.loadCategoryGroups$.subscribe((result) => {
+        expect(result).toEqual(
+          CategoriesActions.loadCategoryGroupsSuccess({ categoryGroups: [] }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'GET' }).flush([]);
+    });
+
+    it('should return a loadCategoryGroupsFailure action', (done) => {
+      actions$ = of(CategoriesActions.loadCategoryGroups());
+
+      effects.loadCategoryGroups$.subscribe((result) => {
+        expect(result).toEqual(
+          CategoriesActions.loadCategoryGroupsFailure({ error: 'error' }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'GET' }).flush(
+        {
+          message: 'error',
+        },
+        {
+          status: 400,
+          statusText: 'Bad Request',
+        },
+      );
+    });
+  });
+
   describe('addCategory$', () => {
     it('should return a addCategorySuccess action', (done) => {
       const category = {

@@ -1,16 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import { CategoriesActions } from '../actions';
-import { Category } from '../../../core/api';
+import { Category, CategoryGroup } from '../../../core/api';
 
 export const categoriesFeatureKey = 'categories';
 
 export interface State {
   list: Category[];
+  groups: CategoryGroup[];
   selectedCategoryId: number | null;
 }
 
 export const initialState: State = {
   list: [],
+  groups: [],
   selectedCategoryId: null,
 };
 
@@ -21,6 +23,13 @@ export const reducer = createReducer(
     (state, { categories }): State => ({
       ...state,
       list: categories,
+    }),
+  ),
+  on(
+    CategoriesActions.loadCategoryGroupsSuccess,
+    (state, { categoryGroups }): State => ({
+      ...state,
+      groups: categoryGroups,
     }),
   ),
   on(

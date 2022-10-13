@@ -30,6 +30,30 @@ export class CategoriesEffects {
     );
   });
 
+  loadCategoryGroups$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        CategoriesActions.loadCategoryGroups,
+        CategoriesActions.loadCategoriesSuccess,
+        CategoriesActions.updateCategorySuccess,
+      ),
+      exhaustMap(() =>
+        this.categoriesApi.getCategoryGroups().pipe(
+          map((categoryGroups) =>
+            CategoriesActions.loadCategoryGroupsSuccess({ categoryGroups }),
+          ),
+          catchError(({ error }) =>
+            of(
+              CategoriesActions.loadCategoryGroupsFailure({
+                error: error.message,
+              }),
+            ),
+          ),
+        ),
+      ),
+    );
+  });
+
   addCategory$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CategoriesActions.addCategory),

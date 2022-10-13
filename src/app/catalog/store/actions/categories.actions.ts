@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import {
   Category,
   CategoryCreateDto,
+  CategoryGroup,
   CategoryUpdateDto,
   Product,
 } from '../../../core/api';
@@ -15,6 +16,20 @@ export const loadCategoriesSuccess = createAction(
 
 export const loadCategoriesFailure = createAction(
   '[Categories] Load Categories Failure',
+  props<{ error: string }>(),
+);
+
+export const loadCategoryGroups = createAction(
+  '[Categories] Load Category Groups',
+);
+
+export const loadCategoryGroupsSuccess = createAction(
+  '[Categories] Load Category Groups Success',
+  props<{ categoryGroups: CategoryGroup[] }>(),
+);
+
+export const loadCategoryGroupsFailure = createAction(
+  '[Categories] Load Category Groups Failure',
   props<{ error: string }>(),
 );
 

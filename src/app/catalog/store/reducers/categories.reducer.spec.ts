@@ -29,6 +29,22 @@ describe('Categories Reducer', () => {
     });
   });
 
+  describe('load category groups success action', () => {
+    it('should set the list of category groups', () => {
+      const categoryGroup = { name: 'test' } as any;
+      const action = CategoriesActions.loadCategoryGroupsSuccess({
+        categoryGroups: [categoryGroup],
+      });
+
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        groups: [categoryGroup],
+      });
+    });
+  });
+
   describe('select category action', () => {
     it('should set the selected category id', () => {
       const action = CategoriesActions.selectCategory({
