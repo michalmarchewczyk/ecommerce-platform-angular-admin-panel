@@ -5,11 +5,12 @@ import {
   selectDeliveriesList,
   selectNewOrderId,
   selectPaymentsList,
+  selectSalesLoading,
 } from '../../store';
 import { ProductsActions, selectProductsList } from '../../../catalog/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first, take } from 'rxjs';
+import { first, firstValueFrom, take } from 'rxjs';
 import { OrderItemsInputComponent } from '../../components/order-items-input/order-items-input.component';
 import { Country } from '@angular-material-extensions/select-country';
 
@@ -93,13 +94,16 @@ export class CreateOrderFormComponent implements OnInit {
       }),
     );
     this.store
-      .select(selectNewOrderId)
+      .select(selectSalesLoading)
       .pipe(
-        first((v) => v !== null),
+        first((v) => !v),
         take(1),
       )
-      .subscribe((id) => {
-        this.router.navigate(['sales/orders', id]);
+      .subscribe(async () => {
+        await this.router.navigate([
+          'sales/orders',
+          await firstValueFrom(this.store.select(selectNewOrderId)),
+        ]);
       });
   }
 }
