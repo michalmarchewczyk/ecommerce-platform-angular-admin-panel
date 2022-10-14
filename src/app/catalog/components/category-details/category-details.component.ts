@@ -41,7 +41,6 @@ export class CategoryDetailsComponent implements OnInit {
     combineLatestWith(this.editForm.controls.groups.valueChanges),
     combineLatestWith(this.editForm.controls.newGroup.valueChanges),
     map(([[allGroups, groups], newGroup]) => {
-      console.log(allGroups, newGroup, groups);
       return allGroups
         .filter((g) => !groups.includes(g.name.toLowerCase()))
         .filter((group) =>
