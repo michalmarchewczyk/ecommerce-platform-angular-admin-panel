@@ -1,11 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Category } from '../../../core/api';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { CategoriesActions } from '../../store';
+import { CategoriesActions, selectCategoriesGroups } from '../../store';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { combineLatestWith, map } from 'rxjs';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-category-details',
@@ -26,7 +29,28 @@ export class CategoryDetailsComponent implements OnInit {
     slug: new FormControl('', {
       nonNullable: true,
     }),
+    groups: new FormControl<string[]>([], {
+      nonNullable: true,
+    }),
+    newGroup: new FormControl(''),
   });
+
+  allGroups$ = this.store.select(selectCategoriesGroups);
+
+  filteredGroups$ = this.allGroups$.pipe(
+    combineLatestWith(this.editForm.controls.groups.valueChanges),
+    combineLatestWith(this.editForm.controls.newGroup.valueChanges),
+    map(([[allGroups, groups], newGroup]) => {
+      console.log(allGroups, newGroup, groups);
+      return allGroups
+        .filter((g) => !groups.includes(g.name.toLowerCase()))
+        .filter((group) =>
+          group.name.toLowerCase().includes(newGroup?.toLowerCase() ?? ''),
+        );
+    }),
+  );
+
+  @ViewChild('groupInput') groupInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private store: Store,
@@ -36,6 +60,9 @@ export class CategoryDetailsComponent implements OnInit {
 
   async ngOnInit() {
     await this.resetValues();
+    this.editForm.controls.groups.setValue(
+      this.category?.groups.map((g) => g.name) ?? [],
+    );
   }
 
   async resetValues() {
@@ -46,7 +73,40 @@ export class CategoryDetailsComponent implements OnInit {
       name: this.category.name,
       description: this.category.description,
       slug: this.category.slug,
+      groups: [],
     });
+  }
+
+  removeGroup(group: string) {
+    const groups = this.editForm
+      .getRawValue()
+      .groups.filter((g: string) => g !== group);
+    this.editForm.patchValue({ groups });
+  }
+
+  addGroup(event: MatChipInputEvent) {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      const groups = this.editForm.getRawValue().groups;
+      if (!groups.includes(value)) {
+        groups.push(value.toLowerCase());
+        this.editForm.patchValue({ groups });
+      }
+    }
+
+    event.chipInput!.clear();
+    this.editForm.patchValue({ newGroup: '' });
+  }
+
+  selected(event: MatAutocompleteSelectedEvent) {
+    const groups = this.editForm.getRawValue().groups;
+    if (!groups.includes(event.option.value)) {
+      groups.push(event.option.value);
+      this.editForm.patchValue({ groups });
+    }
+    this.editForm.patchValue({ newGroup: '' });
+    this.groupInput.nativeElement.value = '';
   }
 
   async save() {
@@ -60,6 +120,7 @@ export class CategoryDetailsComponent implements OnInit {
           name: this.editForm.value.name,
           description: this.editForm.value.description,
           slug: this.editForm.value.slug,
+          groups: this.editForm.getRawValue().groups.map((g) => ({ name: g })),
         },
       }),
     );

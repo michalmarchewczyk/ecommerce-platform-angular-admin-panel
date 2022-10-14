@@ -50,6 +50,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { CategoriesProductsAddFormComponent } from './components/categories-products-add-form/categories-products-add-form.component';
 import { AuthModule } from '../core/auth/auth.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -102,6 +104,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NgxMatSelectSearchModule,
     AuthModule,
     MatPaginatorModule,
+    MatChipsModule,
+    MatAutocompleteModule,
   ],
   exports: [ProductPhotoComponent],
 })

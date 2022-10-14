@@ -4,6 +4,38 @@
     <input matInput type="text" formControlName="name" />
     <mat-error>Invalid category name</mat-error>
   </mat-form-field>
+  <mat-form-field appearance="outline" class="category-groups">
+    <mat-label>Groups</mat-label>
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let group of editForm.controls.groups.value"
+        (removed)="removeGroup(group)"
+      >
+        {{ group }}
+        <button matChipRemove><mat-icon>cancel</mat-icon></button>
+      </mat-chip>
+      <input
+        placeholder="Add group..."
+        #groupInput
+        formControlName="newGroup"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        (focus)="editForm.controls.newGroup.setValue('')"
+        (matChipInputTokenEnd)="addGroup($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
+    >
+      <mat-option
+        *ngFor="let group of filteredGroups$ | async"
+        [value]="group.name"
+      >
+        {{ group.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
   <mat-form-field appearance="outline" class="category-description">
     <mat-label>Category description</mat-label>
     <textarea matInput type="text" formControlName="description"></textarea>
