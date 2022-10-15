@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './core/auth/auth.module';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import { SettingsModule } from './settings/settings.module';
 
 export const apiConfigFactory = () => {
   const params: ConfigurationParameters = {
@@ -43,6 +44,7 @@ export const apiConfigFactory = () => {
     ApiModule.forRoot(apiConfigFactory),
     BrowserAnimationsModule,
     AuthModule,
+    SettingsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
