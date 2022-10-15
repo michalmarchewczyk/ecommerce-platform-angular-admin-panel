@@ -79,6 +79,15 @@
         <mat-icon mat-list-icon>people</mat-icon>
         Users
       </a>
+      <a
+        mat-list-item
+        routerLink="/settings"
+        [appAuthRole]="['admin']"
+        [ngClass]="{ active: router.url.startsWith('/settings') }"
+      >
+        <mat-icon mat-list-icon>settings</mat-icon>
+        Settings
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 

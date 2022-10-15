@@ -1,0 +1,26 @@
+:host {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 auto;
+}
+
+mat-card {
+  padding: 0;
+
+  mat-card-title {
+    padding: 16px 16px 16px;
+    margin-bottom: 0;
+  }
+
+  mat-card-content {
+    padding: 16px;
+    min-height: 120px;
+    margin-bottom: 0;
+  }
+}
+
+.mat-tab-icon {
+  margin-right: 8px;
+}
