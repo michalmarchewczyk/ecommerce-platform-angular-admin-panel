@@ -23,8 +23,8 @@ export class SettingsEffects {
       switchMap(() =>
         this.settingsApi.getSettings().pipe(
           map((settings) => SettingsActions.loadSettingsSuccess({ settings })),
-          catchError((error) =>
-            of(SettingsActions.loadSettingsFailure({ error })),
+          catchError(({ error }) =>
+            of(SettingsActions.loadSettingsFailure({ error: error.message })),
           ),
         ),
       ),
@@ -37,8 +37,8 @@ export class SettingsEffects {
       switchMap(({ data }) =>
         this.settingsApi.createSetting(data).pipe(
           map((setting) => SettingsActions.createSettingSuccess({ setting })),
-          catchError((error) =>
-            of(SettingsActions.createSettingFailure({ error })),
+          catchError(({ error }) =>
+            of(SettingsActions.createSettingFailure({ error: error.message })),
           ),
         ),
       ),
@@ -53,8 +53,8 @@ export class SettingsEffects {
           map((setting) =>
             SettingsActions.updateSettingSuccess({ settingId, setting }),
           ),
-          catchError((error) =>
-            of(SettingsActions.updateSettingFailure({ error })),
+          catchError(({ error }) =>
+            of(SettingsActions.updateSettingFailure({ error: error.message })),
           ),
         ),
       ),
@@ -67,8 +67,8 @@ export class SettingsEffects {
       switchMap(({ settingId }) =>
         this.settingsApi.deleteSetting(settingId).pipe(
           map(() => SettingsActions.deleteSettingSuccess({ settingId })),
-          catchError((error) =>
-            of(SettingsActions.deleteSettingFailure({ error })),
+          catchError(({ error }) =>
+            of(SettingsActions.deleteSettingFailure({ error: error.message })),
           ),
         ),
       ),
