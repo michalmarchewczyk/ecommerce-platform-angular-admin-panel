@@ -1,0 +1,73 @@
+<mat-list>
+  <mat-list-item *ngFor="let setting of settings$ | async">
+    <div mat-line>{{ setting.name }}</div>
+    <div mat-line>{{ setting.description }}</div>
+    <mat-form-field appearance="outline" *ngIf="setting.type === 'string'">
+      <mat-label> Value </mat-label>
+      <input matInput [(ngModel)]="setting.value" (change)="save(setting)" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="setting.type === 'number'">
+      <mat-label> Value </mat-label>
+      <input
+        type="number"
+        matInput
+        [(ngModel)]="setting.value"
+        (change)="save(setting)"
+      />
+    </mat-form-field>
+    <mat-slide-toggle
+      *ngIf="setting.type === 'boolean'"
+      [(ngModel)]="setting.value"
+      (change)="save(setting)"
+    ></mat-slide-toggle>
+    <mat-form-field appearance="outline" *ngIf="setting.type === 'country'">
+      <mat-label> Value </mat-label>
+      <mat-select [(ngModel)]="setting.value" (selectionChange)="save(setting)">
+        <mat-option *ngFor="let country of countries" [value]="country.code">
+          {{ country.name }} ({{ country.code }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      appearance="outline"
+      *ngIf="setting.type === 'countriesList'"
+    >
+      <mat-label> Value </mat-label>
+      <mat-select
+        [(ngModel)]="setting.value"
+        multiple
+        (selectionChange)="save(setting)"
+      >
+        <mat-option *ngFor="let country of countries" [value]="country.code">
+          {{ country.name }} ({{ country.code }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      appearance="outline"
+      *ngIf="setting.type === 'currencyCode'"
+    >
+      <mat-label> Value </mat-label>
+      <mat-select [(ngModel)]="setting.value" (selectionChange)="save(setting)">
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+          {{ currency }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      appearance="outline"
+      *ngIf="setting.type === 'currenciesList'"
+    >
+      <mat-label> Value </mat-label>
+      <mat-select
+        [(ngModel)]="setting.value"
+        multiple
+        (selectionChange)="save(setting)"
+      >
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+          {{ currency }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-list-item>
+</mat-list>

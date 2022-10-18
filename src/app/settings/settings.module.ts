@@ -10,9 +10,16 @@ import { StoreModule } from '@ngrx/store';
 import * as fromSettings from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { SettingsEffects } from './store/effects';
+import { SettingsListComponent } from './components/settings-list/settings-list.component';
+import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [SettingsComponent],
+  declarations: [SettingsComponent, SettingsListComponent],
   imports: [
     CommonModule,
     SettingsRoutingModule,
@@ -24,6 +31,12 @@ import { SettingsEffects } from './store/effects';
     MatCardModule,
     MatTabsModule,
     MatIconModule,
+    MatListModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
   ],
 })
 export class SettingsModule {}
