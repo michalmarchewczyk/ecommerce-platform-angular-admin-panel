@@ -1,0 +1,22 @@
+<mat-form-field appearance="outline">
+  <mat-label> Value </mat-label>
+  <mat-select
+    [value]="select.panelOpen ? value : ''"
+    (selectionChange)="valueChange.emit($event.value)"
+    [multiple]="type.endsWith('List')"
+    #select
+  >
+    <mat-select-trigger>{{ value | formatCountry }}</mat-select-trigger>
+    <mat-option value="" *ngIf="!select.panelOpen"></mat-option>
+    <ng-container *ngIf="type.startsWith('countr') && select.panelOpen">
+      <mat-option *ngFor="let country of countries" [value]="country.code">
+        {{ country.code | formatCountry }}
+      </mat-option>
+    </ng-container>
+    <ng-container *ngIf="type.startsWith('curr') && select.panelOpen">
+      <mat-option *ngFor="let currency of currencies" [value]="currency">
+        {{ currency }}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>

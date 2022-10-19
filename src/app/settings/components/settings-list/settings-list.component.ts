@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectSettingsList, SettingsActions } from '../../store';
-import { countries } from 'countries-list';
-import { map } from 'rxjs';
-import { Setting } from '../../../core/api';
+import { selectSettingsListTransformed, SettingsActions } from '../../store';
 
 @Component({
   selector: 'app-settings-list',
@@ -11,21 +8,7 @@ import { Setting } from '../../../core/api';
   styleUrls: ['./settings-list.component.scss'],
 })
 export class SettingsListComponent implements OnInit {
-  settings$ = this.store.select(selectSettingsList).pipe(
-    map((settings) =>
-      settings.map((setting) => ({
-        ...setting,
-        value: setting.type.endsWith('List')
-          ? [...new Set(setting.value.split(','))]
-          : setting.value,
-      })),
-    ),
-  );
-  countries = Object.entries(countries).map(([code, country]) => ({
-    code,
-    name: country.name,
-  }));
-  currencies = Object.values(countries).map((country) => country.currency);
+  settings$ = this.store.select(selectSettingsListTransformed);
 
   constructor(private store: Store) {}
 
@@ -33,24 +16,17 @@ export class SettingsListComponent implements OnInit {
     this.store.dispatch(SettingsActions.loadSettings());
   }
 
-  save(setting: {
-    defaultValue: string;
-    builtin: boolean;
-    name: string;
-    description?: string;
-    id: number;
-    type: Setting.TypeEnum;
-    updated: string;
-    value: string[] | string;
-  }) {
-    const value = Array.isArray(setting.value)
-      ? setting.value.join(',')
-      : setting.value;
+  save(settingId: number, value: string | string[]) {
+    value = Array.isArray(value) ? value.join(',') : value;
     this.store.dispatch(
       SettingsActions.updateSetting({
-        settingId: setting.id,
-        data: { value },
+        settingId: settingId,
+        data: { value: value.toString() },
       }),
     );
+  }
+
+  trackByFn(index: number, item: { id: number }) {
+    return item.id;
   }
 }

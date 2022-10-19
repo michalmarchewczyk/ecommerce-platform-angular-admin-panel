@@ -11,3 +11,17 @@ export const selectSettingsList = createSelector(
   selectSettingsListState,
   (state) => state.list,
 );
+
+export const selectSettingsListTransformed = createSelector(
+  selectSettingsList,
+  (settings) => {
+    return settings
+      .map((setting) => ({
+        ...setting,
+        value: setting.type.endsWith('List')
+          ? [...new Set(setting.value.split(','))]
+          : setting.value,
+      }))
+      .sort((a, b) => a.id - b.id);
+  },
+);
