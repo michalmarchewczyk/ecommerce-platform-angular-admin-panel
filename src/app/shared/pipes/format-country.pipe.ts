@@ -7,7 +7,7 @@ import { countries, getEmojiFlag } from 'countries-list';
 export class FormatCountryPipe implements PipeTransform {
   transform(value: string | string[]): string {
     if (Array.isArray(value)) {
-      if (!(value[0] in countries)) return value.join(', ');
+      if (value.some((v) => !(v in countries))) return value.join(', ');
       return value
         .map((c) => this.formatCountry(c as keyof typeof countries))
         .join(', ');

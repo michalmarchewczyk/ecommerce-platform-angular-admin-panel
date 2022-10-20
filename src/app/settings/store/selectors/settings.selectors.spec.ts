@@ -3,6 +3,7 @@ import { Setting } from '../../../core/api';
 import {
   selectSettingsList,
   selectSettingsListState,
+  selectSettingsListTransformed,
 } from './settings.selectors';
 
 describe('Settings Selectors', () => {
@@ -17,6 +18,12 @@ describe('Settings Selectors', () => {
             name: 'Test',
             type: 'string',
             value: 'Test',
+          } as Setting,
+          {
+            id: 2,
+            name: 'Test',
+            type: 'countriesList',
+            value: 'PL,US',
           } as Setting,
         ],
       },
@@ -38,6 +45,28 @@ describe('Settings Selectors', () => {
     it('should select the setting list', () => {
       const result = selectSettingsList.projector(initialState.settings);
       expect(result).toEqual(initialState.settings.list);
+    });
+  });
+
+  describe('selectSettingsListTransformed', () => {
+    it('should select the transformed setting list', () => {
+      const result = selectSettingsListTransformed.projector(
+        initialState.settings.list,
+      );
+      expect(result).toEqual([
+        {
+          id: 1,
+          name: 'Test',
+          type: 'string',
+          value: 'Test',
+        },
+        {
+          id: 2,
+          name: 'Test',
+          type: 'countriesList',
+          value: ['PL', 'US'],
+        },
+      ] as any);
     });
   });
 });
