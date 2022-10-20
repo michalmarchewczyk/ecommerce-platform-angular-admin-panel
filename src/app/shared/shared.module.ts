@@ -11,6 +11,7 @@ import { BackgroundComponent } from './components/background/background.componen
 import { CountrySelectComponent } from './components/country-select/country-select.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FormatCountryPipe } from './pipes/format-country.pipe';
+import { SettingTypeNamePipe } from './pipes/setting-type-name.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormatCountryPipe } from './pipes/format-country.pipe';
     CountrySelectComponent,
 
     FormatCountryPipe,
+    SettingTypeNamePipe,
   ],
   imports: [CommonModule, MatDialogModule, MatButtonModule, MatSelectModule],
   exports: [
@@ -32,6 +34,7 @@ import { FormatCountryPipe } from './pipes/format-country.pipe';
     LogoComponent,
     BackgroundComponent,
     CountrySelectComponent,
+    SettingTypeNamePipe,
   ],
 })
 export class SharedModule {}

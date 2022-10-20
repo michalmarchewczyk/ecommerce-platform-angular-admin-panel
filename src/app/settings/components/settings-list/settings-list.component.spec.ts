@@ -13,6 +13,12 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonHarness } from '@angular/material/button/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogHarness } from '@angular/material/dialog/testing';
 
 describe('SettingsListComponent', () => {
   let component: SettingsListComponent;
@@ -24,13 +30,16 @@ describe('SettingsListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatListModule,
+        MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
         NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
+        MatButtonModule,
+        MatIconModule,
       ],
-      declarations: [SettingsListComponent],
+      declarations: [SettingsListComponent, ConfirmDialogComponent],
       providers: [
         provideMockStore({
           selectors: [
@@ -42,12 +51,14 @@ describe('SettingsListComponent', () => {
                   name: 'Test',
                   type: 'string',
                   value: 'Test',
+                  builtin: false,
                 } as Setting,
                 {
                   id: 2,
                   name: 'Test2',
                   type: 'countriesList',
                   value: 'PL,US',
+                  builtin: false,
                 } as Setting,
               ],
             },
@@ -58,9 +69,10 @@ describe('SettingsListComponent', () => {
 
     fixture = TestBed.createComponent(SettingsListComponent);
     component = fixture.componentInstance;
+    component.builtin = false;
     fixture.detectChanges();
     store = TestBed.inject(MockStore);
-    loader = TestbedHarnessEnvironment.loader(fixture);
+    loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
   });
 
   it('should create', () => {
@@ -96,6 +108,24 @@ describe('SettingsListComponent', () => {
           settingId: 2,
           data: { value: 'PL,US' },
         }),
+      }),
+    );
+  });
+
+  it('should dispatch deleteSetting action', async () => {
+    const button = await loader.getHarness(
+      MatButtonHarness.with({ text: 'delete' }),
+    );
+    await button.click();
+    const dialog = await loader.getHarness(MatDialogHarness);
+    const dialogButton = await dialog.getHarness(
+      MatButtonHarness.with({ text: 'Delete' }),
+    );
+    await dialogButton.click();
+
+    expect(store.scannedActions$).toBeObservable(
+      cold('a', {
+        a: SettingsActions.deleteSetting({ settingId: 1 }),
       }),
     );
   });

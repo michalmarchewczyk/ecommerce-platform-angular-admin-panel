@@ -1,5 +1,7 @@
 <mat-list>
-  <mat-list-item *ngFor="let setting of settings$ | async; trackBy: trackByFn">
+  <mat-list-item
+    *ngFor="let setting of filteredSettings$ | async; trackBy: trackByFn"
+  >
     <div mat-line>{{ setting.name }}</div>
     <div mat-line>{{ setting.description }}</div>
     <mat-form-field
@@ -30,5 +32,13 @@
       [(value)]="setting.value"
       (valueChange)="save(setting.id, $event)"
     ></app-country-select>
+    <button mat-icon-button (click)="delete(setting.id)" *ngIf="!builtin">
+      <mat-icon>delete</mat-icon>
+    </button>
   </mat-list-item>
 </mat-list>
+
+<ng-container *ngIf="!builtin">
+  <mat-divider></mat-divider>
+  <app-setting-add-form></app-setting-add-form>
+</ng-container>

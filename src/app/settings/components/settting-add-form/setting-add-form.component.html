@@ -1,0 +1,59 @@
+<mat-form-field appearance="outline">
+  <mat-label>Type</mat-label>
+  <mat-select
+    [(ngModel)]="type"
+    required
+    (selectionChange)="changeType($event.value)"
+  >
+    <mat-option *ngFor="let type of types" [value]="type">
+      {{ type | settingTypeName }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Name</mat-label>
+  <input matInput [(ngModel)]="name" required />
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Description</mat-label>
+  <input matInput [(ngModel)]="description" />
+</mat-form-field>
+
+<mat-form-field
+  appearance="outline"
+  *ngIf="type === 'number' || type === 'string'"
+>
+  <mat-label> Value </mat-label>
+  <input
+    [type]="type === 'number' ? 'number' : 'text'"
+    matInput
+    required
+    [(ngModel)]="defaultValue"
+  />
+</mat-form-field>
+<mat-form-field appearance="outline" *ngIf="type === 'boolean'">
+  <mat-label>Value</mat-label>
+  <mat-select [(ngModel)]="defaultValue" required>
+    <mat-option value="true">True</mat-option>
+    <mat-option value="false">False</mat-option>
+  </mat-select>
+</mat-form-field>
+<app-country-select
+  *ngIf="type === 'countriesList' || type === 'currenciesList'"
+  [type]="type"
+  [(value)]="defaultValue"
+></app-country-select>
+
+<app-country-select
+  *ngIf="type === 'country' || type === 'currencyCode'"
+  [type]="type"
+  [(value)]="defaultValue"
+></app-country-select>
+<button
+  mat-flat-button
+  color="primary"
+  (click)="save()"
+  [disabled]="!type || !name || !defaultValue"
+>
+  Add
+</button>

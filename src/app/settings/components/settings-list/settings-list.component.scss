@@ -2,5 +2,19 @@
 mat-list-item {
   mat-form-field {
     max-height: 68px;
+    width: 240px;
   }
+
+  app-country-select {
+    max-height: 68px;
+    width: 240px;
+  }
+
+  button {
+    margin-left: 12px;
+  }
+}
+
+mat-divider {
+  margin: 8px -4px 16px;
 }

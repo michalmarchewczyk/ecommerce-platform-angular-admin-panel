@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: -12px;
+  gap: 12px;
+  padding-left: 14px;
+
+  mat-form-field:first-child {
+    flex-basis: 120px;
+    max-width: 120px;
+  }
+
+  mat-form-field:nth-child(3) {
+    flex: 1
+  }
+
+  app-country-select {
+    max-height: 68px;
+    margin-top: -2px;
+  }
+}
+
+button {
+  margin-top: 12px;
+  margin-left: 4px;
+  margin-right: 18px;
+}
