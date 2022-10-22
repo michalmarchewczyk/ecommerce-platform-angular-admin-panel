@@ -20,6 +20,7 @@ import TypeEnum = SettingCreateDto.TypeEnum;
 import { SettingsActions } from '../../store';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { FormatCountryPipe } from '../../../shared/pipes/format-country.pipe';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 describe('SettingAddFormComponent', () => {
   let component: SettingAddFormComponent;
@@ -37,6 +38,7 @@ describe('SettingAddFormComponent', () => {
         NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
+        NgxMatSelectSearchModule,
       ],
       declarations: [
         SettingAddFormComponent,

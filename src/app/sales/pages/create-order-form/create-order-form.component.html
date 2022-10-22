@@ -83,12 +83,11 @@
             Invalid delivery postal code
           </mat-error>
         </mat-form-field>
-        <mat-select-country
-          appearance="outline"
+        <app-country-select
           label="Delivery country *"
           formControlName="deliveryCountry"
-          [itemsLoadSize]="0.1"
-        ></mat-select-country>
+          required
+        ></app-country-select>
         <h2>Payment details</h2>
         <mat-form-field appearance="outline">
           <mat-label>Payment method</mat-label>

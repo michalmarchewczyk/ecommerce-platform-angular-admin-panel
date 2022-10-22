@@ -29,8 +29,8 @@
         setting.type === 'currenciesList'
       "
       [type]="setting.type"
-      [(value)]="setting.value"
-      (valueChange)="save(setting.id, $event)"
+      [(ngModel)]="setting.value"
+      (ngModelChange)="save(setting.id, $event)"
     ></app-country-select>
     <button mat-icon-button (click)="delete(setting.id)" *ngIf="!builtin">
       <mat-icon>delete</mat-icon>

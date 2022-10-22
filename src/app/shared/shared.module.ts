@@ -12,6 +12,8 @@ import { CountrySelectComponent } from './components/country-select/country-sele
 import { MatSelectModule } from '@angular/material/select';
 import { FormatCountryPipe } from './pipes/format-country.pipe';
 import { SettingTypeNamePipe } from './pipes/setting-type-name.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,15 @@ import { SettingTypeNamePipe } from './pipes/setting-type-name.pipe';
     FormatCountryPipe,
     SettingTypeNamePipe,
   ],
-  imports: [CommonModule, MatDialogModule, MatButtonModule, MatSelectModule],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    NgxMatSelectSearchModule,
+    FormsModule,
+  ],
   exports: [
     RoleNamePipe,
     BooleanTextPipe,

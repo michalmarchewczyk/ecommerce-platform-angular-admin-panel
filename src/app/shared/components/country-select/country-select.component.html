@@ -1,20 +1,42 @@
 <mat-form-field appearance="outline">
-  <mat-label> Value </mat-label>
+  <mat-label> {{ label }} (current value: {{ value }}) </mat-label>
   <mat-select
-    [value]="select.panelOpen ? value : ''"
-    (selectionChange)="valueChange.emit($event.value)"
+    [(ngModel)]="value"
+    (selectionChange)="onChange($event.value); value = $event.value"
+    (opened)="onTouched()"
     [multiple]="type.endsWith('List')"
     #select
   >
     <mat-select-trigger>{{ value | formatCountry }}</mat-select-trigger>
-    <mat-option value="" *ngIf="!select.panelOpen"></mat-option>
+    <mat-option
+      [value]="value"
+      *ngIf="!select.panelOpen && !!value"
+    ></mat-option>
+    <mat-option
+      [value]="value[0]"
+      *ngIf="!select.panelOpen && !!value"
+    ></mat-option>
+    <mat-option>
+      <ngx-mat-select-search
+        ngModel
+        (ngModelChange)="filterChange($event)"
+        placeholderLabel="Search"
+        noEntriesFoundLabel="No items found"
+      ></ngx-mat-select-search>
+    </mat-option>
     <ng-container *ngIf="type.startsWith('countr') && select.panelOpen">
-      <mat-option *ngFor="let country of countries" [value]="country.code">
+      <mat-option
+        *ngFor="let country of filteredCountries"
+        [value]="country.code"
+      >
         {{ country.code | formatCountry }}
       </mat-option>
     </ng-container>
     <ng-container *ngIf="type.startsWith('curr') && select.panelOpen">
-      <mat-option *ngFor="let currency of currencies" [value]="currency">
+      <mat-option
+        *ngFor="let currency of filteredCurrencies"
+        [value]="currency"
+      >
         {{ currency }}
       </mat-option>
     </ng-container>

@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatSelectHarness } from '@angular/material/select/testing';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 describe('CountrySelectComponent', () => {
   let component: CountrySelectComponent;
@@ -23,6 +24,7 @@ describe('CountrySelectComponent', () => {
         NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
+        NgxMatSelectSearchModule,
       ],
       declarations: [CountrySelectComponent, FormatCountryPipe],
     }).compileComponents();
@@ -42,7 +44,7 @@ describe('CountrySelectComponent', () => {
     fixture.detectChanges();
     const select = await loader.getHarness(MatSelectHarness);
     await select.open();
-    expect((await select.getOptions()).length).toBe(250);
+    expect((await select.getOptions()).length).toBe(251);
   });
 
   it('should render currencies', async () => {
@@ -50,30 +52,46 @@ describe('CountrySelectComponent', () => {
     fixture.detectChanges();
     const select = await loader.getHarness(MatSelectHarness);
     await select.open();
-    expect((await select.getOptions()).length).toBe(163);
+    expect((await select.getOptions()).length).toBe(164);
   });
 
-  it('should emit valueChange', async () => {
+  it('should filter countries', async () => {
     component.type = 'country';
     fixture.detectChanges();
-    spyOn(component.valueChange, 'emit');
+    const select = await loader.getHarness(MatSelectHarness);
+    await select.open();
+    component.filterChange('United');
+    expect((await select.getOptions()).length).toBe(4);
+  });
+
+  it('should emit onChange', async () => {
+    component.type = 'country';
+    fixture.detectChanges();
+    const mockFn = jasmine.createSpy();
+    component.registerOnChange(mockFn);
     const select = await loader.getHarness(MatSelectHarness);
     await select.open();
     const option = await select.getOptions({ text: '🇵🇱 Poland (PL)' });
     await option[0].click();
-    expect(component.valueChange.emit).toHaveBeenCalledWith('PL');
+    expect(mockFn).toHaveBeenCalledWith('PL');
   });
 
-  it('should emit valueChange with array', async () => {
-    component.type = 'countriesList';
+  it('should emit onTouched', async () => {
+    component.type = 'country';
     fixture.detectChanges();
-    spyOn(component.valueChange, 'emit');
+    const mockFn = jasmine.createSpy();
+    component.registerOnTouched(mockFn);
     const select = await loader.getHarness(MatSelectHarness);
     await select.open();
-    const option1 = await select.getOptions({ text: '🇵🇱 Poland (PL)' });
-    await option1[0].click();
-    const option2 = await select.getOptions({ text: '🇺🇸 United States (US)' });
-    await option2[0].click();
-    expect(component.valueChange.emit).toHaveBeenCalledWith(['PL', 'US']);
+    expect(mockFn).toHaveBeenCalled();
+  });
+
+  it('should writeValue', async () => {
+    component.type = 'country';
+    fixture.detectChanges();
+    component.writeValue('PL');
+    fixture.detectChanges();
+    const select = await loader.getHarness(MatSelectHarness);
+    expect(await select.getValueText()).toBe('🇵🇱 Poland (PL)');
   });
 });

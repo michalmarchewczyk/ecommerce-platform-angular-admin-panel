@@ -6,7 +6,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica Neue", 'Noto Color Emoji', sans-serif;
 }
 
 * {
@@ -17,9 +17,6 @@ body {
   text-transform: uppercase;
 }
 
-mat-select-country .mat-form-field {
-  width: 100%;
-}
 
 ngx-mat-intl-tel-input {
   .country-selector {
@@ -48,3 +45,16 @@ ngx-mat-intl-tel-input {
 input.country-search {
   margin-top: -7px !important;
 }
+
+
+.mat-select, .mat-option {
+  font-family: Roboto, "Helvetica Neue", 'Noto Color Emoji', sans-serif;
+}
+
+
+@-moz-document url-prefix() {
+  .mat-select, .mat-option {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}
+

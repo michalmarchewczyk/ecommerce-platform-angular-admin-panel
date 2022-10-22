@@ -27,12 +27,10 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatTableModule } from '@angular/material/table';
 import { selectProductsList } from '../../../catalog/store';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
-import {
-  MatSelectCountryLangToken,
-  MatSelectCountryModule,
-} from '@angular-material-extensions/select-country';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatIconModule } from '@angular/material/icon';
+import { CountrySelectComponent } from '../../../shared/components/country-select/country-select.component';
+import { FormatCountryPipe } from '../../../shared/pipes/format-country.pipe';
 
 describe('CreateOrderFormComponent', () => {
   let component: CreateOrderFormComponent;
@@ -54,11 +52,15 @@ describe('CreateOrderFormComponent', () => {
         NgxMatSelectSearchModule,
         MatTableModule,
         NgxMatIntlTelInputComponent,
-        MatSelectCountryModule,
         HttpClientTestingModule,
         MatIconModule,
       ],
-      declarations: [CreateOrderFormComponent, OrderItemsInputComponent],
+      declarations: [
+        CreateOrderFormComponent,
+        OrderItemsInputComponent,
+        CountrySelectComponent,
+        FormatCountryPipe,
+      ],
       providers: [
         provideMockStore({
           selectors: [
@@ -94,10 +96,6 @@ describe('CreateOrderFormComponent', () => {
             },
           ],
         }),
-        {
-          provide: MatSelectCountryLangToken,
-          useValue: 'en',
-        },
       ],
     }).compileComponents();
 
@@ -119,13 +117,10 @@ describe('CreateOrderFormComponent', () => {
     await inputs[2].setValue('Test Test');
     await inputs[4].setValue('Test address');
     await inputs[5].setValue('Test city');
-    await inputs[7].setValue('Poland');
-    component.createForm.controls.deliveryCountry.setValue({
-      alpha2Code: 'PL',
-    } as any);
     const selects = await loader.getAllHarnesses(MatSelectHarness);
     await selects[1].clickOptions({ text: 'delivery-test' });
-    await selects[2].clickOptions({ text: 'payment-test' });
+    await selects[3].clickOptions({ text: 'payment-test' });
+    await selects[2].clickOptions({ text: '🇵🇱 Poland (PL)' });
 
     const button = await loader.getHarness(
       MatButtonHarness.with({ text: 'Create' }),

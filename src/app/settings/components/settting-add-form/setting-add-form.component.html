@@ -41,13 +41,13 @@
 <app-country-select
   *ngIf="type === 'countriesList' || type === 'currenciesList'"
   [type]="type"
-  [(value)]="defaultValue"
+  [(ngModel)]="defaultValue"
 ></app-country-select>
 
 <app-country-select
   *ngIf="type === 'country' || type === 'currencyCode'"
   [type]="type"
-  [(value)]="defaultValue"
+  [(ngModel)]="defaultValue"
 ></app-country-select>
 <button
   mat-flat-button

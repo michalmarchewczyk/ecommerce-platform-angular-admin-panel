@@ -50,7 +50,6 @@ import { ReturnDetailComponent } from './components/return-detail/return-detail.
 import { ReturnAddDialogComponent } from './components/return-add-dialog/return-add-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
@@ -107,7 +106,6 @@ import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
     FormsModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatSelectCountryModule,
     HttpClientModule,
     NgxMatIntlTelInputComponent,
   ],

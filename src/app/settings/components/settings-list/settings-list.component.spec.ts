@@ -12,13 +12,18 @@ import { cold } from 'jasmine-marbles';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatInputHarness } from '@angular/material/input/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
+import { CountrySelectComponent } from '../../../shared/components/country-select/country-select.component';
+import { FormatCountryPipe } from '../../../shared/pipes/format-country.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { SettingTypeNamePipe } from '../../../shared/pipes/setting-type-name.pipe';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 describe('SettingsListComponent', () => {
   let component: SettingsListComponent;
@@ -33,13 +38,20 @@ describe('SettingsListComponent', () => {
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSelectModule,
         NoopAnimationsModule,
         FormsModule,
-        ReactiveFormsModule,
         MatButtonModule,
         MatIconModule,
+        NgxMatSelectSearchModule,
       ],
-      declarations: [SettingsListComponent, ConfirmDialogComponent],
+      declarations: [
+        SettingsListComponent,
+        ConfirmDialogComponent,
+        CountrySelectComponent,
+        FormatCountryPipe,
+        SettingTypeNamePipe,
+      ],
       providers: [
         provideMockStore({
           selectors: [
@@ -57,9 +69,9 @@ describe('SettingsListComponent', () => {
                   id: 2,
                   name: 'Test2',
                   type: 'countriesList',
-                  value: 'PL,US',
+                  value: ['PL', 'US'],
                   builtin: false,
-                } as Setting,
+                } as any,
               ],
             },
           ],
