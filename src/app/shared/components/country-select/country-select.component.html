@@ -1,5 +1,5 @@
 <mat-form-field appearance="outline">
-  <mat-label> {{ label }} (current value: {{ value }}) </mat-label>
+  <mat-label> {{ label }} </mat-label>
   <mat-select
     [(ngModel)]="value"
     (selectionChange)="onChange($event.value); value = $event.value"
