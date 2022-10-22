@@ -57,9 +57,7 @@ describe('Orders', () => {
     cy.get(
       'app-create-order-form input[formControlName="deliveryPostalCode"]',
     ).type('12345');
-    cy.get('app-create-order-form [formControlName="deliveryCountry"]').type(
-      'Poland',
-    );
+    cy.get('[formControlName="deliveryCountry"] .mat-select-trigger').click();
     cy.get('mat-option').contains('Poland').click({ force: true });
 
     cy.get(
