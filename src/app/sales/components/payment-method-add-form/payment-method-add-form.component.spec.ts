@@ -14,6 +14,8 @@ import { MatInputHarness } from '@angular/material/input/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { cold } from 'jasmine-marbles';
 import { PaymentsActions } from '../../store';
+import { selectSettingsList } from '../../../settings/store';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
 describe('PaymentMethodAddFormComponent', () => {
   let component: PaymentMethodAddFormComponent;
@@ -31,8 +33,23 @@ describe('PaymentMethodAddFormComponent', () => {
         MatButtonModule,
         ReactiveFormsModule,
       ],
-      declarations: [PaymentMethodAddFormComponent],
-      providers: [provideMockStore()],
+      declarations: [PaymentMethodAddFormComponent, FormatCurrencyPipe],
+      providers: [
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
+            },
+          ],
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentMethodAddFormComponent);

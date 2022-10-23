@@ -14,6 +14,8 @@ import {
   MatTableHarness,
 } from '@angular/material/table/testing';
 import { BooleanTextPipe } from '../../../shared/pipes/boolean-text.pipe';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
+import { selectSettingsList } from '../../../settings/store';
 
 describe('ProductsListComponent', () => {
   let component: ProductsListComponent;
@@ -28,7 +30,11 @@ describe('ProductsListComponent', () => {
         MatCardModule,
         MatTableModule,
       ],
-      declarations: [ProductsListComponent, BooleanTextPipe],
+      declarations: [
+        ProductsListComponent,
+        BooleanTextPipe,
+        FormatCurrencyPipe,
+      ],
       providers: [
         provideMockStore({
           selectors: [
@@ -44,6 +50,16 @@ describe('ProductsListComponent', () => {
                   stock: 10,
                   visible: true,
                 } as any,
+              ],
+            },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
               ],
             },
           ],
@@ -84,7 +100,7 @@ describe('ProductsListComponent', () => {
       '',
       'Product 1',
       'Product 1 description',
-      '100.00',
+      '€100.00',
       '10',
       'Visible',
     ]);

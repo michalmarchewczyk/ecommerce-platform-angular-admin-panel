@@ -15,6 +15,7 @@
   <div class="form-column">
     <mat-form-field appearance="outline" class="product-price">
       <mat-label>Price</mat-label>
+      <span matPrefix>{{ 0 | formatCurrency: true }}&nbsp;</span>
       <input type="number" matInput required formControlName="price" />
       <mat-error>Invalid price</mat-error>
     </mat-form-field>

@@ -25,6 +25,8 @@ import { FileInput, MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
+import { selectSettingsList } from '../../../settings/store';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
@@ -53,6 +55,7 @@ describe('ProductDetailsComponent', () => {
         SafeUrlPipe,
         ProductPhotosInputComponent,
         ConfirmDialogComponent,
+        FormatCurrencyPipe,
       ],
       providers: [
         provideMockStore({
@@ -80,6 +83,18 @@ describe('ProductDetailsComponent', () => {
               },
             },
           },
+          selectors: [
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
+            },
+          ],
         }),
       ],
     }).compileComponents();

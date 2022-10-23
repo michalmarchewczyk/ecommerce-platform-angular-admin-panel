@@ -9,6 +9,9 @@ import {
   MatTableHarness,
 } from '@angular/material/table/testing';
 import { SimpleChange } from '@angular/core';
+import { selectSettingsList } from '../../../settings/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
 describe('OrderItemsComponent', () => {
   let component: OrderItemsComponent;
@@ -18,7 +21,23 @@ describe('OrderItemsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatTableModule],
-      declarations: [OrderItemsComponent],
+      declarations: [OrderItemsComponent, FormatCurrencyPipe],
+      providers: [
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
+            },
+          ],
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OrderItemsComponent);
@@ -67,9 +86,9 @@ describe('OrderItemsComponent', () => {
     expect(await row.getCellTextByIndex()).toEqual([
       '1',
       'Product 1',
-      '100.00',
+      '€100.00',
       '2',
-      '200.00',
+      '€200.00',
     ]);
   });
 });

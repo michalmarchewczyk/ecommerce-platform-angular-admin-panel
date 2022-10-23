@@ -31,6 +31,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { CountrySelectComponent } from '../../../shared/components/country-select/country-select.component';
 import { FormatCountryPipe } from '../../../shared/pipes/format-country.pipe';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
+import { selectSettingsList } from '../../../settings/store';
 
 describe('CreateOrderFormComponent', () => {
   let component: CreateOrderFormComponent;
@@ -60,6 +62,7 @@ describe('CreateOrderFormComponent', () => {
         OrderItemsInputComponent,
         CountrySelectComponent,
         FormatCountryPipe,
+        FormatCurrencyPipe,
       ],
       providers: [
         provideMockStore({
@@ -93,6 +96,16 @@ describe('CreateOrderFormComponent', () => {
             {
               selector: selectProductsList,
               value: [],
+            },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
             },
           ],
         }),

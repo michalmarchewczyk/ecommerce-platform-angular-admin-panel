@@ -16,6 +16,8 @@ import { Product } from '../../../core/api';
 import { MatSelectHarness } from '@angular/material/select/testing';
 import { MatRowHarness } from '@angular/material/table/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
+import { selectSettingsList } from '../../../settings/store';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
 describe('OrderItemsInputComponent', () => {
   let component: OrderItemsInputComponent;
@@ -34,7 +36,7 @@ describe('OrderItemsInputComponent', () => {
         NgxMatSelectSearchModule,
         MatInputModule,
       ],
-      declarations: [OrderItemsInputComponent],
+      declarations: [OrderItemsInputComponent, FormatCurrencyPipe],
       providers: [
         provideMockStore({
           selectors: [
@@ -43,6 +45,16 @@ describe('OrderItemsInputComponent', () => {
               value: [
                 { id: 1, name: 'Product 1', price: 10, stock: 1 },
                 { id: 2, name: 'Product 2', price: 20, stock: 2 },
+              ],
+            },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
               ],
             },
           ],
@@ -124,7 +136,7 @@ describe('OrderItemsInputComponent', () => {
   it('should add item', async () => {
     const select = await loader.getHarness(MatSelectHarness);
     await select.open();
-    await select.clickOptions({ text: '#1 Product 1 (stock: 1) - 10' });
+    await select.clickOptions({ text: '#1 Product 1 (stock: 1) - €10.00' });
     fixture.detectChanges();
 
     const row = await loader.getHarness(MatRowHarness);
@@ -132,9 +144,9 @@ describe('OrderItemsInputComponent', () => {
     expect(await row.getCellTextByIndex()).toEqual([
       '1',
       'Product 1',
-      '10.00',
+      '€10.00',
       'Quantity',
-      '10.00',
+      '€10.00',
       'delete',
     ]);
   });
@@ -162,7 +174,7 @@ describe('OrderItemsInputComponent', () => {
   it('should delete item', async () => {
     const select = await loader.getHarness(MatSelectHarness);
     await select.open();
-    await select.clickOptions({ text: '#1 Product 1 (stock: 1) - 10' });
+    await select.clickOptions({ text: '#1 Product 1 (stock: 1) - €10.00' });
     fixture.detectChanges();
 
     const button = await loader.getHarness(
@@ -177,7 +189,7 @@ describe('OrderItemsInputComponent', () => {
   it('should update item quantity', async () => {
     const select = await loader.getHarness(MatSelectHarness);
     await select.open();
-    await select.clickOptions({ text: '#1 Product 1 (stock: 1) - 10' });
+    await select.clickOptions({ text: '#1 Product 1 (stock: 1) - €10.00' });
     fixture.detectChanges();
 
     await component.updateQuantity({

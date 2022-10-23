@@ -15,6 +15,8 @@ import {
 } from '@angular/material/table/testing';
 import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
+import { selectSettingsList } from '../../../settings/store';
 
 describe('OrdersListComponent', () => {
   let component: OrdersListComponent;
@@ -30,7 +32,7 @@ describe('OrdersListComponent', () => {
         MatTableModule,
         MatIconModule,
       ],
-      declarations: [OrdersListComponent],
+      declarations: [OrdersListComponent, FormatCurrencyPipe],
       providers: [
         provideMockStore({
           selectors: [
@@ -63,6 +65,16 @@ describe('OrdersListComponent', () => {
                       name: 'delivery-test',
                     },
                   },
+                },
+              ],
+            },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
                 },
               ],
             },
@@ -108,7 +120,7 @@ describe('OrdersListComponent', () => {
       ) ?? '',
       'pending',
       '2',
-      '4.00',
+      '€4.00',
       'Test Test',
       'delivery-test',
       'payment-test',

@@ -13,6 +13,8 @@ import {
   MatTableHarness,
 } from '@angular/material/table/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { selectSettingsList } from '../../../settings/store';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
 describe('PaymentMethodsListComponent', () => {
   let component: PaymentMethodsListComponent;
@@ -27,7 +29,7 @@ describe('PaymentMethodsListComponent', () => {
         MatCardModule,
         NoopAnimationsModule,
       ],
-      declarations: [PaymentMethodsListComponent],
+      declarations: [PaymentMethodsListComponent, FormatCurrencyPipe],
       providers: [
         provideMockStore({
           selectors: [
@@ -39,6 +41,16 @@ describe('PaymentMethodsListComponent', () => {
                   name: 'Method 1',
                   description: 'Description 1',
                   price: 10,
+                },
+              ],
+            },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
                 },
               ],
             },
@@ -77,7 +89,7 @@ describe('PaymentMethodsListComponent', () => {
       '1',
       'Method 1',
       'Description 1',
-      '10',
+      '€10.00',
       'keyboard_arrow_down',
     ]);
     expect(expandRow).toBeTruthy();

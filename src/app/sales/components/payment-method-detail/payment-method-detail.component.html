@@ -16,6 +16,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Price</mat-label>
+      <span matPrefix>{{ 0 | formatCurrency: true }}&nbsp;</span>
       <input matInput type="number" formControlName="price" />
       <mat-error *ngIf="editForm.controls.price.invalid">
         Invalid price

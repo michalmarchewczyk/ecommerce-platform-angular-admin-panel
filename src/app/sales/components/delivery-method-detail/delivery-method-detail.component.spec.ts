@@ -15,6 +15,8 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { cold } from 'jasmine-marbles';
 import { DeliveriesActions } from '../../store';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
+import { selectSettingsList } from '../../../settings/store';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
 describe('DeliveryMethodDetailComponent', () => {
   let component: DeliveryMethodDetailComponent;
@@ -31,8 +33,27 @@ describe('DeliveryMethodDetailComponent', () => {
         NoopAnimationsModule,
         ReactiveFormsModule,
       ],
-      declarations: [DeliveryMethodDetailComponent, ConfirmDialogComponent],
-      providers: [provideMockStore()],
+      declarations: [
+        DeliveryMethodDetailComponent,
+        ConfirmDialogComponent,
+        FormatCurrencyPipe,
+      ],
+      providers: [
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
+            },
+          ],
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DeliveryMethodDetailComponent);

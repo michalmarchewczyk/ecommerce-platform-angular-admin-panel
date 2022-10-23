@@ -62,7 +62,7 @@
           Total
         </mat-header-cell>
         <mat-cell *matCellDef="let element">{{
-          element.itemsTotal | number: '1.2-2'
+          element.itemsTotal | formatCurrency
         }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="expand">

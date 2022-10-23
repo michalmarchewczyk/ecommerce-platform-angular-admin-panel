@@ -42,7 +42,7 @@
           >Price</mat-header-cell
         >
         <mat-cell *matCellDef="let product">{{
-          product.price | number: '1.2-2'
+          product.price | formatCurrency
         }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="stock">

@@ -14,6 +14,7 @@ import { FormatCountryPipe } from './pipes/format-country.pipe';
 import { SettingTypeNamePipe } from './pipes/setting-type-name.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     LogoComponent,
     BackgroundComponent,
     CountrySelectComponent,
-
     FormatCountryPipe,
     SettingTypeNamePipe,
+    FormatCurrencyPipe,
   ],
   imports: [
     CommonModule,
@@ -45,6 +46,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     BackgroundComponent,
     CountrySelectComponent,
     SettingTypeNamePipe,
+    FormatCurrencyPipe,
   ],
 })
 export class SharedModule {}

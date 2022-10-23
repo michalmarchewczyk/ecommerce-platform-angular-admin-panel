@@ -20,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReturnAddDialogComponent } from '../../components/return-add-dialog/return-add-dialog.component';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
+import { selectSettingsList } from '../../../settings/store';
 
 describe('ReturnsListComponent', () => {
   let component: ReturnsListComponent;
@@ -34,7 +36,11 @@ describe('ReturnsListComponent', () => {
         NoopAnimationsModule,
         MatDialogModule,
       ],
-      declarations: [ReturnsListComponent, ReturnAddDialogComponent],
+      declarations: [
+        ReturnsListComponent,
+        ReturnAddDialogComponent,
+        FormatCurrencyPipe,
+      ],
       providers: [
         provideMockStore({
           selectors: [
@@ -59,6 +65,16 @@ describe('ReturnsListComponent', () => {
             {
               selector: selectReturnsList,
               value: [],
+            },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
             },
           ],
         }),
@@ -101,7 +117,7 @@ describe('ReturnsListComponent', () => {
       '2',
       '',
       '3',
-      '6.00',
+      '€6.00',
       'keyboard_arrow_down',
     ]);
     expect(expandRow).toBeTruthy();

@@ -12,6 +12,11 @@ export const selectSettingsList = createSelector(
   (state) => state.list,
 );
 
+export const selectSettingByName = (name: string) =>
+  createSelector(selectSettingsList, (settings) => {
+    return settings.find((setting) => setting.name === name)?.value ?? '';
+  });
+
 export const selectSettingsListTransformed = createSelector(
   selectSettingsList,
   (settings) => {

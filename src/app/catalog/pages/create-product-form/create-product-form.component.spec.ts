@@ -24,6 +24,8 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { first, skip } from 'rxjs';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
+import { selectSettingsList } from '../../../settings/store';
 
 describe('CreateProductFormComponent', () => {
   let component: CreateProductFormComponent;
@@ -50,6 +52,7 @@ describe('CreateProductFormComponent', () => {
         CreateProductFormComponent,
         NewProductPhotosInputComponent,
         SafeUrlPipe,
+        FormatCurrencyPipe,
       ],
       providers: [
         provideMockStore({
@@ -61,6 +64,16 @@ describe('CreateProductFormComponent', () => {
             {
               selector: selectCatalogNewProductId,
               value: 1,
+            },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
             },
           ],
         }),

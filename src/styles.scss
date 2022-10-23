@@ -58,3 +58,6 @@ input.country-search {
   }
 }
 
+.mat-form-field-outline ~ .mat-form-field-prefix {
+  top: 0 !important;
+}

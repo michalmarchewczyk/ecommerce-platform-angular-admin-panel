@@ -15,6 +15,8 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { cold } from 'jasmine-marbles';
 import { PaymentsActions } from '../../store';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
+import { selectSettingsList } from '../../../settings/store';
 
 describe('PaymentMethodDetailComponent', () => {
   let component: PaymentMethodDetailComponent;
@@ -31,8 +33,27 @@ describe('PaymentMethodDetailComponent', () => {
         NoopAnimationsModule,
         ReactiveFormsModule,
       ],
-      declarations: [PaymentMethodDetailComponent, ConfirmDialogComponent],
-      providers: [provideMockStore()],
+      declarations: [
+        PaymentMethodDetailComponent,
+        ConfirmDialogComponent,
+        FormatCurrencyPipe,
+      ],
+      providers: [
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
+            },
+          ],
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentMethodDetailComponent);

@@ -38,7 +38,7 @@
           >Price</mat-header-cell
         >
         <mat-cell *matCellDef="let deliveryMethod">
-          {{ deliveryMethod.price }}
+          {{ deliveryMethod.price | formatCurrency }}
         </mat-cell>
       </ng-container>
 

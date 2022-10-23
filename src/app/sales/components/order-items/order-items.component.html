@@ -32,7 +32,7 @@
       Price
     </mat-header-cell>
     <mat-cell *matCellDef="let item">{{
-      item.price | number: '1.2-2'
+      item.price | formatCurrency
     }}</mat-cell>
     <mat-footer-cell *matFooterCellDef></mat-footer-cell>
   </ng-container>
@@ -56,10 +56,10 @@
       Total
     </mat-header-cell>
     <mat-cell *matCellDef="let item">
-      {{ item.total | number: '1.2-2' }}
+      {{ item.total | formatCurrency }}
     </mat-cell>
     <mat-footer-cell *matFooterCellDef>
-      {{ itemsTotal | number: '1.2-2' }}
+      {{ itemsTotal | formatCurrency }}
     </mat-footer-cell>
   </ng-container>
 
