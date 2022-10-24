@@ -47,6 +47,8 @@ describe('Settings', () => {
     cy.get('mat-option').contains('Germany').click({ force: true });
     cy.get('.cdk-overlay-backdrop').click();
     cy.wait('@request');
+    cy.visit('/catalog/products');
+    cy.should('contain.text', '€');
   });
 
   it('adding custom settings', () => {
