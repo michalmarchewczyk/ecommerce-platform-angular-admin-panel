@@ -48,7 +48,7 @@ describe('Settings', () => {
     cy.get('.cdk-overlay-backdrop').click();
     cy.wait('@request');
     cy.visit('/catalog/products');
-    cy.should('contain.text', '€');
+    cy.get('mat-cell').should('contain.text', '€');
   });
 
   it('adding custom settings', () => {
