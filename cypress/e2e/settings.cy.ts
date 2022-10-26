@@ -75,6 +75,6 @@ describe('Settings', () => {
       .find('button')
       .click();
     cy.get('button').contains('Delete').click();
-    cy.get('mat-list-item').should('not.contain.text', 'Test Cypress Setting');
+    cy.contains('mat-list-item', 'Test Cypress Setting').should('not.exist');
   });
 });
