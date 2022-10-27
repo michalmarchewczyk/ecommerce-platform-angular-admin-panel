@@ -49,7 +49,11 @@
           Total price
         </mat-header-cell>
         <mat-cell *matCellDef="let order">
-          {{ order.itemsTotal | formatCurrency }}
+          {{
+            order.itemsTotal +
+              order.delivery.method.price +
+              order.payment.method.price | formatCurrency
+          }}
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="fullName">

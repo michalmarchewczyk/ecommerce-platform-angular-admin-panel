@@ -57,6 +57,8 @@
     <p>
       Status: <strong>{{ order.payment.paymentStatus }}</strong> <br />
       Method: <strong>{{ order.payment.method.name }} </strong><br />
+      Price: <strong>{{ order.payment.method.price | formatCurrency }} </strong
+      ><br />
     </p>
   </section>
   <section *ngIf="order">
@@ -64,6 +66,8 @@
     <p>
       Status: <strong>{{ order.delivery.deliveryStatus }}</strong> <br />
       Method: <strong>{{ order.delivery.method.name }}</strong> <br />
+      Price:
+      <strong>{{ order.delivery.method.price | formatCurrency }}</strong> <br />
       Address: <strong>{{ order.delivery.address }}</strong> <br />
       City: <strong>{{ order.delivery.city }}</strong> <br />
       Zip code: <strong>{{ order.delivery.postalCode }}</strong> <br />
