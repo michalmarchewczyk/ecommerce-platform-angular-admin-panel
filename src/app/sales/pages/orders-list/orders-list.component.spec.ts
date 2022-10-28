@@ -58,11 +58,13 @@ describe('OrdersListComponent', () => {
                   payment: {
                     method: {
                       name: 'payment-test',
+                      price: 2,
                     },
                   },
                   delivery: {
                     method: {
                       name: 'delivery-test',
+                      price: 1,
                     },
                   },
                 },
@@ -120,7 +122,7 @@ describe('OrdersListComponent', () => {
       ) ?? '',
       'pending',
       '2',
-      '€4.00',
+      '€7.00',
       'Test Test',
       'delivery-test',
       'payment-test',

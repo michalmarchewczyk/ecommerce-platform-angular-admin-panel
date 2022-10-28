@@ -13,6 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { selectOrdersListWithItems, selectReturnsList } from '../../store';
 import { Router } from '@angular/router';
+import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
 describe('OrderDetailsComponent', () => {
   let component: OrderDetailsComponent;
@@ -28,7 +29,11 @@ describe('OrderDetailsComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
       ],
-      declarations: [OrderDetailsComponent, ReturnAddDialogComponent],
+      declarations: [
+        OrderDetailsComponent,
+        ReturnAddDialogComponent,
+        FormatCurrencyPipe,
+      ],
       providers: [
         provideMockStore({
           selectors: [
