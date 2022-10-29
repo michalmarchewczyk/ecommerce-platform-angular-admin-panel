@@ -32,7 +32,9 @@ COPY --from=openapi-generate /app ./
 
 RUN npm i -D @angular/cli@14.1.0 @angular-devkit/build-angular@14.1.0 @angular/compiler-cli@14.1.0
 
-RUN npm run build
+ARG BASE_HREF="/"
+
+RUN npm run build -- --base-href="$BASE_HREF"
 
 
 FROM nginx:1.23.2-alpine AS run
