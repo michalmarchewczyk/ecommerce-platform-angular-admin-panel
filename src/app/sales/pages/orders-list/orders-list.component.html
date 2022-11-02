@@ -109,6 +109,9 @@
         class="order-row"
       ></mat-row>
     </mat-table>
+    <span *ngIf="(orders$ | async)?.length === 0" class="empty-placeholder">
+      No orders found
+    </span>
     <mat-paginator
       hidePageSize
       pageSize="50"
