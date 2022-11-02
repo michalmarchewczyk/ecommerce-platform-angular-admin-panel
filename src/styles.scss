@@ -61,3 +61,13 @@ input.country-search {
 .mat-form-field-outline ~ .mat-form-field-prefix {
   top: 0 !important;
 }
+
+.empty-placeholder {
+  display: block;
+  font-size: 24px;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  width: 100%;
+  text-align: center;
+  color: #7f7f7f;
+}

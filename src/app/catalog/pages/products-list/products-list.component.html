@@ -91,6 +91,9 @@
         class="product-row"
       ></mat-row>
     </mat-table>
+    <span *ngIf="(products$ | async)?.length === 0" class="empty-placeholder">
+      No products found
+    </span>
     <mat-paginator
       showFirstLastButtons
       hidePageSize="true"

@@ -3,6 +3,9 @@
     <mat-card-title>Categories</mat-card-title>
   </mat-card-title-group>
   <mat-card-content>
+    <span *ngIf="(categories$ | async)?.length === 0" class="empty-placeholder">
+      No categories found
+    </span>
     <mat-tree
       [dataSource]="dataSource"
       [treeControl]="treeControl"

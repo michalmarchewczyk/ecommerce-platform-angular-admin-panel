@@ -37,6 +37,12 @@
     </button>
   </mat-list-item>
 </mat-list>
+<span
+  *ngIf="(filteredSettings$ | async)?.length === 0"
+  class="empty-placeholder"
+>
+  No settings found
+</span>
 
 <ng-container *ngIf="!builtin">
   <mat-divider></mat-divider>

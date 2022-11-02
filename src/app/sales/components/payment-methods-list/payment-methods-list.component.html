@@ -107,5 +107,11 @@
         class="paymentMethod-detail-row"
       ></mat-row>
     </mat-table>
+    <span
+      *ngIf="(paymentMethods$ | async)?.length === 0"
+      class="empty-placeholder"
+    >
+      No methods found
+    </span>
   </mat-card-content>
 </mat-card>

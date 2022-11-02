@@ -140,6 +140,9 @@
         class="return-detail-row"
       ></mat-row>
     </mat-table>
+    <span *ngIf="(returns$ | async)?.length === 0" class="empty-placeholder">
+      No returns found
+    </span>
     <mat-paginator
       showFirstLastButtons
       hidePageSize="true"
