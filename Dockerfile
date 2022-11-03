@@ -34,7 +34,13 @@ RUN npm i -D @angular/cli@14.1.0 @angular-devkit/build-angular@14.1.0 @angular/c
 
 ARG BASE_HREF="/"
 
-RUN npm run build -- --base-href="$BASE_HREF"
+ARG DEMO
+
+RUN if [[ -z $DEMO ]]; then \
+        npm run build -- --base-href $BASE_HREF; \
+    else \
+        npm run build -- --base-href $BASE_HREF --configuration demo; \
+    fi
 
 
 FROM nginx:1.23.2-alpine AS run
