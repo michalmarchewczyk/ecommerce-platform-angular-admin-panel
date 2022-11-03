@@ -14,6 +14,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { selectOrdersListWithItems, selectReturnsList } from '../../store';
 import { Router } from '@angular/router';
 import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
+import { selectSettingsList } from '../../../settings/store';
 
 describe('OrderDetailsComponent', () => {
   let component: OrderDetailsComponent;
@@ -45,6 +46,16 @@ describe('OrderDetailsComponent', () => {
               selector: selectReturnsList,
               value: [],
             },
+            {
+              selector: selectSettingsList,
+              value: [
+                {
+                  id: 1,
+                  name: 'Currency',
+                  value: 'EUR',
+                },
+              ],
+            },
           ],
         }),
       ],
@@ -60,12 +71,14 @@ describe('OrderDetailsComponent', () => {
         deliveryStatus: 'pending',
         method: {
           name: 'test',
+          price: 0,
         },
       },
       payment: {
         paymentStatus: 'pending',
         method: {
           name: 'test',
+          price: 0,
         },
       },
       items: [],
