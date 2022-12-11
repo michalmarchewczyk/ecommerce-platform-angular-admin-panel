@@ -2,60 +2,60 @@ import { createAction, props } from '@ngrx/store';
 import { DeliveryMethod, DeliveryMethodDto } from '../../../core/api';
 
 export const loadDeliveryMethods = createAction(
-  '[Deliveries] Load Delivery Methods',
+  '[DeliveryMethods] Load Delivery Methods',
 );
 
 export const loadDeliveryMethodsSuccess = createAction(
-  '[Deliveries] Load Delivery Methods Success',
+  '[DeliveryMethods] Load Delivery Methods Success',
   props<{ deliveryMethods: DeliveryMethod[] }>(),
 );
 
 export const loadDeliveryMethodsFailure = createAction(
-  '[Deliveries] Load Delivery Methods Failure',
+  '[DeliveryMethods] Load Delivery Methods Failure',
   props<{ error: string }>(),
 );
 
 export const createDeliveryMethod = createAction(
-  '[Deliveries] Create Delivery Method',
+  '[DeliveryMethods] Create Delivery Method',
   props<{ data: DeliveryMethodDto }>(),
 );
 
 export const createDeliveryMethodSuccess = createAction(
-  '[Deliveries] Create Delivery Method Success',
+  '[DeliveryMethods] Create Delivery Method Success',
   props<{ deliveryMethod: DeliveryMethod }>(),
 );
 
 export const createDeliveryMethodFailure = createAction(
-  '[Deliveries] Create Delivery Method Failure',
+  '[DeliveryMethods] Create Delivery Method Failure',
   props<{ error: string }>(),
 );
 
 export const updateDeliveryMethod = createAction(
-  '[Deliveries] Update Delivery Method',
+  '[DeliveryMethods] Update Delivery Method',
   props<{ methodId: number; data: DeliveryMethodDto }>(),
 );
 
 export const updateDeliveryMethodSuccess = createAction(
-  '[Deliveries] Update Delivery Method Success',
+  '[DeliveryMethods] Update Delivery Method Success',
   props<{ methodId: number; deliveryMethod: DeliveryMethod }>(),
 );
 
 export const updateDeliveryMethodFailure = createAction(
-  '[Deliveries] Update Delivery Method Failure',
+  '[DeliveryMethods] Update Delivery Method Failure',
   props<{ error: string }>(),
 );
 
 export const deleteDeliveryMethod = createAction(
-  '[Deliveries] Delete Delivery Method',
+  '[DeliveryMethods] Delete Delivery Method',
   props<{ methodId: number }>(),
 );
 
 export const deleteDeliveryMethodSuccess = createAction(
-  '[Deliveries] Delete Delivery Method Success',
+  '[DeliveryMethods] Delete Delivery Method Success',
   props<{ methodId: number }>(),
 );
 
 export const deleteDeliveryMethodFailure = createAction(
-  '[Deliveries] Delete Delivery Method Failure',
+  '[DeliveryMethods] Delete Delivery Method Failure',
   props<{ error: string }>(),
 );

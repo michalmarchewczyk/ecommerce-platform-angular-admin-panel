@@ -2,25 +2,25 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 
-import { DeliveriesEffects } from './deliveries.effects';
+import { DeliveryMethodsEffects } from './delivery-methods.effects';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { DeliveriesActions } from '../actions';
+import { DeliveryMethodsActions } from '../actions';
 
-describe('DeliveriesEffects', () => {
+describe('DeliveryMethodsEffects', () => {
   let actions$: Observable<any>;
-  let effects: DeliveriesEffects;
+  let effects: DeliveryMethodsEffects;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [DeliveriesEffects, provideMockActions(() => actions$)],
+      providers: [DeliveryMethodsEffects, provideMockActions(() => actions$)],
     });
 
-    effects = TestBed.inject(DeliveriesEffects);
+    effects = TestBed.inject(DeliveryMethodsEffects);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
@@ -30,11 +30,13 @@ describe('DeliveriesEffects', () => {
 
   describe('loadDeliveryMethods$', () => {
     it('should return a loadDeliveryMethodsSuccess action', (done) => {
-      actions$ = of(DeliveriesActions.loadDeliveryMethods());
+      actions$ = of(DeliveryMethodsActions.loadDeliveryMethods());
 
       effects.loadDeliveryMethods$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.loadDeliveryMethodsSuccess({ deliveryMethods: [] }),
+          DeliveryMethodsActions.loadDeliveryMethodsSuccess({
+            deliveryMethods: [],
+          }),
         );
         done();
       });
@@ -43,11 +45,11 @@ describe('DeliveriesEffects', () => {
     });
 
     it('should return a loadDeliveryMethodsFailure action', (done) => {
-      actions$ = of(DeliveriesActions.loadDeliveryMethods());
+      actions$ = of(DeliveryMethodsActions.loadDeliveryMethods());
 
       effects.loadDeliveryMethods$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.loadDeliveryMethodsFailure({ error: 'error' }),
+          DeliveryMethodsActions.loadDeliveryMethodsFailure({ error: 'error' }),
         );
         done();
       });
@@ -64,14 +66,14 @@ describe('DeliveriesEffects', () => {
   describe('createDeliveryMethod$', () => {
     it('should return a createDeliveryMethodSuccess action', (done) => {
       actions$ = of(
-        DeliveriesActions.createDeliveryMethod({
+        DeliveryMethodsActions.createDeliveryMethod({
           data: { name: 'test' } as any,
         }),
       );
 
       effects.createDeliveryMethod$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.createDeliveryMethodSuccess({
+          DeliveryMethodsActions.createDeliveryMethodSuccess({
             deliveryMethod: { name: 'test' } as any,
           }),
         );
@@ -85,14 +87,16 @@ describe('DeliveriesEffects', () => {
 
     it('should return a createDeliveryMethodFailure action', (done) => {
       actions$ = of(
-        DeliveriesActions.createDeliveryMethod({
+        DeliveryMethodsActions.createDeliveryMethod({
           data: { name: 'test' } as any,
         }),
       );
 
       effects.createDeliveryMethod$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.createDeliveryMethodFailure({ error: 'error' }),
+          DeliveryMethodsActions.createDeliveryMethodFailure({
+            error: 'error',
+          }),
         );
         done();
       });
@@ -109,7 +113,7 @@ describe('DeliveriesEffects', () => {
   describe('updateDeliveryMethod$', () => {
     it('should return a updateDeliveryMethodSuccess action', (done) => {
       actions$ = of(
-        DeliveriesActions.updateDeliveryMethod({
+        DeliveryMethodsActions.updateDeliveryMethod({
           methodId: 1,
           data: { id: 1, name: 'test' } as any,
         }),
@@ -117,7 +121,7 @@ describe('DeliveriesEffects', () => {
 
       effects.updateDeliveryMethod$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.updateDeliveryMethodSuccess({
+          DeliveryMethodsActions.updateDeliveryMethodSuccess({
             methodId: 1,
             deliveryMethod: { id: 1, name: 'test' } as any,
           }),
@@ -132,7 +136,7 @@ describe('DeliveriesEffects', () => {
 
     it('should return a updateDeliveryMethodFailure action', (done) => {
       actions$ = of(
-        DeliveriesActions.updateDeliveryMethod({
+        DeliveryMethodsActions.updateDeliveryMethod({
           methodId: 1,
           data: { id: 1, name: 'test' } as any,
         }),
@@ -140,7 +144,9 @@ describe('DeliveriesEffects', () => {
 
       effects.updateDeliveryMethod$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.updateDeliveryMethodFailure({ error: 'error' }),
+          DeliveryMethodsActions.updateDeliveryMethodFailure({
+            error: 'error',
+          }),
         );
         done();
       });
@@ -156,11 +162,13 @@ describe('DeliveriesEffects', () => {
 
   describe('deleteDeliveryMethod$', () => {
     it('should return a deleteDeliveryMethodSuccess action', (done) => {
-      actions$ = of(DeliveriesActions.deleteDeliveryMethod({ methodId: 1 }));
+      actions$ = of(
+        DeliveryMethodsActions.deleteDeliveryMethod({ methodId: 1 }),
+      );
 
       effects.deleteDeliveryMethod$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.deleteDeliveryMethodSuccess({ methodId: 1 }),
+          DeliveryMethodsActions.deleteDeliveryMethodSuccess({ methodId: 1 }),
         );
         done();
       });
@@ -169,11 +177,15 @@ describe('DeliveriesEffects', () => {
     });
 
     it('should return a deleteDeliveryMethodFailure action', (done) => {
-      actions$ = of(DeliveriesActions.deleteDeliveryMethod({ methodId: 1 }));
+      actions$ = of(
+        DeliveryMethodsActions.deleteDeliveryMethod({ methodId: 1 }),
+      );
 
       effects.deleteDeliveryMethod$.subscribe((result) => {
         expect(result).toEqual(
-          DeliveriesActions.deleteDeliveryMethodFailure({ error: 'error' }),
+          DeliveryMethodsActions.deleteDeliveryMethodFailure({
+            error: 'error',
+          }),
         );
         done();
       });

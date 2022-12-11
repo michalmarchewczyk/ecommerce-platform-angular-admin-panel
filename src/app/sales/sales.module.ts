@@ -6,9 +6,9 @@ import { StoreModule } from '@ngrx/store';
 import * as fromSales from './store';
 import { EffectsModule } from '@ngrx/effects';
 import {
-  DeliveriesEffects,
+  DeliveryMethodsEffects,
   OrdersEffects,
-  PaymentsEffects,
+  PaymentMethodsEffects,
   ReturnsEffects,
 } from './store/effects';
 import { OrdersComponent } from './pages/orders/orders.component';
@@ -85,8 +85,8 @@ import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
     EffectsModule.forFeature([
       OrdersEffects,
       ReturnsEffects,
-      PaymentsEffects,
-      DeliveriesEffects,
+      PaymentMethodsEffects,
+      DeliveryMethodsEffects,
     ]),
     MatButtonModule,
     AuthModule,

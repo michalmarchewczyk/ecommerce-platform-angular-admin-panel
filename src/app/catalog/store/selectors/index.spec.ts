@@ -16,7 +16,7 @@ describe('Catalog Selectors', () => {
         groups: [],
         selectedCategoryId: null,
       },
-      attributes: {
+      attributeTypes: {
         list: [],
       },
       status: {

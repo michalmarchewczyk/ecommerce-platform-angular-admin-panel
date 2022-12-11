@@ -1,8 +1,8 @@
-import { reducer, initialState } from './payments.reducer';
+import { reducer, initialState } from './payment-methods.reducer';
 import { PaymentMethod } from '../../../core/api';
-import { PaymentsActions } from '../actions';
+import { PaymentMethodsActions } from '../actions';
 
-describe('Payments Reducer', () => {
+describe('PaymentMethods Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
@@ -16,7 +16,7 @@ describe('Payments Reducer', () => {
   describe('load payment methods success action', () => {
     it('should set the list of payment methods', () => {
       const paymentMethods: PaymentMethod[] = [];
-      const action = PaymentsActions.loadPaymentMethodsSuccess({
+      const action = PaymentMethodsActions.loadPaymentMethodsSuccess({
         paymentMethods,
       });
 
@@ -32,7 +32,7 @@ describe('Payments Reducer', () => {
         id: 1,
         name: 'test',
       } as PaymentMethod;
-      const action = PaymentsActions.createPaymentMethodSuccess({
+      const action = PaymentMethodsActions.createPaymentMethodSuccess({
         paymentMethod,
       });
 
@@ -57,7 +57,7 @@ describe('Payments Reducer', () => {
         id: 1,
         name: 'test ',
       } as PaymentMethod;
-      const action = PaymentsActions.updatePaymentMethodSuccess({
+      const action = PaymentMethodsActions.updatePaymentMethodSuccess({
         methodId: 1,
         paymentMethod: {
           ...paymentMethod,
@@ -85,7 +85,7 @@ describe('Payments Reducer', () => {
 
   describe('delete payment method success action', () => {
     it('should remove the payment method from the list', () => {
-      const action = PaymentsActions.deletePaymentMethodSuccess({
+      const action = PaymentMethodsActions.deletePaymentMethodSuccess({
         methodId: 1,
       });
 

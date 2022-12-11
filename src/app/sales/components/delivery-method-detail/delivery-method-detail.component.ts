@@ -3,7 +3,7 @@ import { DeliveryMethod } from '../../../core/api';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DeliveriesActions } from '../../store';
+import { DeliveryMethodsActions } from '../../store';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -46,7 +46,7 @@ export class DeliveryMethodDetailComponent implements OnInit {
 
   save() {
     this.store.dispatch(
-      DeliveriesActions.updateDeliveryMethod({
+      DeliveryMethodsActions.updateDeliveryMethod({
         methodId: this.deliveryMethod.id,
         data: {
           ...this.editForm.getRawValue(),
@@ -66,7 +66,7 @@ export class DeliveryMethodDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.store.dispatch(
-          DeliveriesActions.deleteDeliveryMethod({
+          DeliveryMethodsActions.deleteDeliveryMethod({
             methodId: this.deliveryMethod.id,
           }),
         );

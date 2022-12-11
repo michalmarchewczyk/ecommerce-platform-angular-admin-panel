@@ -1,10 +1,10 @@
 import { CatalogState } from '../reducers';
 import {
-  selectAttributesState,
+  selectAttributeTypesState,
   selectAttributeTypesList,
-} from './attributes.selectors';
+} from './attribute-types.selectors';
 
-describe('Attributes Selectors', () => {
+describe('AttributeTypes Selectors', () => {
   let initialState: CatalogState;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('Attributes Selectors', () => {
         groups: [],
         selectedCategoryId: null,
       },
-      attributes: {
+      attributeTypes: {
         list: [],
       },
       status: {
@@ -30,19 +30,19 @@ describe('Attributes Selectors', () => {
     };
   });
 
-  describe('selectAttributesState', () => {
-    it('should select the attributes state', () => {
-      const result = selectAttributesState.projector(initialState);
-      expect(result).toEqual(initialState.attributes);
+  describe('selectAttributeTypesState', () => {
+    it('should select the attributeTypes state', () => {
+      const result = selectAttributeTypesState.projector(initialState);
+      expect(result).toEqual(initialState.attributeTypes);
     });
   });
 
   describe('selectAttributeTypesList', () => {
-    it('should select the attributes list', () => {
+    it('should select the attribute types list', () => {
       const result = selectAttributeTypesList.projector(
-        initialState.attributes,
+        initialState.attributeTypes,
       );
-      expect(result).toEqual(initialState.attributes.list);
+      expect(result).toEqual(initialState.attributeTypes.list);
     });
   });
 });

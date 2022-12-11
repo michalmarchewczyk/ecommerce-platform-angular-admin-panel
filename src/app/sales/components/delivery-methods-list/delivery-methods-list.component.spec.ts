@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeliveryMethodsListComponent } from './delivery-methods-list.component';
 import { provideMockStore } from '@ngrx/store/testing';
-import { selectDeliveriesList } from '../../store';
+import { selectDeliveryMethodsList } from '../../store';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatTableModule } from '@angular/material/table';
@@ -34,7 +34,7 @@ describe('DeliveryMethodsListComponent', () => {
         provideMockStore({
           selectors: [
             {
-              selector: selectDeliveriesList,
+              selector: selectDeliveryMethodsList,
               value: [
                 {
                   id: 1,

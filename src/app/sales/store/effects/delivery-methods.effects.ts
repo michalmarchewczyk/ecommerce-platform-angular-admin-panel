@@ -1,28 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { DeliveriesApiService } from '../../../core/api';
-import { DeliveriesActions, OrdersActions } from '../actions';
+import { DeliveryMethodsApiService } from '../../../core/api';
+import { DeliveryMethodsActions, OrdersActions } from '../actions';
 import { exhaustMap, map } from 'rxjs/operators';
 import { catchError, of } from 'rxjs';
 
 @Injectable()
-export class DeliveriesEffects {
+export class DeliveryMethodsEffects {
   constructor(
     private actions$: Actions,
-    private deliveriesApi: DeliveriesApiService,
+    private deliveryMethodsApi: DeliveryMethodsApiService,
   ) {}
 
   loadDeliveryMethods$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DeliveriesActions.loadDeliveryMethods, OrdersActions.loadOrders),
+      ofType(
+        DeliveryMethodsActions.loadDeliveryMethods,
+        OrdersActions.loadOrders,
+      ),
       exhaustMap(() =>
-        this.deliveriesApi.getDeliveryMethods().pipe(
+        this.deliveryMethodsApi.getDeliveryMethods().pipe(
           map((deliveryMethods) =>
-            DeliveriesActions.loadDeliveryMethodsSuccess({ deliveryMethods }),
+            DeliveryMethodsActions.loadDeliveryMethodsSuccess({
+              deliveryMethods,
+            }),
           ),
           catchError(({ error }) =>
             of(
-              DeliveriesActions.loadDeliveryMethodsFailure({
+              DeliveryMethodsActions.loadDeliveryMethodsFailure({
                 error: error.message,
               }),
             ),
@@ -34,17 +39,17 @@ export class DeliveriesEffects {
 
   createDeliveryMethod$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DeliveriesActions.createDeliveryMethod),
+      ofType(DeliveryMethodsActions.createDeliveryMethod),
       exhaustMap(({ data }) =>
-        this.deliveriesApi.createDeliveryMethod(data).pipe(
+        this.deliveryMethodsApi.createDeliveryMethod(data).pipe(
           map((newDeliveryMethod) =>
-            DeliveriesActions.createDeliveryMethodSuccess({
+            DeliveryMethodsActions.createDeliveryMethodSuccess({
               deliveryMethod: newDeliveryMethod,
             }),
           ),
           catchError(({ error }) =>
             of(
-              DeliveriesActions.createDeliveryMethodFailure({
+              DeliveryMethodsActions.createDeliveryMethodFailure({
                 error: error.message,
               }),
             ),
@@ -56,18 +61,18 @@ export class DeliveriesEffects {
 
   updateDeliveryMethod$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DeliveriesActions.updateDeliveryMethod),
+      ofType(DeliveryMethodsActions.updateDeliveryMethod),
       exhaustMap(({ methodId, data }) =>
-        this.deliveriesApi.updateDeliveryMethod(methodId, data).pipe(
+        this.deliveryMethodsApi.updateDeliveryMethod(methodId, data).pipe(
           map((updatedDeliveryMethod) =>
-            DeliveriesActions.updateDeliveryMethodSuccess({
+            DeliveryMethodsActions.updateDeliveryMethodSuccess({
               methodId,
               deliveryMethod: updatedDeliveryMethod,
             }),
           ),
           catchError(({ error }) =>
             of(
-              DeliveriesActions.updateDeliveryMethodFailure({
+              DeliveryMethodsActions.updateDeliveryMethodFailure({
                 error: error.message,
               }),
             ),
@@ -79,15 +84,15 @@ export class DeliveriesEffects {
 
   deleteDeliveryMethod$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DeliveriesActions.deleteDeliveryMethod),
+      ofType(DeliveryMethodsActions.deleteDeliveryMethod),
       exhaustMap(({ methodId }) =>
-        this.deliveriesApi.deleteDeliveryMethod(methodId).pipe(
+        this.deliveryMethodsApi.deleteDeliveryMethod(methodId).pipe(
           map(() =>
-            DeliveriesActions.deleteDeliveryMethodSuccess({ methodId }),
+            DeliveryMethodsActions.deleteDeliveryMethodSuccess({ methodId }),
           ),
           catchError(({ error }) =>
             of(
-              DeliveriesActions.deleteDeliveryMethodFailure({
+              DeliveryMethodsActions.deleteDeliveryMethodFailure({
                 error: error.message,
               }),
             ),

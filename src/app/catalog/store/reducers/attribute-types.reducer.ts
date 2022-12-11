@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { AttributeType } from '../../../core/api';
-import { AttributesActions } from '../actions';
+import { AttributeTypesActions } from '../actions';
 
-export const attributesFeatureKey = 'attributes';
+export const attributeTypesFeatureKey = 'attributeTypes';
 
 export interface State {
   list: AttributeType[];
@@ -15,28 +15,28 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
   on(
-    AttributesActions.getAttributeTypesSuccess,
+    AttributeTypesActions.getAttributeTypesSuccess,
     (state, { attributeTypes }): State => ({
       ...state,
       list: attributeTypes,
     }),
   ),
   on(
-    AttributesActions.addAttributeTypeSuccess,
+    AttributeTypesActions.addAttributeTypeSuccess,
     (state, { attributeType }): State => ({
       ...state,
       list: [...state.list, attributeType],
     }),
   ),
   on(
-    AttributesActions.updateAttributeTypeSuccess,
+    AttributeTypesActions.updateAttributeTypeSuccess,
     (state, { id, attributeType }): State => ({
       ...state,
       list: state.list.map((item) => (item.id === id ? attributeType : item)),
     }),
   ),
   on(
-    AttributesActions.deleteAttributeTypeSuccess,
+    AttributeTypesActions.deleteAttributeTypeSuccess,
     (state, { id }): State => ({
       ...state,
       list: state.list.filter((item) => item.id !== id),

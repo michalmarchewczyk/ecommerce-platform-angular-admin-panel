@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PaymentsActions } from '../../store';
+import { PaymentMethodsActions } from '../../store';
 
 @Component({
   selector: 'app-payment-method-add-form',
@@ -27,7 +27,7 @@ export class PaymentMethodAddFormComponent {
 
   async add() {
     this.store.dispatch(
-      PaymentsActions.createPaymentMethod({
+      PaymentMethodsActions.createPaymentMethod({
         data: this.addForm.getRawValue(),
       }),
     );

@@ -1,8 +1,8 @@
-import { reducer, initialState } from './deliveries.reducer';
+import { reducer, initialState } from './delivery-methods.reducer';
 import { DeliveryMethod } from '../../../core/api';
-import { DeliveriesActions } from '../actions';
+import { DeliveryMethodsActions } from '../actions';
 
-describe('Deliveries Reducer', () => {
+describe('DeliveryMethods Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
@@ -16,7 +16,7 @@ describe('Deliveries Reducer', () => {
   describe('load delivery methods success action', () => {
     it('should set the list of delivery methods', () => {
       const deliveryMethods: DeliveryMethod[] = [];
-      const action = DeliveriesActions.loadDeliveryMethodsSuccess({
+      const action = DeliveryMethodsActions.loadDeliveryMethodsSuccess({
         deliveryMethods,
       });
 
@@ -32,7 +32,7 @@ describe('Deliveries Reducer', () => {
         id: 1,
         name: 'test',
       } as DeliveryMethod;
-      const action = DeliveriesActions.createDeliveryMethodSuccess({
+      const action = DeliveryMethodsActions.createDeliveryMethodSuccess({
         deliveryMethod,
       });
 
@@ -57,7 +57,7 @@ describe('Deliveries Reducer', () => {
         id: 1,
         name: 'test ',
       } as DeliveryMethod;
-      const action = DeliveriesActions.updateDeliveryMethodSuccess({
+      const action = DeliveryMethodsActions.updateDeliveryMethodSuccess({
         methodId: 1,
         deliveryMethod: {
           ...deliveryMethod,
@@ -85,7 +85,7 @@ describe('Deliveries Reducer', () => {
 
   describe('delete delivery method success action', () => {
     it('should remove the delivery method from the list', () => {
-      const action = DeliveriesActions.deleteDeliveryMethodSuccess({
+      const action = DeliveryMethodsActions.deleteDeliveryMethodSuccess({
         methodId: 1,
       });
 

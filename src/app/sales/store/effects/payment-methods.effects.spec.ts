@@ -2,25 +2,25 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 
-import { PaymentsEffects } from './payments.effects';
+import { PaymentMethodsEffects } from './payment-methods.effects';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { PaymentsActions } from '../actions';
+import { PaymentMethodsActions } from '../actions';
 
-describe('PaymentsEffects', () => {
+describe('PaymentMethodsEffects', () => {
   let actions$: Observable<any>;
-  let effects: PaymentsEffects;
+  let effects: PaymentMethodsEffects;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [PaymentsEffects, provideMockActions(() => actions$)],
+      providers: [PaymentMethodsEffects, provideMockActions(() => actions$)],
     });
 
-    effects = TestBed.inject(PaymentsEffects);
+    effects = TestBed.inject(PaymentMethodsEffects);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
@@ -30,11 +30,13 @@ describe('PaymentsEffects', () => {
 
   describe('loadPaymentMethods$', () => {
     it('should return a loadPaymentMethodsSuccess action', (done) => {
-      actions$ = of(PaymentsActions.loadPaymentMethods());
+      actions$ = of(PaymentMethodsActions.loadPaymentMethods());
 
       effects.loadPaymentMethods$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.loadPaymentMethodsSuccess({ paymentMethods: [] }),
+          PaymentMethodsActions.loadPaymentMethodsSuccess({
+            paymentMethods: [],
+          }),
         );
         done();
       });
@@ -43,11 +45,11 @@ describe('PaymentsEffects', () => {
     });
 
     it('should return a loadPaymentMethodsFailure action', (done) => {
-      actions$ = of(PaymentsActions.loadPaymentMethods());
+      actions$ = of(PaymentMethodsActions.loadPaymentMethods());
 
       effects.loadPaymentMethods$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.loadPaymentMethodsFailure({ error: 'error' }),
+          PaymentMethodsActions.loadPaymentMethodsFailure({ error: 'error' }),
         );
         done();
       });
@@ -64,12 +66,14 @@ describe('PaymentsEffects', () => {
   describe('createPaymentMethod$', () => {
     it('should return a createPaymentMethodSuccess action', (done) => {
       actions$ = of(
-        PaymentsActions.createPaymentMethod({ data: { name: 'test' } as any }),
+        PaymentMethodsActions.createPaymentMethod({
+          data: { name: 'test' } as any,
+        }),
       );
 
       effects.createPaymentMethod$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.createPaymentMethodSuccess({
+          PaymentMethodsActions.createPaymentMethodSuccess({
             paymentMethod: { name: 'test' } as any,
           }),
         );
@@ -83,12 +87,14 @@ describe('PaymentsEffects', () => {
 
     it('should return a createPaymentMethodFailure action', (done) => {
       actions$ = of(
-        PaymentsActions.createPaymentMethod({ data: { name: 'test' } as any }),
+        PaymentMethodsActions.createPaymentMethod({
+          data: { name: 'test' } as any,
+        }),
       );
 
       effects.createPaymentMethod$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.createPaymentMethodFailure({ error: 'error' }),
+          PaymentMethodsActions.createPaymentMethodFailure({ error: 'error' }),
         );
         done();
       });
@@ -105,7 +111,7 @@ describe('PaymentsEffects', () => {
   describe('updatePaymentMethod$', () => {
     it('should return a updatePaymentMethodSuccess action', (done) => {
       actions$ = of(
-        PaymentsActions.updatePaymentMethod({
+        PaymentMethodsActions.updatePaymentMethod({
           methodId: 1,
           data: { id: 1, name: 'test' } as any,
         }),
@@ -113,7 +119,7 @@ describe('PaymentsEffects', () => {
 
       effects.updatePaymentMethod$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.updatePaymentMethodSuccess({
+          PaymentMethodsActions.updatePaymentMethodSuccess({
             methodId: 1,
             paymentMethod: { id: 1, name: 'test' } as any,
           }),
@@ -128,7 +134,7 @@ describe('PaymentsEffects', () => {
 
     it('should return a updatePaymentMethodFailure action', (done) => {
       actions$ = of(
-        PaymentsActions.updatePaymentMethod({
+        PaymentMethodsActions.updatePaymentMethod({
           methodId: 1,
           data: { id: 1, name: 'test' } as any,
         }),
@@ -136,7 +142,7 @@ describe('PaymentsEffects', () => {
 
       effects.updatePaymentMethod$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.updatePaymentMethodFailure({ error: 'error' }),
+          PaymentMethodsActions.updatePaymentMethodFailure({ error: 'error' }),
         );
         done();
       });
@@ -152,11 +158,11 @@ describe('PaymentsEffects', () => {
 
   describe('deletePaymentMethod$', () => {
     it('should return a deletePaymentMethodSuccess action', (done) => {
-      actions$ = of(PaymentsActions.deletePaymentMethod({ methodId: 1 }));
+      actions$ = of(PaymentMethodsActions.deletePaymentMethod({ methodId: 1 }));
 
       effects.deletePaymentMethod$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.deletePaymentMethodSuccess({ methodId: 1 }),
+          PaymentMethodsActions.deletePaymentMethodSuccess({ methodId: 1 }),
         );
         done();
       });
@@ -165,11 +171,11 @@ describe('PaymentsEffects', () => {
     });
 
     it('should return a deletePaymentMethodFailure action', (done) => {
-      actions$ = of(PaymentsActions.deletePaymentMethod({ methodId: 1 }));
+      actions$ = of(PaymentMethodsActions.deletePaymentMethod({ methodId: 1 }));
 
       effects.deletePaymentMethod$.subscribe((result) => {
         expect(result).toEqual(
-          PaymentsActions.deletePaymentMethodFailure({ error: 'error' }),
+          PaymentMethodsActions.deletePaymentMethodFailure({ error: 'error' }),
         );
         done();
       });

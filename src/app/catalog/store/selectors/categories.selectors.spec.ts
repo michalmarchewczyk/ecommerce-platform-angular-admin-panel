@@ -28,7 +28,7 @@ describe('Categories Selectors', () => {
         groups: [{ name: 'test' } as any],
         selectedCategoryId: 1,
       },
-      attributes: {
+      attributeTypes: {
         list: [],
       },
       status: {

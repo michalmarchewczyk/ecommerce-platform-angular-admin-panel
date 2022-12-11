@@ -3,7 +3,7 @@ import { PaymentMethod } from '../../../core/api';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PaymentsActions } from '../../store';
+import { PaymentMethodsActions } from '../../store';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -46,7 +46,7 @@ export class PaymentMethodDetailComponent implements OnInit {
 
   save() {
     this.store.dispatch(
-      PaymentsActions.updatePaymentMethod({
+      PaymentMethodsActions.updatePaymentMethod({
         methodId: this.paymentMethod.id,
         data: {
           ...this.editForm.getRawValue(),
@@ -66,7 +66,7 @@ export class PaymentMethodDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.store.dispatch(
-          PaymentsActions.deletePaymentMethod({
+          PaymentMethodsActions.deletePaymentMethod({
             methodId: this.paymentMethod.id,
           }),
         );

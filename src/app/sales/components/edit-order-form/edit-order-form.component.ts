@@ -5,8 +5,8 @@ import StatusEnum = Order.StatusEnum;
 import { Store } from '@ngrx/store';
 import {
   OrdersActions,
-  selectDeliveriesList,
-  selectPaymentsList,
+  selectDeliveryMethodsList,
+  selectPaymentMethodsList,
 } from '../../store';
 
 @Component({
@@ -38,8 +38,8 @@ export class EditOrderFormComponent implements OnInit {
     }),
   });
 
-  deliveryMethods$ = this.store.select(selectDeliveriesList);
-  paymentMethods$ = this.store.select(selectPaymentsList);
+  deliveryMethods$ = this.store.select(selectDeliveryMethodsList);
+  paymentMethods$ = this.store.select(selectPaymentMethodsList);
 
   constructor(private store: Store) {}
 

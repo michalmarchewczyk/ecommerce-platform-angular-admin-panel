@@ -32,20 +32,27 @@ export class ProductsEffects {
       mergeMap(({ products }) =>
         combineLatest(
           products
-            .flatMap((product) => product.photos)
+            .flatMap((product) =>
+              product.photos.map((photo) => ({
+                ...photo,
+                productId: product.id,
+              })),
+            )
             .map((photo) =>
-              this.productsApi.getProductPhoto(photo.id).pipe(
-                map((data) => ({
-                  id: photo.id,
-                  data: data,
-                })),
-                catchError(() =>
-                  of({
+              this.productsApi
+                .getProductPhoto(photo.productId, photo.id, false)
+                .pipe(
+                  map((data) => ({
                     id: photo.id,
-                    data: null,
-                  }),
+                    data: data,
+                  })),
+                  catchError(() =>
+                    of({
+                      id: photo.id,
+                      data: null,
+                    }),
+                  ),
                 ),
-              ),
             ),
         ).pipe(
           map((photos) => ProductsActions.loadProductPhotosSuccess({ photos })),

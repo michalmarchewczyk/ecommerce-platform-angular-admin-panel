@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   OrdersActions,
-  selectDeliveriesList,
+  selectDeliveryMethodsList,
   selectNewOrderId,
-  selectPaymentsList,
+  selectPaymentMethodsList,
   selectSalesLoading,
 } from '../../store';
 import { ProductsActions, selectProductsList } from '../../../catalog/store';
@@ -59,8 +59,8 @@ export class CreateOrderFormComponent implements OnInit {
 
   @ViewChild(OrderItemsInputComponent) itemsInput!: OrderItemsInputComponent;
 
-  deliveryMethods$ = this.store.select(selectDeliveriesList);
-  paymentMethods$ = this.store.select(selectPaymentsList);
+  deliveryMethods$ = this.store.select(selectDeliveryMethodsList);
+  paymentMethods$ = this.store.select(selectPaymentMethodsList);
   products$ = this.store.select(selectProductsList);
 
   constructor(private store: Store, private router: Router) {}

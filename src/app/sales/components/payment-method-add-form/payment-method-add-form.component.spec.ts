@@ -13,7 +13,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { cold } from 'jasmine-marbles';
-import { PaymentsActions } from '../../store';
+import { PaymentMethodsActions } from '../../store';
 import { selectSettingsList } from '../../../settings/store';
 import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 
@@ -71,7 +71,7 @@ describe('PaymentMethodAddFormComponent', () => {
     const button = await loader.getHarness(MatButtonHarness);
     await button.click();
     const expected = cold('a', {
-      a: PaymentsActions.createPaymentMethod({
+      a: PaymentMethodsActions.createPaymentMethod({
         data: {
           name: 'name',
           description: 'description',

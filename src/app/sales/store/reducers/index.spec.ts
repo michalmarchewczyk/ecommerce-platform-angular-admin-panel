@@ -1,8 +1,8 @@
 import { reducers } from './index';
 import * as fromOrders from './orders.reducer';
 import * as fromReturns from './returns.reducer';
-import * as fromPayments from './payments.reducer';
-import * as fromDeliveries from './deliveries.reducer';
+import * as fromPaymentMethods from './payment-methods.reducer';
+import * as fromDeliveryMethods from './delivery-methods.reducer';
 import * as fromStatus from './status.reducer';
 
 describe('Sales Reducer', () => {
@@ -13,8 +13,8 @@ describe('Sales Reducer', () => {
     expect(result).toEqual({
       orders: fromOrders.initialState,
       returns: fromReturns.initialState,
-      payments: fromPayments.initialState,
-      deliveries: fromDeliveries.initialState,
+      paymentMethods: fromPaymentMethods.initialState,
+      deliveryMethods: fromDeliveryMethods.initialState,
       status: fromStatus.initialState,
     });
   });

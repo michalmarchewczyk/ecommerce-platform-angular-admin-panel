@@ -9,7 +9,7 @@ import * as fromCatalog from './store/reducers';
 import { ProductsComponent } from './pages/products/products.component';
 import { EffectsModule } from '@ngrx/effects';
 import {
-  AttributesEffects,
+  AttributeTypesEffects,
   CategoriesEffects,
   ProductsEffects,
 } from './store/effects';
@@ -82,7 +82,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     EffectsModule.forFeature([
       ProductsEffects,
       CategoriesEffects,
-      AttributesEffects,
+      AttributeTypesEffects,
     ]),
     MatCardModule,
     MatTableModule,

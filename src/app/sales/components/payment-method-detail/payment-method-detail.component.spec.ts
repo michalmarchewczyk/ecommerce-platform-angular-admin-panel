@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { cold } from 'jasmine-marbles';
-import { PaymentsActions } from '../../store';
+import { PaymentMethodsActions } from '../../store';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
 import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
 import { selectSettingsList } from '../../../settings/store';
@@ -89,7 +89,7 @@ describe('PaymentMethodDetailComponent', () => {
     );
     await button.click();
     const expected = cold('a', {
-      a: PaymentsActions.updatePaymentMethod({
+      a: PaymentMethodsActions.updatePaymentMethod({
         methodId: 1,
         data: {
           name: 'Method 1 updated',
@@ -112,7 +112,7 @@ describe('PaymentMethodDetailComponent', () => {
     );
     await dialogButton.click();
     const expected = cold('a', {
-      a: PaymentsActions.deletePaymentMethod({ methodId: 1 }),
+      a: PaymentMethodsActions.deletePaymentMethod({ methodId: 1 }),
     });
     expect(store.scannedActions$).toBeObservable(expected);
   });

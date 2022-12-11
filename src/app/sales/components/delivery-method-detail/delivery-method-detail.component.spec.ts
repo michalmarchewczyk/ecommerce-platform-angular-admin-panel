@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { cold } from 'jasmine-marbles';
-import { DeliveriesActions } from '../../store';
+import { DeliveryMethodsActions } from '../../store';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
 import { selectSettingsList } from '../../../settings/store';
 import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
@@ -89,7 +89,7 @@ describe('DeliveryMethodDetailComponent', () => {
     );
     await button.click();
     const expected = cold('a', {
-      a: DeliveriesActions.updateDeliveryMethod({
+      a: DeliveryMethodsActions.updateDeliveryMethod({
         methodId: 1,
         data: {
           name: 'Method 1 updated',
@@ -112,7 +112,7 @@ describe('DeliveryMethodDetailComponent', () => {
     );
     await dialogButton.click();
     const expected = cold('a', {
-      a: DeliveriesActions.deleteDeliveryMethod({ methodId: 1 }),
+      a: DeliveryMethodsActions.deleteDeliveryMethod({ methodId: 1 }),
     });
     expect(store.scannedActions$).toBeObservable(expected);
   });

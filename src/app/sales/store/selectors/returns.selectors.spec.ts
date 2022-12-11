@@ -35,10 +35,10 @@ describe('Returns Selectors', () => {
         ],
         selectedReturnId: 1,
       },
-      payments: {
+      paymentMethods: {
         list: [],
       },
-      deliveries: {
+      deliveryMethods: {
         list: [],
       },
       status: {

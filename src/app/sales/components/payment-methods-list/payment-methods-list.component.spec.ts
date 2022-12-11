@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaymentMethodsListComponent } from './payment-methods-list.component';
 import { provideMockStore } from '@ngrx/store/testing';
-import { selectPaymentsList } from '../../store';
+import { selectPaymentMethodsList } from '../../store';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatTableModule } from '@angular/material/table';
@@ -34,7 +34,7 @@ describe('PaymentMethodsListComponent', () => {
         provideMockStore({
           selectors: [
             {
-              selector: selectPaymentsList,
+              selector: selectPaymentMethodsList,
               value: [
                 {
                   id: 1,

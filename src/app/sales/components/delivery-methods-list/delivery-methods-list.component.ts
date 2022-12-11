@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { DeliveriesActions, selectDeliveriesList } from '../../store';
+import { DeliveryMethodsActions, selectDeliveryMethodsList } from '../../store';
 import { DeliveryMethod } from '../../../core/api';
 import { MatTableDataSource } from '@angular/material/table';
 import { firstValueFrom, Subscription } from 'rxjs';
@@ -41,7 +41,7 @@ import {
 export class DeliveryMethodsListComponent
   implements OnInit, OnDestroy, AfterViewInit
 {
-  deliveryMethods$ = this.store.select(selectDeliveriesList);
+  deliveryMethods$ = this.store.select(selectDeliveryMethodsList);
   expandedDeliveryMethod: DeliveryMethod | null = null;
   dataSource = new MatTableDataSource<DeliveryMethod>();
   subscription!: Subscription;
@@ -63,7 +63,7 @@ export class DeliveryMethodsListComponent
     this.subscription = this.deliveryMethods$.subscribe((deliveryMethods) => {
       this.dataSource.data = deliveryMethods;
     });
-    this.store.dispatch(DeliveriesActions.loadDeliveryMethods());
+    this.store.dispatch(DeliveryMethodsActions.loadDeliveryMethods());
     this.dataSource.sort = this.sort;
   }
 }

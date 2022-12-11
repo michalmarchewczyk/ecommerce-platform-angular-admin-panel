@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductsActions, selectProductsList } from '../../store';
-import { Product, ProductsApiService } from '../../../core/api';
+import { Product } from '../../../core/api';
 import { MatTableDataSource } from '@angular/material/table';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
@@ -27,11 +27,7 @@ export class ProductsListComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(
-    private store: Store,
-    public router: Router,
-    public productsApi: ProductsApiService,
-  ) {}
+  constructor(private store: Store, public router: Router) {}
 
   ngOnInit() {
     this.dataSource.data = [];

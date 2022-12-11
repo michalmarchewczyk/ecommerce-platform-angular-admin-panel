@@ -1,8 +1,8 @@
-import { reducer, initialState } from './attributes.reducer';
+import { reducer, initialState } from './attribute-types.reducer';
 import { AttributeType } from '../../../core/api';
-import { AttributesActions } from '../actions';
+import { AttributeTypesActions } from '../actions';
 
-describe('Attributes Reducer', () => {
+describe('AttributeTypes Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
@@ -19,7 +19,7 @@ describe('Attributes Reducer', () => {
         id: 1,
         name: 'Attribute Type 1',
       } as AttributeType;
-      const action = AttributesActions.getAttributeTypesSuccess({
+      const action = AttributeTypesActions.getAttributeTypesSuccess({
         attributeTypes: [attributeType],
       });
 
@@ -38,7 +38,7 @@ describe('Attributes Reducer', () => {
         id: 1,
         name: 'Attribute Type 1',
       } as AttributeType;
-      const action = AttributesActions.addAttributeTypeSuccess({
+      const action = AttributeTypesActions.addAttributeTypeSuccess({
         attributeType,
       });
 
@@ -57,7 +57,7 @@ describe('Attributes Reducer', () => {
         id: 1,
         name: 'Attribute Type 1',
       } as any;
-      const action = AttributesActions.updateAttributeTypeSuccess({
+      const action = AttributeTypesActions.updateAttributeTypeSuccess({
         id: 1,
         attributeType: {
           ...attributeType,
@@ -101,7 +101,7 @@ describe('Attributes Reducer', () => {
         id: 1,
         name: 'Attribute Type 1',
       } as AttributeType;
-      const action = AttributesActions.deleteAttributeTypeSuccess({
+      const action = AttributeTypesActions.deleteAttributeTypeSuccess({
         id: 1,
       });
 

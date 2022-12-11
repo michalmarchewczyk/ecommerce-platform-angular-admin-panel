@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { DeliveryMethod } from '../../../core/api';
-import { DeliveriesActions } from '../actions';
+import { DeliveryMethodsActions } from '../actions';
 
-export const deliveriesFeatureKey = 'deliveries';
+export const deliveryMethodsFeatureKey = 'deliveryMethods';
 
 export interface State {
   list: DeliveryMethod[];
@@ -15,28 +15,28 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
   on(
-    DeliveriesActions.loadDeliveryMethodsSuccess,
+    DeliveryMethodsActions.loadDeliveryMethodsSuccess,
     (state, { deliveryMethods }): State => ({
       ...state,
       list: deliveryMethods,
     }),
   ),
   on(
-    DeliveriesActions.createDeliveryMethodSuccess,
+    DeliveryMethodsActions.createDeliveryMethodSuccess,
     (state, { deliveryMethod }): State => ({
       ...state,
       list: [...state.list, deliveryMethod],
     }),
   ),
   on(
-    DeliveriesActions.updateDeliveryMethodSuccess,
+    DeliveryMethodsActions.updateDeliveryMethodSuccess,
     (state, { methodId, deliveryMethod }): State => ({
       ...state,
       list: state.list.map((m) => (m.id === methodId ? deliveryMethod : m)),
     }),
   ),
   on(
-    DeliveriesActions.deleteDeliveryMethodSuccess,
+    DeliveryMethodsActions.deleteDeliveryMethodSuccess,
     (state, { methodId }): State => ({
       ...state,
       list: state.list.filter((m) => m.id !== methodId),

@@ -5,8 +5,8 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import {
   OrdersActions,
-  selectDeliveriesList,
-  selectPaymentsList,
+  selectDeliveryMethodsList,
+  selectPaymentMethodsList,
 } from '../../store';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -41,7 +41,7 @@ describe('EditOrderFormComponent', () => {
         provideMockStore({
           selectors: [
             {
-              selector: selectDeliveriesList,
+              selector: selectDeliveryMethodsList,
               value: [
                 {
                   id: 1,
@@ -50,7 +50,7 @@ describe('EditOrderFormComponent', () => {
               ],
             },
             {
-              selector: selectPaymentsList,
+              selector: selectPaymentMethodsList,
               value: [
                 {
                   id: 1,

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AttributeDto, AttributeTypeDto, Product } from '../../../core/api';
-import { AttributesActions, selectAttributeTypesList } from '../../store';
+import { AttributeTypesActions, selectAttributeTypesList } from '../../store';
 import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import ValueTypeEnum = AttributeTypeDto.ValueTypeEnum;
@@ -34,7 +34,7 @@ export class ProductAttributesAddFormComponent implements OnInit {
   constructor(private store: Store, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.store.dispatch(AttributesActions.getAttributeTypes());
+    this.store.dispatch(AttributeTypesActions.getAttributeTypes());
   }
 
   createType() {

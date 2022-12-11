@@ -1,28 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { PaymentsApiService } from '../../../core/api';
-import { OrdersActions, PaymentsActions } from '../actions';
+import { PaymentMethodsApiService } from '../../../core/api';
+import { OrdersActions, PaymentMethodsActions } from '../actions';
 import { exhaustMap, map } from 'rxjs/operators';
 import { catchError, of } from 'rxjs';
 
 @Injectable()
-export class PaymentsEffects {
+export class PaymentMethodsEffects {
   constructor(
     private actions$: Actions,
-    private paymentsApi: PaymentsApiService,
+    private paymentMethodsApi: PaymentMethodsApiService,
   ) {}
 
   loadPaymentMethods$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(PaymentsActions.loadPaymentMethods, OrdersActions.loadOrders),
+      ofType(
+        PaymentMethodsActions.loadPaymentMethods,
+        OrdersActions.loadOrders,
+      ),
       exhaustMap(() =>
-        this.paymentsApi.getPaymentMethods().pipe(
+        this.paymentMethodsApi.getPaymentMethods().pipe(
           map((paymentMethods) =>
-            PaymentsActions.loadPaymentMethodsSuccess({ paymentMethods }),
+            PaymentMethodsActions.loadPaymentMethodsSuccess({ paymentMethods }),
           ),
           catchError(({ error }) =>
             of(
-              PaymentsActions.loadPaymentMethodsFailure({
+              PaymentMethodsActions.loadPaymentMethodsFailure({
                 error: error.message,
               }),
             ),
@@ -34,17 +37,17 @@ export class PaymentsEffects {
 
   createPaymentMethod$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(PaymentsActions.createPaymentMethod),
+      ofType(PaymentMethodsActions.createPaymentMethod),
       exhaustMap(({ data }) =>
-        this.paymentsApi.createPaymentMethod(data).pipe(
+        this.paymentMethodsApi.createPaymentMethod(data).pipe(
           map((newPaymentMethod) =>
-            PaymentsActions.createPaymentMethodSuccess({
+            PaymentMethodsActions.createPaymentMethodSuccess({
               paymentMethod: newPaymentMethod,
             }),
           ),
           catchError(({ error }) =>
             of(
-              PaymentsActions.createPaymentMethodFailure({
+              PaymentMethodsActions.createPaymentMethodFailure({
                 error: error.message,
               }),
             ),
@@ -56,18 +59,18 @@ export class PaymentsEffects {
 
   updatePaymentMethod$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(PaymentsActions.updatePaymentMethod),
+      ofType(PaymentMethodsActions.updatePaymentMethod),
       exhaustMap(({ methodId, data }) =>
-        this.paymentsApi.updatePaymentMethod(methodId, data).pipe(
+        this.paymentMethodsApi.updatePaymentMethod(methodId, data).pipe(
           map((updatedPaymentMethod) =>
-            PaymentsActions.updatePaymentMethodSuccess({
+            PaymentMethodsActions.updatePaymentMethodSuccess({
               methodId,
               paymentMethod: updatedPaymentMethod,
             }),
           ),
           catchError(({ error }) =>
             of(
-              PaymentsActions.updatePaymentMethodFailure({
+              PaymentMethodsActions.updatePaymentMethodFailure({
                 error: error.message,
               }),
             ),
@@ -79,13 +82,15 @@ export class PaymentsEffects {
 
   deletePaymentMethod$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(PaymentsActions.deletePaymentMethod),
+      ofType(PaymentMethodsActions.deletePaymentMethod),
       exhaustMap(({ methodId }) =>
-        this.paymentsApi.deletePaymentMethod(methodId).pipe(
-          map(() => PaymentsActions.deletePaymentMethodSuccess({ methodId })),
+        this.paymentMethodsApi.deletePaymentMethod(methodId).pipe(
+          map(() =>
+            PaymentMethodsActions.deletePaymentMethodSuccess({ methodId }),
+          ),
           catchError(({ error }) =>
             of(
-              PaymentsActions.deletePaymentMethodFailure({
+              PaymentMethodsActions.deletePaymentMethodFailure({
                 error: error.message,
               }),
             ),

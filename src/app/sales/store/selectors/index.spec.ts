@@ -14,10 +14,10 @@ describe('Sales Selectors', () => {
         list: [],
         selectedReturnId: null,
       },
-      payments: {
+      paymentMethods: {
         list: [],
       },
-      deliveries: {
+      deliveryMethods: {
         list: [],
       },
       status: {

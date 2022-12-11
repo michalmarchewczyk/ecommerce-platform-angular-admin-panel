@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AttributesApiService } from '../../../core/api';
-import { AttributesActions } from '../actions';
+import { AttributeTypesApiService } from '../../../core/api';
+import { AttributeTypesActions } from '../actions';
 import { concatMap, exhaustMap, map, mergeMap } from 'rxjs/operators';
 import { catchError, of } from 'rxjs';
 
 @Injectable()
-export class AttributesEffects {
+export class AttributeTypesEffects {
   constructor(
     private actions$: Actions,
-    private attributesApi: AttributesApiService,
+    private attributeTypesApi: AttributeTypesApiService,
   ) {}
 
   getAttributeTypes$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AttributesActions.getAttributeTypes),
+      ofType(AttributeTypesActions.getAttributeTypes),
       exhaustMap(() =>
-        this.attributesApi.getAttributeTypes().pipe(
+        this.attributeTypesApi.getAttributeTypes().pipe(
           map((attributeTypes) =>
-            AttributesActions.getAttributeTypesSuccess({ attributeTypes }),
+            AttributeTypesActions.getAttributeTypesSuccess({ attributeTypes }),
           ),
           catchError(({ error }) =>
             of(
-              AttributesActions.getAttributeTypesFailure({
+              AttributeTypesActions.getAttributeTypesFailure({
                 error: error.message,
               }),
             ),
@@ -34,15 +34,15 @@ export class AttributesEffects {
 
   addAttributeType$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AttributesActions.addAttributeType),
+      ofType(AttributeTypesActions.addAttributeType),
       concatMap(({ data }) =>
-        this.attributesApi.createAttributeType(data).pipe(
+        this.attributeTypesApi.createAttributeType(data).pipe(
           map((attributeType) =>
-            AttributesActions.addAttributeTypeSuccess({ attributeType }),
+            AttributeTypesActions.addAttributeTypeSuccess({ attributeType }),
           ),
           catchError(({ error }) =>
             of(
-              AttributesActions.addAttributeTypeFailure({
+              AttributeTypesActions.addAttributeTypeFailure({
                 error: error.message,
               }),
             ),
@@ -54,15 +54,18 @@ export class AttributesEffects {
 
   updateAttributeType$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AttributesActions.updateAttributeType),
+      ofType(AttributeTypesActions.updateAttributeType),
       concatMap(({ id, data }) =>
-        this.attributesApi.updateAttributeType(id, data).pipe(
+        this.attributeTypesApi.updateAttributeType(id, data).pipe(
           map((attributeType) =>
-            AttributesActions.updateAttributeTypeSuccess({ id, attributeType }),
+            AttributeTypesActions.updateAttributeTypeSuccess({
+              id,
+              attributeType,
+            }),
           ),
           catchError(({ error }) =>
             of(
-              AttributesActions.updateAttributeTypeFailure({
+              AttributeTypesActions.updateAttributeTypeFailure({
                 error: error.message,
               }),
             ),
@@ -74,13 +77,13 @@ export class AttributesEffects {
 
   deleteAttributeType$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AttributesActions.deleteAttributeType),
+      ofType(AttributeTypesActions.deleteAttributeType),
       mergeMap(({ id }) =>
-        this.attributesApi.deleteAttributeType(id).pipe(
-          map(() => AttributesActions.deleteAttributeTypeSuccess({ id })),
+        this.attributeTypesApi.deleteAttributeType(id).pipe(
+          map(() => AttributeTypesActions.deleteAttributeTypeSuccess({ id })),
           catchError(({ error }) =>
             of(
-              AttributesActions.deleteAttributeTypeFailure({
+              AttributeTypesActions.deleteAttributeTypeFailure({
                 error: error.message,
               }),
             ),

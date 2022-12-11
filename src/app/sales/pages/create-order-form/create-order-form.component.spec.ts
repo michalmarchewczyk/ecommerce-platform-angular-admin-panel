@@ -5,9 +5,9 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import {
   OrdersActions,
-  selectDeliveriesList,
+  selectDeliveryMethodsList,
   selectNewOrderId,
-  selectPaymentsList,
+  selectPaymentMethodsList,
   selectSalesLoading,
 } from '../../store';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -68,7 +68,7 @@ describe('CreateOrderFormComponent', () => {
         provideMockStore({
           selectors: [
             {
-              selector: selectDeliveriesList,
+              selector: selectDeliveryMethodsList,
               value: [
                 {
                   id: 1,
@@ -77,7 +77,7 @@ describe('CreateOrderFormComponent', () => {
               ],
             },
             {
-              selector: selectPaymentsList,
+              selector: selectPaymentMethodsList,
               value: [
                 {
                   id: 1,

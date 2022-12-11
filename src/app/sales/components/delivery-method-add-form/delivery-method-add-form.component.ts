@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DeliveriesActions } from '../../store';
+import { DeliveryMethodsActions } from '../../store';
 
 @Component({
   selector: 'app-delivery-method-add-form',
@@ -27,7 +27,7 @@ export class DeliveryMethodAddFormComponent {
 
   async add() {
     this.store.dispatch(
-      DeliveriesActions.createDeliveryMethod({
+      DeliveryMethodsActions.createDeliveryMethod({
         data: this.addForm.getRawValue(),
       }),
     );

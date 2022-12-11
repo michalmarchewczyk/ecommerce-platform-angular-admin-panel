@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { AttributesActions } from '../../store';
+import { AttributeTypesActions } from '../../store';
 import { FormControl, Validators } from '@angular/forms';
 import { AttributeTypeDto } from '../../../core/api';
 import ValueTypeEnum = AttributeTypeDto.ValueTypeEnum;
@@ -33,7 +33,7 @@ export class AttributeTypeCreateDialogComponent {
 
   create(): void {
     this.store.dispatch(
-      AttributesActions.addAttributeType({
+      AttributeTypesActions.addAttributeType({
         data: { name: this.name.value, valueType: this.type.value },
       }),
     );

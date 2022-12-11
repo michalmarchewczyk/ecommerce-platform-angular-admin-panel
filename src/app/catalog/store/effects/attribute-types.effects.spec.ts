@@ -2,26 +2,26 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 
-import { AttributesEffects } from './attributes.effects';
+import { AttributeTypesEffects } from './attribute-types.effects';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { AttributesActions } from '../actions';
+import { AttributeTypesActions } from '../actions';
 import { AttributeType } from '../../../core/api';
 
-describe('AttributesEffects', () => {
+describe('AttributeTypesEffects', () => {
   let actions$: Observable<any>;
-  let effects: AttributesEffects;
+  let effects: AttributeTypesEffects;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [AttributesEffects, provideMockActions(() => actions$)],
+      providers: [AttributeTypesEffects, provideMockActions(() => actions$)],
     });
 
-    effects = TestBed.inject(AttributesEffects);
+    effects = TestBed.inject(AttributeTypesEffects);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
@@ -31,11 +31,13 @@ describe('AttributesEffects', () => {
 
   describe('getAttributeTypes$', () => {
     it('should return a getAttributeTypesSuccess action', (done) => {
-      actions$ = of(AttributesActions.getAttributeTypes());
+      actions$ = of(AttributeTypesActions.getAttributeTypes());
 
       effects.getAttributeTypes$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.getAttributeTypesSuccess({ attributeTypes: [] }),
+          AttributeTypesActions.getAttributeTypesSuccess({
+            attributeTypes: [],
+          }),
         );
         done();
       });
@@ -44,11 +46,11 @@ describe('AttributesEffects', () => {
     });
 
     it('should return a getAttributeTypesFailure action', (done) => {
-      actions$ = of(AttributesActions.getAttributeTypes());
+      actions$ = of(AttributeTypesActions.getAttributeTypes());
 
       effects.getAttributeTypes$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.getAttributeTypesFailure({ error: 'error' }),
+          AttributeTypesActions.getAttributeTypesFailure({ error: 'error' }),
         );
         done();
       });
@@ -72,12 +74,12 @@ describe('AttributesEffects', () => {
         name: 'Attribute Type 1',
       } as AttributeType;
       actions$ = of(
-        AttributesActions.addAttributeType({ data: attributeType }),
+        AttributeTypesActions.addAttributeType({ data: attributeType }),
       );
 
       effects.addAttributeType$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.addAttributeTypeSuccess({ attributeType }),
+          AttributeTypesActions.addAttributeTypeSuccess({ attributeType }),
         );
         done();
       });
@@ -91,12 +93,12 @@ describe('AttributesEffects', () => {
         name: 'Attribute Type 1',
       } as AttributeType;
       actions$ = of(
-        AttributesActions.addAttributeType({ data: attributeType }),
+        AttributeTypesActions.addAttributeType({ data: attributeType }),
       );
 
       effects.addAttributeType$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.addAttributeTypeFailure({ error: 'error' }),
+          AttributeTypesActions.addAttributeTypeFailure({ error: 'error' }),
         );
         done();
       });
@@ -120,12 +122,15 @@ describe('AttributesEffects', () => {
         name: 'Attribute Type 1',
       } as AttributeType;
       actions$ = of(
-        AttributesActions.updateAttributeType({ id: 1, data: attributeType }),
+        AttributeTypesActions.updateAttributeType({
+          id: 1,
+          data: attributeType,
+        }),
       );
 
       effects.updateAttributeType$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.updateAttributeTypeSuccess({
+          AttributeTypesActions.updateAttributeTypeSuccess({
             id: 1,
             attributeType,
           }),
@@ -142,12 +147,15 @@ describe('AttributesEffects', () => {
         name: 'Attribute Type 1',
       } as AttributeType;
       actions$ = of(
-        AttributesActions.updateAttributeType({ id: 1, data: attributeType }),
+        AttributeTypesActions.updateAttributeType({
+          id: 1,
+          data: attributeType,
+        }),
       );
 
       effects.updateAttributeType$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.updateAttributeTypeFailure({ error: 'error' }),
+          AttributeTypesActions.updateAttributeTypeFailure({ error: 'error' }),
         );
         done();
       });
@@ -166,11 +174,11 @@ describe('AttributesEffects', () => {
 
   describe('deleteAttributeType$', () => {
     it('should return a deleteAttributeTypeSuccess action', (done) => {
-      actions$ = of(AttributesActions.deleteAttributeType({ id: 1 }));
+      actions$ = of(AttributeTypesActions.deleteAttributeType({ id: 1 }));
 
       effects.deleteAttributeType$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.deleteAttributeTypeSuccess({ id: 1 }),
+          AttributeTypesActions.deleteAttributeTypeSuccess({ id: 1 }),
         );
         done();
       });
@@ -179,11 +187,11 @@ describe('AttributesEffects', () => {
     });
 
     it('should return a deleteAttributeTypeFailure action', (done) => {
-      actions$ = of(AttributesActions.deleteAttributeType({ id: 1 }));
+      actions$ = of(AttributeTypesActions.deleteAttributeType({ id: 1 }));
 
       effects.deleteAttributeType$.subscribe((result) => {
         expect(result).toEqual(
-          AttributesActions.deleteAttributeTypeFailure({ error: 'error' }),
+          AttributeTypesActions.deleteAttributeTypeFailure({ error: 'error' }),
         );
         done();
       });

@@ -14,7 +14,7 @@ import { MatSelectHarness } from '@angular/material/select/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { cold } from 'jasmine-marbles';
-import { AttributesActions } from '../../store';
+import { AttributeTypesActions } from '../../store';
 
 describe('AttributeTypeCreateDialogComponent', () => {
   let component: AttributeTypeCreateDialogComponent;
@@ -79,7 +79,7 @@ describe('AttributeTypeCreateDialogComponent', () => {
     });
     expect(store.scannedActions$).toBeObservable(
       cold('a', {
-        a: AttributesActions.addAttributeType({
+        a: AttributeTypesActions.addAttributeType({
           data: {
             name: 'test',
             valueType: 'number',

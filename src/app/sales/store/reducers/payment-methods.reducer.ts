@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { PaymentMethod } from '../../../core/api';
-import { PaymentsActions } from '../actions';
+import { PaymentMethodsActions } from '../actions';
 
-export const paymentsFeatureKey = 'payments';
+export const paymentMethodsFeatureKey = 'paymentMethods';
 
 export interface State {
   list: PaymentMethod[];
@@ -15,28 +15,28 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
   on(
-    PaymentsActions.loadPaymentMethodsSuccess,
+    PaymentMethodsActions.loadPaymentMethodsSuccess,
     (state, { paymentMethods }): State => ({
       ...state,
       list: paymentMethods,
     }),
   ),
   on(
-    PaymentsActions.createPaymentMethodSuccess,
+    PaymentMethodsActions.createPaymentMethodSuccess,
     (state, { paymentMethod }): State => ({
       ...state,
       list: [...state.list, paymentMethod],
     }),
   ),
   on(
-    PaymentsActions.updatePaymentMethodSuccess,
+    PaymentMethodsActions.updatePaymentMethodSuccess,
     (state, { methodId, paymentMethod }): State => ({
       ...state,
       list: state.list.map((m) => (m.id === methodId ? paymentMethod : m)),
     }),
   ),
   on(
-    PaymentsActions.deletePaymentMethodSuccess,
+    PaymentMethodsActions.deletePaymentMethodSuccess,
     (state, { methodId }): State => ({
       ...state,
       list: state.list.filter((m) => m.id !== methodId),

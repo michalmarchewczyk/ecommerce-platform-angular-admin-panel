@@ -17,6 +17,7 @@
       />
     </mat-form-field>
     <mat-slide-toggle
+      color="primary"
       *ngIf="setting.type === 'boolean'"
       [checked]="setting.value === 'true'"
       (change)="save(setting.id, $event.checked.toString())"

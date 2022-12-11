@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { PaymentsActions, selectPaymentsList } from '../../store';
+import { PaymentMethodsActions, selectPaymentMethodsList } from '../../store';
 import { PaymentMethod } from '../../../core/api';
 import { MatTableDataSource } from '@angular/material/table';
 import { firstValueFrom, Subscription } from 'rxjs';
@@ -41,7 +41,7 @@ import {
 export class PaymentMethodsListComponent
   implements OnInit, OnDestroy, AfterViewInit
 {
-  paymentMethods$ = this.store.select(selectPaymentsList);
+  paymentMethods$ = this.store.select(selectPaymentMethodsList);
   expandedPaymentMethod: PaymentMethod | null = null;
   dataSource = new MatTableDataSource<PaymentMethod>();
   subscription!: Subscription;
@@ -63,7 +63,7 @@ export class PaymentMethodsListComponent
     this.subscription = this.paymentMethods$.subscribe((paymentMethods) => {
       this.dataSource.data = paymentMethods;
     });
-    this.store.dispatch(PaymentsActions.loadPaymentMethods());
+    this.store.dispatch(PaymentMethodsActions.loadPaymentMethods());
     this.dataSource.sort = this.sort;
   }
 }
