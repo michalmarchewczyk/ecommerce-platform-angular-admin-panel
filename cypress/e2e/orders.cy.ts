@@ -9,7 +9,7 @@ describe('Orders', () => {
     cy.createTestProduct();
     cy.request({
       method: 'POST',
-      url: `${Cypress.env('API_URL')}/deliveries`,
+      url: `${Cypress.env('API_URL')}/delivery-methods`,
       body: {
         name: 'Test Cypress Order Delivery Method',
         description: 'Test Cypress Order Delivery Method Description',
@@ -18,7 +18,7 @@ describe('Orders', () => {
     });
     cy.request({
       method: 'POST',
-      url: `${Cypress.env('API_URL')}/payments`,
+      url: `${Cypress.env('API_URL')}/payment-methods`,
       body: {
         name: 'Test Cypress Order Payment Method',
         description: 'Test Cypress Order Payment Method Description',
