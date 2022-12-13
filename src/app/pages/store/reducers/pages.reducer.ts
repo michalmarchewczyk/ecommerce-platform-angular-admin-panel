@@ -1,15 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
-import { Page } from '../../../core/api';
+import { Page, PageGroup } from '../../../core/api';
 import { PagesActions } from '../actions';
 
 export const pagesFeatureKey = 'pages';
 
 export interface State {
   list: Page[];
+  groups: PageGroup[];
 }
 
 export const initialState: State = {
   list: [],
+  groups: [],
 };
 
 export const reducer = createReducer(
@@ -19,6 +21,13 @@ export const reducer = createReducer(
     (state, { pages }): State => ({
       ...state,
       list: pages,
+    }),
+  ),
+  on(
+    PagesActions.loadPageGroupsSuccess,
+    (state, { pageGroups }): State => ({
+      ...state,
+      groups: pageGroups,
     }),
   ),
   on(

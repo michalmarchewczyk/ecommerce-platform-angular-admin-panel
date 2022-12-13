@@ -11,3 +11,8 @@ export const selectPagesList = createSelector(
   selectPagesListState,
   (state) => state.list,
 );
+
+export const selectPagesGroups = createSelector(
+  selectPagesListState,
+  (state) => state.groups,
+);

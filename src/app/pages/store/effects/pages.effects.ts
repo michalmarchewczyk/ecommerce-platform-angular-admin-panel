@@ -23,6 +23,26 @@ export class PagesEffects {
     );
   });
 
+  loadPageGroups$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        PagesActions.loadPageGroups,
+        PagesActions.loadPagesSuccess,
+        PagesActions.updatePageSuccess,
+      ),
+      switchMap(() =>
+        this.pagesApi.getPageGroups().pipe(
+          map((pageGroups) =>
+            PagesActions.loadPageGroupsSuccess({ pageGroups }),
+          ),
+          catchError(({ error }) =>
+            of(PagesActions.loadPageGroupsFailure({ error: error.message })),
+          ),
+        ),
+      ),
+    );
+  });
+
   createPage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(PagesActions.createPage),

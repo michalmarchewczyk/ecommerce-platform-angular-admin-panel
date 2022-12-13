@@ -59,6 +59,42 @@ describe('PagesEffects', () => {
     });
   });
 
+  describe('loadPageGroups$', () => {
+    it('should return a loadPageGroupsSuccess action', (done) => {
+      actions$ = of(PagesActions.loadPageGroups());
+
+      effects.loadPageGroups$.subscribe((result) => {
+        expect(result).toEqual(
+          PagesActions.loadPageGroupsSuccess({ pageGroups: [] }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'GET' }).flush([]);
+    });
+
+    it('should return a loadPageGroupsFailure action', (done) => {
+      actions$ = of(PagesActions.loadPageGroups());
+
+      effects.loadPageGroups$.subscribe((result) => {
+        expect(result).toEqual(
+          PagesActions.loadPageGroupsFailure({ error: 'error' }),
+        );
+        done();
+      });
+
+      httpTestingController.expectOne({ method: 'GET' }).flush(
+        {
+          message: 'error',
+        },
+        {
+          status: 400,
+          statusText: 'Bad Request',
+        },
+      );
+    });
+  });
+
   describe('createPage$', () => {
     it('should return a createPageSuccess action', (done) => {
       actions$ = of(

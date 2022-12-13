@@ -1,6 +1,10 @@
 import { PagesState } from '../reducers';
-import { Page } from '../../../core/api';
-import { selectPagesList, selectPagesListState } from './pages.selectors';
+import { Page, PageGroup } from '../../../core/api';
+import {
+  selectPagesGroups,
+  selectPagesList,
+  selectPagesListState,
+} from './pages.selectors';
 
 describe('Pages Selectors', () => {
   let initialState: PagesState;
@@ -19,6 +23,12 @@ describe('Pages Selectors', () => {
             title: 'Test 2',
             content: 'Test 2',
           } as Page,
+        ],
+        groups: [
+          {
+            id: 1,
+            name: 'Test',
+          } as PageGroup,
         ],
       },
       status: {
@@ -39,6 +49,13 @@ describe('Pages Selectors', () => {
     it('should select the page list', () => {
       const result = selectPagesList.projector(initialState.pages);
       expect(result).toEqual(initialState.pages.list);
+    });
+  });
+
+  describe('selectPagesGroups', () => {
+    it('should select the page groups', () => {
+      const result = selectPagesGroups.projector(initialState.pages);
+      expect(result).toEqual(initialState.pages.groups);
     });
   });
 });

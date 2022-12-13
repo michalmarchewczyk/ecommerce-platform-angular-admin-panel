@@ -12,6 +12,7 @@ describe('Pages Status Selectors', () => {
     initialState = {
       pages: {
         list: [],
+        groups: [],
       },
       status: {
         loading: false,

@@ -24,6 +24,22 @@ describe('Pages Reducer', () => {
     });
   });
 
+  describe('load page groups success action', () => {
+    it('should set the list of page groups', () => {
+      const pageGroup = { name: 'test' } as any;
+      const action = PagesActions.loadPageGroupsSuccess({
+        pageGroups: [pageGroup],
+      });
+
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        groups: [pageGroup],
+      });
+    });
+  });
+
   describe('create page success action', () => {
     it('should add the page to the list', () => {
       const page: Page = {

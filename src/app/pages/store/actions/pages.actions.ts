@@ -1,5 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { Page, PageCreateDto, PageUpdateDto } from '../../../core/api';
+import {
+  Page,
+  PageCreateDto,
+  PageGroup,
+  PageUpdateDto,
+} from '../../../core/api';
 
 export const loadPages = createAction('[Pages] Load Pages');
 
@@ -10,6 +15,18 @@ export const loadPagesSuccess = createAction(
 
 export const loadPagesFailure = createAction(
   '[Pages] Load Pages Failure',
+  props<{ error: string }>(),
+);
+
+export const loadPageGroups = createAction('[Pages] Load Page Groups');
+
+export const loadPageGroupsSuccess = createAction(
+  '[Pages] Load Page Groups Success',
+  props<{ pageGroups: PageGroup[] }>(),
+);
+
+export const loadPageGroupsFailure = createAction(
+  '[Pages] Load Page Groups Failure',
   props<{ error: string }>(),
 );
 
