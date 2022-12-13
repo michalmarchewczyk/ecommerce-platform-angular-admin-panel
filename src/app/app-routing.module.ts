@@ -35,6 +35,14 @@ const routes: Routes = [
           import('./settings/settings.module').then((m) => m.SettingsModule),
       },
       {
+        title: 'Pages',
+        path: 'pages',
+        canActivate: [AuthRoleGuard],
+        data: { roles: [RoleEnum.Admin] },
+        loadChildren: () =>
+          import('./pages/pages.module').then((m) => m.PagesModule),
+      },
+      {
         title: 'Catalog',
         path: 'catalog',
         canActivate: [AuthRoleGuard],
