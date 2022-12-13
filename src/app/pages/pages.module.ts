@@ -7,14 +7,32 @@ import { StoreModule } from '@ngrx/store';
 import * as fromPages from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { PagesEffects } from './store/effects';
+import { PagesListComponent } from './pages/pages-list/pages-list.component';
+import { CreatePageFormComponent } from './pages/create-page-form/create-page-form.component';
+import { PageComponent } from './pages/page/page.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [PagesComponent],
+  declarations: [
+    PagesComponent,
+    PagesListComponent,
+    CreatePageFormComponent,
+    PageComponent,
+  ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     StoreModule.forFeature(fromPages.pagesFeatureKey, fromPages.reducers),
     EffectsModule.forFeature([PagesEffects]),
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatIconModule,
+    MatButtonModule,
   ],
 })
 export class PagesModule {}
