@@ -71,3 +71,15 @@ input.country-search {
   text-align: center;
   color: #7f7f7f;
 }
+
+.mat-form-field.fill-container,
+.mat-form-field.fill-container .mat-form-field-infix,
+.mat-form-field.fill-container .mat-form-field-flex,
+.mat-form-field.fill-container .mat-form-field-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.mat-form-field.fill-container textarea {
+  height: calc(100% - 25px);
+}
