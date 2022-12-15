@@ -12,9 +12,9 @@
     [class.to-delete]="photosToDelete.value.includes(photo.id)"
     cdkDrag
     cdkDragBoundary=".product-photos"
-    cdkDragLockAxis="x"
     [cdkDragData]="photo.id"
   >
+    <div class="photo-drop-placeholder" *cdkDragPlaceholder></div>
     <button
       *ngIf="!photosToDelete.value.includes(photo.id)"
       mat-icon-button
