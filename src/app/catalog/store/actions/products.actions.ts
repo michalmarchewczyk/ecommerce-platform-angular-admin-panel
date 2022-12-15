@@ -96,7 +96,12 @@ export const addProductPhoto = createAction(
 
 export const addProductPhotoSuccess = createAction(
   '[Products] Add Product Photo Success',
-  props<{ productId: number; data: Blob; product: Product }>(),
+  props<{
+    productId: number;
+    data: Blob;
+    product: Product;
+    photosOrder?: string;
+  }>(),
 );
 
 export const addProductPhotoFailure = createAction(
@@ -111,7 +116,7 @@ export const deleteProductPhoto = createAction(
 
 export const deleteProductPhotoSuccess = createAction(
   '[Products] Delete Product Photo Success',
-  props<{ productId: number; photoId: number }>(),
+  props<{ productId: number; photoId: number; photosOrder?: string }>(),
 );
 
 export const deleteProductPhotoFailure = createAction(

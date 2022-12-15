@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { first, skip } from 'rxjs';
 import { cold } from 'jasmine-marbles';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 describe('ProductPhotosInputComponent', () => {
   let component: ProductPhotosInputComponent;
@@ -31,6 +32,7 @@ describe('ProductPhotosInputComponent', () => {
         MaterialFileInputModule,
         MatFormFieldModule,
         MatInputModule,
+        DragDropModule,
       ],
       declarations: [
         ProductPhotosInputComponent,
@@ -45,6 +47,10 @@ describe('ProductPhotosInputComponent', () => {
                 photos: [
                   {
                     id: 2,
+                    data: new Blob(['']),
+                  },
+                  {
+                    id: 3,
                     data: new Blob(['']),
                   },
                 ],
@@ -65,6 +71,10 @@ describe('ProductPhotosInputComponent', () => {
           id: 2,
           path: 'photo',
         },
+        {
+          id: 3,
+          path: 'photo2',
+        },
       ],
     } as Product;
     fixture.detectChanges();
@@ -77,8 +87,23 @@ describe('ProductPhotosInputComponent', () => {
 
   it('should display product photos', async () => {
     const images = fixture.debugElement.queryAll(By.css('app-product-photo'));
-    expect(images.length).toBe(1);
+    expect(images.length).toBe(2);
     expect(images[0].attributes['ng-reflect-photo-id']).toBe('2');
+  });
+
+  it('should display sorted product photos', async () => {
+    component.product = {
+      ...component.product,
+      photosOrder: '3,2',
+    } as Product;
+    await component.ngOnChanges({
+      product: { currentValue: component.product },
+    } as any);
+    fixture.detectChanges();
+    const images = fixture.debugElement.queryAll(By.css('app-product-photo'));
+    expect(images.length).toBe(2);
+    expect(images[0].attributes['ng-reflect-photo-id']).toBe('3');
+    expect(images[1].attributes['ng-reflect-photo-id']).toBe('2');
   });
 
   it('should display input photos', async () => {
@@ -89,7 +114,7 @@ describe('ProductPhotosInputComponent', () => {
     component.updatePhotosToDisplay();
     fixture.detectChanges();
     const images = fixture.debugElement.queryAll(By.css('img'));
-    expect(images.length).toBe(2);
+    expect(images.length).toBe(3);
     expect(images[1].attributes['src']).toMatch('blob:');
   });
 
@@ -101,16 +126,16 @@ describe('ProductPhotosInputComponent', () => {
     component.updatePhotosToDisplay();
     fixture.detectChanges();
     const images = fixture.debugElement.queryAll(By.css('img'));
-    expect(images.length).toBe(2);
+    expect(images.length).toBe(3);
     component.removePhoto('test.jpg');
     fixture.detectChanges();
     const images2 = fixture.debugElement.queryAll(By.css('img'));
-    expect(images2.length).toBe(1);
+    expect(images2.length).toBe(2);
   });
 
   it('should mark photos to delete', async () => {
     const images = fixture.debugElement.queryAll(By.css('app-product-photo'));
-    expect(images.length).toBe(1);
+    expect(images.length).toBe(2);
     expect(images[0].classes['to-delete']).toBeFalsy();
     component.markPhotoToDelete(2);
     fixture.detectChanges();
@@ -118,6 +143,19 @@ describe('ProductPhotosInputComponent', () => {
     component.unmarkPhoto(2);
     fixture.detectChanges();
     expect(images[0].classes['to-delete']).toBeFalsy();
+  });
+
+  it('should reorder photos', async () => {
+    const images = fixture.debugElement.queryAll(By.css('app-product-photo'));
+    expect(images.length).toBe(2);
+    expect(images[0].attributes['ng-reflect-photo-id']).toBe('2');
+    expect(images[1].attributes['ng-reflect-photo-id']).toBe('3');
+    await component.dropPhoto({ previousIndex: 0, currentIndex: 1 } as any);
+    fixture.detectChanges();
+    const images2 = fixture.debugElement.queryAll(By.css('app-product-photo'));
+    expect(images2.length).toBe(2);
+    expect(images2[0].attributes['ng-reflect-photo-id']).toBe('3');
+    expect(images2[1].attributes['ng-reflect-photo-id']).toBe('2');
   });
 
   it('should dispatch save actions', async () => {
@@ -129,7 +167,7 @@ describe('ProductPhotosInputComponent', () => {
     component.updatePhotosToDisplay();
     fixture.detectChanges();
 
-    store.scannedActions$.pipe(skip(1), first()).subscribe((action) => {
+    store.scannedActions$.pipe(skip(2), first()).subscribe((action) => {
       expect(action).toEqual(
         ProductsActions.addProductPhoto({
           productId: 1,
@@ -137,7 +175,7 @@ describe('ProductPhotosInputComponent', () => {
         }),
       );
     });
-    store.scannedActions$.pipe(skip(2), first()).subscribe((action) => {
+    store.scannedActions$.pipe(skip(3), first()).subscribe((action) => {
       expect(action).toEqual(
         ProductsActions.deleteProductPhoto({
           productId: 1,

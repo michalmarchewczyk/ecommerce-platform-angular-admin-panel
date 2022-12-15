@@ -52,6 +52,7 @@ import { AuthModule } from '../core/auth/auth.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatPaginatorModule,
     MatChipsModule,
     MatAutocompleteModule,
+    DragDropModule,
   ],
   exports: [ProductPhotoComponent],
 })

@@ -1,10 +1,20 @@
-<div class="product-photos" *ngIf="product">
+<div
+  class="product-photos"
+  *ngIf="product"
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  (cdkDropListDropped)="dropPhoto($event)"
+>
   <app-product-photo
-    *ngFor="let photo of product?.photos"
+    *ngFor="let photo of sortedPhotos"
     [product]="product!"
     [photoId]="photo.id"
     [class.to-delete]="photosToDelete.value.includes(photo.id)"
+    cdkDrag
+    cdkDragBoundary=".product-photos"
+    [cdkDragData]="photo.id"
   >
+    <div class="photo-drop-placeholder" *cdkDragPlaceholder></div>
     <button
       *ngIf="!photosToDelete.value.includes(photo.id)"
       mat-icon-button

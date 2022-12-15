@@ -301,6 +301,7 @@ describe('ProductsEffects', () => {
             productId: 123,
             data: new Blob(),
             product: { id: 123 } as any,
+            photosOrder: undefined,
           }),
         );
         done();
@@ -345,12 +346,16 @@ describe('ProductsEffects', () => {
           ProductsActions.deleteProductPhotoSuccess({
             photoId: 1,
             productId: 1,
+            photosOrder: undefined,
           }),
         );
         done();
       });
 
-      httpTestingController.expectOne({ method: 'DELETE' }).flush(null);
+      httpTestingController.expectOne({ method: 'DELETE' }).flush({
+        id: 1,
+        photosOrder: undefined,
+      });
     });
 
     it('should return a deleteProductPhotoFailure action', (done) => {

@@ -16,7 +16,9 @@ describe('Products', () => {
     cy.fixture('test.jpg', null).as('image');
     cy.get('input[type=file]').selectFile('@image', { force: true });
 
+    cy.intercept('POST', '/products').as('addRequest');
     cy.get('button').contains('Save').click();
+    cy.wait('@addRequest');
 
     cy.location('pathname').should('include', '/catalog/products/');
 
@@ -47,7 +49,10 @@ describe('Products', () => {
     cy.intercept('PATCH', '/products/*').as('editRequest');
     cy.get('button').contains('Save').click();
     cy.wait('@editRequest');
-    cy.get('button').contains('Save').parent().should('be.disabled');
+    cy.get('button')
+      .contains('Save')
+      .parent({ timeout: 10000 })
+      .should('be.disabled');
 
     cy.visit('/catalog/products');
     const row2 = cy.get('.mat-row').contains('Test Cypress Product 2').parent();

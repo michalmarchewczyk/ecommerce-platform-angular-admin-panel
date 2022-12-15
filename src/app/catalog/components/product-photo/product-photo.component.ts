@@ -19,7 +19,14 @@ export class ProductPhotoComponent implements OnInit, OnDestroy {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.photoId = this.photoId ?? this.product?.photos[0]?.id ?? null;
+    const photosOrder =
+      this.product.photosOrder?.split(',').map((id) => parseInt(id)) ?? null;
+    if (!this.photoId && photosOrder) {
+      this.photoId =
+        this.product.photos.find((p) => p.id === photosOrder[0])?.id ?? null;
+    } else if (!this.photoId && !photosOrder) {
+      this.photoId = this.product.photos[0]?.id ?? null;
+    }
     this.photo$ = this.store.select(selectProductPhoto(this.photoId ?? 0));
     this.subscription = this.photo$.subscribe((photo) => {
       this.photoUrl = photo?.data ? URL.createObjectURL(photo.data) : '';

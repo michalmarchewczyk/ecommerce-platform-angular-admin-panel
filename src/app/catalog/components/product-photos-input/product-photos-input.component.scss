@@ -18,6 +18,7 @@
     overflow: hidden;
     border-radius: 5px;
     position: relative;
+    border: 1px solid rgba(0,0,0,0.12);
 
     &.to-delete {
       opacity: 0.4;
@@ -70,4 +71,24 @@
     white-space: break-spaces;
     max-height: 160px;
   }
+}
+
+.cdk-drag-preview {
+  opacity: 0.8;
+}
+
+.cdk-drag-animating {
+  transition: transform 0.2s ease-in-out;
+}
+
+.cdk-drop-list-dragging app-product-photo:not(.cdk-drag-placeholder) {
+  transition: transform 0.2s ease-in-out;
+}
+
+.photo-drop-placeholder {
+  width: 160px;
+  height: 160px;
+  border-radius: 5px;
+  border: 3px dashed rgba(0,0,0,0.12) !important;
+  transition: transform 0.2s ease-in-out;
 }

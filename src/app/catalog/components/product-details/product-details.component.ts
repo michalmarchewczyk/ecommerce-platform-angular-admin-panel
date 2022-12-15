@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductsActions } from '../../store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,15 +7,13 @@ import { Product } from '../../../core/api';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
-import { map, startWith } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })
-export class ProductDetailsComponent implements OnInit, AfterViewInit {
+export class ProductDetailsComponent implements OnInit {
   @Input() product: Product | null = null;
 
   editForm = new FormGroup({
@@ -48,7 +40,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild(ProductPhotosInputComponent)
   photosInput!: ProductPhotosInputComponent;
 
-  newPhotos$ = of(0);
+  photosInputDirty = false;
 
   constructor(
     private store: Store,
@@ -58,13 +50,6 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     await this.resetValues();
-  }
-
-  ngAfterViewInit() {
-    this.newPhotos$ = this.photosInput.photosToSave.valueChanges.pipe(
-      map((v) => v.files.length),
-      startWith(0),
-    );
   }
 
   async resetValues() {
