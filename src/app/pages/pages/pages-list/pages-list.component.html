@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-title>Pages</mat-card-title>
+  <mat-card-content>
+    <mat-table
+      [dataSource]="dataSource"
+      multiTemplateDataRows
+      matSort
+      matSortActive="id"
+      matSortDirection="asc"
+    >
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="id"
+          >ID</mat-header-cell
+        >
+        <mat-cell *matCellDef="let page">{{ page.id }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="updated">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="updated">
+          Updated
+        </mat-header-cell>
+        <mat-cell *matCellDef="let page">
+          {{ page.updated | date: 'd MMM yyyy, HH:mm' }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="title">
+          Title
+        </mat-header-cell>
+        <mat-cell *matCellDef="let page">{{ page.title }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="slug">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="slug">
+          Slug
+        </mat-header-cell>
+        <mat-cell *matCellDef="let page">{{ page.slug }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="content">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="content">
+          Content
+        </mat-header-cell>
+        <mat-cell *matCellDef="let page">
+          {{ page.content }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row
+        *matHeaderRowDef="['id', 'updated', 'title', 'slug', 'content']"
+      ></mat-header-row>
+      <mat-row
+        [routerLink]="['/pages', page.id]"
+        *matRowDef="
+          let page;
+          columns: ['id', 'updated', 'title', 'slug', 'content']
+        "
+        class="page-row"
+      ></mat-row>
+    </mat-table>
+    <span *ngIf="(pages$ | async)?.length === 0" class="empty-placeholder">
+      No pages found
+    </span>
+  </mat-card-content>
+  <button class="add-button" mat-fab color="primary" routerLink="/pages/new">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-card>

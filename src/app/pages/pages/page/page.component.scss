@@ -1,0 +1,96 @@
+mat-card {
+  padding: 0;
+
+  mat-card-title {
+    button {
+      margin-top: -4px;
+      position: relative;
+      display: inline-block;
+      top: -4px;
+      padding-left: 0;
+      padding-right: 0;
+      width: 36px;
+      min-width: 36px;
+      margin-right: 12px;
+      margin-left: -6px;
+    }
+    padding: 16px 16px 6px;
+    margin-bottom: 0;
+  }
+
+  mat-card-content {
+    min-height: 120px;
+    margin-bottom: 0;
+    padding: 8px 16px 16px;
+  }
+}
+
+.page-title {
+  width: calc(50% - 6px);
+  margin-right: 12px;
+}
+.page-slug {
+  width: calc(50% - 6px);
+}
+.page-groups {
+  width: 100%;
+}
+
+.form-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  .page-content {
+    flex-basis: 360px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    min-height: 360px;
+    align-self: stretch;
+    mat-form-field {
+      height: 100%;
+      width: 100%;
+      textarea {
+        display: block;
+        width: 100%;
+        height: 100%;
+        resize: none;
+      }
+    }
+
+  }
+  markdown {
+    margin: 28px 0 20px 12px;
+
+    &::before {
+      content: 'Preview: ';
+      margin-top: -34px;
+      position: absolute;
+      color: rgba(0,0,0,.87);
+      font-weight: 500;
+      font-size: 16px;
+      margin-left: -6px;
+    }
+    flex-basis: 360px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 5px;
+    min-height: 360px;
+    padding: 6px;
+  }
+}
+
+.form-actions {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  right: 16px;
+  button:first-child {
+    float: left;
+  }
+  button {
+    float: right
+  }
+}

@@ -72,6 +72,15 @@
       <mat-divider [appAuthRole]="['admin']"></mat-divider>
       <a
         mat-list-item
+        routerLink="/pages"
+        [appAuthRole]="['admin']"
+        [ngClass]="{ active: router.url.startsWith('/pages') }"
+      >
+        <mat-icon mat-list-icon>article</mat-icon>
+        Pages
+      </a>
+      <a
+        mat-list-item
         routerLink="/users"
         [appAuthRole]="['admin']"
         [ngClass]="{ active: router.url.startsWith('/users') }"

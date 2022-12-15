@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './core/auth/auth.module';
 import { SettingsModule } from './settings/settings.module';
+import { MarkdownModule } from 'ngx-markdown';
 
 export const apiConfigFactory = () => {
   const params: ConfigurationParameters = {
@@ -55,6 +56,7 @@ export const apiConfigFactory = () => {
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    MarkdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

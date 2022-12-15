@@ -1,0 +1,64 @@
+mat-card {
+  padding-bottom: 0;
+}
+mat-card-content {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+mat-table {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+mat-row.page-row:hover {
+  background: whitesmoke;
+}
+mat-row.page-row:active {
+  background: #efefef;
+}
+mat-row, mat-header-row {
+  gap: 16px;
+  padding-left: 16px;
+  padding-right: 24px;
+}
+
+.mat-column-id {
+  padding-left: 8px;
+  flex-basis: 48px;
+  flex-grow: 0.1;
+}
+.mat-column-updated, {
+  flex-basis: 80px;
+  flex-grow: 0.4;
+}
+.mat-column-title {
+  flex-basis: 120px;
+  flex-grow: 0.6;
+}
+.mat-column-slug {
+  flex-basis: 64px;
+  flex-grow: 0.4;
+}
+.mat-column-content {
+  flex-basis: 120px;
+  flex-grow: 0.8;
+}
+
+mat-cell, mat-header-cell {
+  white-space: nowrap;
+}
+
+.add-button {
+  position: sticky;
+  float: right;
+  margin-top: -88px;
+  margin-right: -45px;
+  bottom: 16px;
+}
+
+
+.mat-row:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
