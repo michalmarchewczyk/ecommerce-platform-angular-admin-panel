@@ -94,7 +94,7 @@ export class ProductsEffects {
   deleteProduct$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductsActions.deleteProduct),
-      mergeMap(({ id }) =>
+      concatMap(({ id }) =>
         this.productsApi.deleteProduct(id).pipe(
           map(() => ProductsActions.deleteProductSuccess({ id })),
           catchError(({ error }) =>
@@ -135,6 +135,7 @@ export class ProductsEffects {
               productId: product.id,
               data,
               product,
+              photosOrder: product.photosOrder,
             }),
           ),
           catchError(({ error }) =>
@@ -152,8 +153,12 @@ export class ProductsEffects {
       ofType(ProductsActions.deleteProductPhoto),
       concatMap(({ productId, photoId }) =>
         this.productsApi.deleteProductPhoto(productId, photoId).pipe(
-          map(() =>
-            ProductsActions.deleteProductPhotoSuccess({ productId, photoId }),
+          map((product) =>
+            ProductsActions.deleteProductPhotoSuccess({
+              productId,
+              photoId,
+              photosOrder: product.photosOrder,
+            }),
           ),
           catchError(({ error }) =>
             of(

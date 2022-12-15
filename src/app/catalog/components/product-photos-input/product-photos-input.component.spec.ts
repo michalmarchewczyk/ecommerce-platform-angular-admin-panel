@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { first, skip } from 'rxjs';
 import { cold } from 'jasmine-marbles';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 describe('ProductPhotosInputComponent', () => {
   let component: ProductPhotosInputComponent;
@@ -31,6 +32,7 @@ describe('ProductPhotosInputComponent', () => {
         MaterialFileInputModule,
         MatFormFieldModule,
         MatInputModule,
+        DragDropModule,
       ],
       declarations: [
         ProductPhotosInputComponent,
@@ -129,7 +131,7 @@ describe('ProductPhotosInputComponent', () => {
     component.updatePhotosToDisplay();
     fixture.detectChanges();
 
-    store.scannedActions$.pipe(skip(1), first()).subscribe((action) => {
+    store.scannedActions$.pipe(skip(2), first()).subscribe((action) => {
       expect(action).toEqual(
         ProductsActions.addProductPhoto({
           productId: 1,
@@ -137,7 +139,7 @@ describe('ProductPhotosInputComponent', () => {
         }),
       );
     });
-    store.scannedActions$.pipe(skip(2), first()).subscribe((action) => {
+    store.scannedActions$.pipe(skip(3), first()).subscribe((action) => {
       expect(action).toEqual(
         ProductsActions.deleteProductPhoto({
           productId: 1,
