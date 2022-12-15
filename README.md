@@ -3,7 +3,7 @@
 Admin Panel for the E-commerce Platform project.
 
 [![GitHub](https://img.shields.io/github/license/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/michalmarchewczyk/ecommerce-platform-angular-admin-panel/Continuous%20Integration?label=CI)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel/actions/workflows/main.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/michalmarchewczyk/ecommerce-platform-angular-admin-panel/main.yml?branch=master&label=CI)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel/actions/workflows/main.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](https://app.codecov.io/github/michalmarchewczyk/ecommerce-platform-angular-admin-panel)
 [![GitHub last commit](https://img.shields.io/github/last-commit/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel/commits/master)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel)
