@@ -15,7 +15,9 @@ describe('Categories', () => {
       .find('.add-button')
       .click({ force: true });
     cy.get('input[type=text]').type('Test Cypress Category Nested');
+    cy.intercept('POST', '/categories').as('addRequest');
     cy.get('button').contains('Add').click();
+    cy.wait('@addRequest');
     cy.contains('.mat-tree-node', 'Test Cypress Category')
       .parent()
       .should('contain', 'Test Cypress Category Nested');
@@ -25,7 +27,9 @@ describe('Categories', () => {
       .find('.add-button')
       .click({ force: true });
     cy.get('input[type=text]').type('Test Cypress Category Nested 2');
+    cy.intercept('POST', '/categories').as('addRequest2');
     cy.get('button').contains('Add').click();
+    cy.wait('@addRequest2');
     cy.contains('.mat-tree-node', 'Test Cypress Category')
       .parent()
       .should('contain', 'Test Cypress Category Nested 2');
@@ -35,7 +39,9 @@ describe('Categories', () => {
       .find('.add-button')
       .click({ force: true });
     cy.get('input[type=text]').type('Test Cypress Category Nested Nested');
+    cy.intercept('POST', '/categories').as('addRequest3');
     cy.get('button').contains('Add').click();
+    cy.wait('@addRequest3');
     cy.contains('.mat-tree-node', 'Test Cypress Category Nested')
       .parent()
       .should('contain', 'Test Cypress Category Nested Nested');
@@ -106,13 +112,13 @@ describe('Categories', () => {
     cy.get('button').contains('Delete category').click();
     cy.get('.cdk-dialog-container button').contains('Delete').click();
 
-    cy.contains('.mat-tree-node', 'Test Cypress Category Nested').click({
+    cy.contains('.mat-tree-node', 'Test Cypress Category Nested 2').click({
       force: true,
     });
     cy.get('button').contains('Delete category').click();
     cy.get('.cdk-dialog-container button').contains('Delete').click();
 
-    cy.contains('.mat-tree-node', 'Test Cypress Category Nested 2').click({
+    cy.contains('.mat-tree-node', 'Test Cypress Category Nested').click({
       force: true,
     });
     cy.get('button').contains('Delete category').click();
