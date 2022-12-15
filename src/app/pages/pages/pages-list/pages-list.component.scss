@@ -28,20 +28,20 @@ mat-row, mat-header-row {
   flex-grow: 0.1;
 }
 .mat-column-updated, {
-  flex-basis: 120px;
-  flex-grow: 0.2;
+  flex-basis: 80px;
+  flex-grow: 0.4;
 }
 .mat-column-title {
-  flex-basis: 64px;
-  flex-grow: 0.2;
+  flex-basis: 120px;
+  flex-grow: 0.6;
 }
 .mat-column-slug {
-  flex-basis: 48px;
-  flex-grow: 0.2;
-}
-.mat-column-content {
   flex-basis: 64px;
   flex-grow: 0.4;
+}
+.mat-column-content {
+  flex-basis: 120px;
+  flex-grow: 0.8;
 }
 
 mat-cell, mat-header-cell {

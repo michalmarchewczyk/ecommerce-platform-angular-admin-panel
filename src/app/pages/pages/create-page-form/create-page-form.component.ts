@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PagesActions, selectPagesList } from '../../store';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-create-page-form',
@@ -6,5 +11,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-page-form.component.scss'],
 })
 export class CreatePageFormComponent {
-  constructor() {}
+  addForm = new FormGroup({
+    title: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    slug: new FormControl<string>(''),
+    content: new FormControl('', {
+      nonNullable: true,
+    }),
+  });
+  constructor(private store: Store, public router: Router) {}
+
+  async save() {
+    this.store.dispatch(
+      PagesActions.createPage({
+        data: {
+          ...this.addForm.getRawValue(),
+          slug: this.addForm.getRawValue().slug || undefined,
+        },
+      }),
+    );
+    this.store
+      .select(selectPagesList)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.router.navigate(['/pages']);
+      });
+  }
 }

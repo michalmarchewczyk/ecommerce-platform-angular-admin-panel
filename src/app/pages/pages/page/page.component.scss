@@ -25,11 +25,12 @@ mat-card {
   }
 }
 
-.page-title, .page-slug {
-  width: calc(50% - 12px);
-}
 .page-title {
+  width: calc(50% - 6px);
   margin-right: 12px;
+}
+.page-slug {
+  width: calc(50% - 6px);
 }
 .page-groups {
   width: 100%;

@@ -1,1 +1,52 @@
-<p>create-page-form works!</p>
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>
+      <button mat-button routerLink="/pages">
+        <mat-icon>arrow_back</mat-icon></button
+      >Create new page
+    </mat-card-title>
+  </mat-card-title-group>
+  <mat-card-content>
+    <form [formGroup]="addForm" (submit)="save()">
+      <mat-form-field appearance="outline" class="page-title">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required />
+        <mat-error>Invalid title</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="page-slug">
+        <mat-label>Slug</mat-label>
+        <input matInput formControlName="slug" />
+        <mat-error>Invalid slug</mat-error>
+      </mat-form-field>
+      <div class="form-content">
+        <div class="page-content">
+          <mat-form-field appearance="outline" class="fill-container">
+            <mat-label>Content</mat-label>
+            <textarea matInput formControlName="content"></textarea>
+            <mat-error>Invalid content</mat-error>
+          </mat-form-field>
+        </div>
+        <markdown [data]="addForm.controls.content.value"></markdown>
+      </div>
+
+      <div class="form-actions">
+        <button
+          mat-flat-button
+          type="submit"
+          [disabled]="!addForm.valid || !addForm.dirty"
+          color="primary"
+        >
+          Create
+        </button>
+        <button
+          mat-button
+          type="button"
+          (click)="router.navigate(['/pages'])"
+          color="primary"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
