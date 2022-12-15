@@ -1,8 +1,10 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { Product, ProductPhoto } from '../../../core/api';
@@ -33,11 +35,13 @@ export class ProductPhotosInputComponent implements OnChanges, OnInit {
   });
   sortedPhotos: ProductPhoto[] = [];
 
+  @Output() dirty = new EventEmitter<void>();
+  @Output() pristine = new EventEmitter<void>();
+
   constructor(private store: Store) {}
 
   ngOnInit() {
     this.resetValues();
-    this.updateSortedPhotos();
   }
 
   async ngOnChanges(changes: SimpleChanges) {
@@ -48,6 +52,7 @@ export class ProductPhotosInputComponent implements OnChanges, OnInit {
           : null,
       );
       this.updateSortedPhotos();
+      this.pristine.emit();
     }
   }
 
@@ -86,18 +91,21 @@ export class ProductPhotosInputComponent implements OnChanges, OnInit {
     this.photosToDisplay = this.photosToDisplay.filter(
       (photo) => photo.name !== name,
     );
+    this.dirty.emit();
   }
 
   markPhotoToDelete(id: number) {
     const photosToDelete = this.photosToDelete.value;
     photosToDelete.push(id);
     this.photosToDelete.setValue(photosToDelete);
+    this.dirty.emit();
   }
 
   unmarkPhoto(id: number) {
     this.photosToDelete.setValue(
       this.photosToDelete.value.filter((photoId) => photoId !== id),
     );
+    this.dirty.emit();
   }
 
   async dropPhoto(event: CdkDragDrop<number, number, number>) {
@@ -109,9 +117,10 @@ export class ProductPhotosInputComponent implements OnChanges, OnInit {
     moveItemInArray(photosOrder, event.previousIndex, event.currentIndex);
     this.newPhotosOrder.setValue(photosOrder);
     this.updateSortedPhotos();
+    this.dirty.emit();
   }
 
-  private resetValues() {
+  resetValues() {
     this.photosToSave.setValue(new FileInput([]));
     this.photosToDelete.setValue([]);
     this.newPhotosOrder.setValue(
@@ -120,6 +129,8 @@ export class ProductPhotosInputComponent implements OnChanges, OnInit {
         : null,
     );
     this.updatePhotosToDisplay();
+    this.updateSortedPhotos();
+    this.pristine.emit();
   }
 
   public async save() {

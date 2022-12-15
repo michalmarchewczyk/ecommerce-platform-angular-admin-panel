@@ -5,7 +5,11 @@
       <input type="text" matInput required formControlName="name" />
       <mat-error>Invalid product name</mat-error>
     </mat-form-field>
-    <app-product-photos-input [product]="product"></app-product-photos-input>
+    <app-product-photos-input
+      [product]="product"
+      (dirty)="photosInputDirty = true"
+      (pristine)="photosInputDirty = false"
+    ></app-product-photos-input>
     <mat-form-field appearance="outline" class="product-description">
       <mat-label>Product description</mat-label>
       <textarea matInput formControlName="description"></textarea>
@@ -35,14 +39,19 @@
       Delete product
     </button>
     <div>
-      <button mat-button type="button" (click)="resetValues()" color="primary">
+      <button
+        mat-button
+        type="button"
+        (click)="resetValues(); photosInput.resetValues()"
+        color="primary"
+      >
         Cancel
       </button>
       <button
         mat-flat-button
         type="submit"
         [disabled]="
-          (!editForm.valid || !editForm.dirty) && (newPhotos$ | async) === 0
+          (!editForm.valid || !editForm.dirty) && photosInputDirty === false
         "
         color="primary"
       >
