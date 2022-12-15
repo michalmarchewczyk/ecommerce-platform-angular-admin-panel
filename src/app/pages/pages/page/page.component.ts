@@ -83,7 +83,7 @@ export class PageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   async resetValues() {
