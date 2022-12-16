@@ -75,7 +75,12 @@
           rating && rating === expandedRating ? 'expanded' : 'collapsed'
         "
       >
-        Rating details
+        <app-product-rating-details
+          *ngIf="rating && product"
+          [rating]="rating"
+          [productId]="product.id"
+          (cancel)="expandedRating = null"
+        ></app-product-rating-details>
       </div>
     </mat-cell>
   </ng-container>
