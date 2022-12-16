@@ -1,0 +1,4 @@
+<ng-container *ngFor="let star of getStars()">
+  <mat-icon *ngIf="star" class="star-full">star</mat-icon>
+  <mat-icon *ngIf="!star" class="star-empty">star_border</mat-icon>
+</ng-container>

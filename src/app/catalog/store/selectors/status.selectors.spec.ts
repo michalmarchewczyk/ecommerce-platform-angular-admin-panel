@@ -24,6 +24,9 @@ describe('Catalog Status Selectors', () => {
       attributeTypes: {
         list: [],
       },
+      productRatings: {
+        ratings: {},
+      },
       status: {
         loading: false,
         error: 'error',

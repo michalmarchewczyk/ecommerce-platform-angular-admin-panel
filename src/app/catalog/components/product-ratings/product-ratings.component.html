@@ -1,0 +1,113 @@
+<mat-table
+  [dataSource]="dataSource"
+  multiTemplateDataRows
+  matSort
+  matSortActive="id"
+  matSortDirection="asc"
+  (matSortChange)="expandedRating = null"
+>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</mat-header-cell>
+    <mat-cell *matCellDef="let rating">{{ rating.id }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="created">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="created"
+      >Created</mat-header-cell
+    >
+    <mat-cell *matCellDef="let rating">
+      {{ rating.created | date: 'd MMM yyyy, HH:mm' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="user">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="user"
+      >User</mat-header-cell
+    >
+    <mat-cell *matCellDef="let rating">
+      {{ rating.user.email }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="rating">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="rating">
+      Rating
+    </mat-header-cell>
+    <mat-cell *matCellDef="let rating">
+      <app-rating-stars [rating]="rating.rating"></app-rating-stars>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="comment">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="comment"
+      >Comment</mat-header-cell
+    >
+    <mat-cell *matCellDef="let rating">
+      {{ rating.comment }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="expand">
+    <mat-header-cell *matHeaderCellDef aria-label="row actions">
+      &nbsp;
+    </mat-header-cell>
+    <mat-cell *matCellDef="let rating">
+      <button
+        mat-icon-button
+        aria-label="expand row"
+        (click)="
+          expandedRating = expandedRating === rating ? null : rating;
+          $event.stopPropagation()
+        "
+      >
+        <mat-icon *ngIf="expandedRating !== rating">
+          keyboard_arrow_down
+        </mat-icon>
+        <mat-icon *ngIf="expandedRating === rating">keyboard_arrow_up</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <mat-cell *matCellDef="let rating" [attr.colspan]="6">
+      <div
+        *ngIf="expandedRating === rating"
+        class="rating-detail"
+        [@detailExpand]="
+          rating && rating === expandedRating ? 'expanded' : 'collapsed'
+        "
+      >
+        <app-product-rating-details
+          *ngIf="rating && product"
+          [rating]="rating"
+          [productId]="product.id"
+          (cancel)="expandedRating = null"
+        ></app-product-rating-details>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row
+    *matHeaderRowDef="['id', 'created', 'user', 'rating', 'comment', 'expand']"
+  ></mat-header-row>
+  <mat-row
+    *matRowDef="
+      let rating;
+      columns: ['id', 'created', 'user', 'rating', 'comment', 'expand']
+    "
+    class="rating-row"
+    [class.rating-expanded-row]="expandedRating === rating"
+    (click)="expandedRating = expandedRating === rating ? null : rating"
+  ></mat-row>
+  <mat-row
+    *matRowDef="let row; columns: ['expandedDetail']"
+    class="rating-detail-row"
+  ></mat-row>
+</mat-table>
+<span *ngIf="(ratings$ | async)?.length === 0" class="empty-placeholder">
+  No ratings found
+</span>
+
+<mat-paginator
+  showFirstLastButtons
+  hidePageSize="true"
+  pageSize="50"
+></mat-paginator>

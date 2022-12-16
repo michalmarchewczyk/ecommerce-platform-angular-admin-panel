@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import {
   AttributeTypesEffects,
   CategoriesEffects,
+  ProductRatingsEffects,
   ProductsEffects,
 } from './store/effects';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
@@ -53,6 +54,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ProductRatingsComponent } from './components/product-ratings/product-ratings.component';
+import { ProductRatingDetailsComponent } from './components/product-rating-details/product-rating-details.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CategoryProductsComponent,
     ProductCardComponent,
     CategoriesProductsAddFormComponent,
+    ProductRatingsComponent,
+    ProductRatingDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -84,6 +89,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
       ProductsEffects,
       CategoriesEffects,
       AttributeTypesEffects,
+      ProductRatingsEffects,
     ]),
     MatCardModule,
     MatTableModule,

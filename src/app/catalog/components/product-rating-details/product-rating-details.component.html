@@ -1,0 +1,30 @@
+<div>
+  <div class="rating-data">
+    <div>
+      <span>Rating: </span>
+      <app-rating-stars [rating]="rating.rating"></app-rating-stars>
+      <p>({{ rating.rating }} / 5)</p>
+    </div>
+    <div>
+      <span>By: </span>
+      <p>{{ rating.user.email }} (#{{ rating.user.id }})</p>
+    </div>
+    <div>
+      <span>Created: </span>
+      <p>{{ rating.created | date: 'd MMM yyyy, HH:mm:ss' }}</p>
+    </div>
+    <div>
+      <span>Comment: </span>
+      <p>{{ rating.comment }}</p>
+    </div>
+  </div>
+  <div class="rating-actions">
+    <button mat-button color="primary" (click)="cancel.emit()" type="button">
+      Cancel
+    </button>
+    <div class="rating-actions-spacer"></div>
+    <button mat-flat-button color="warn" (click)="delete()" type="button">
+      Delete
+    </button>
+  </div>
+</div>

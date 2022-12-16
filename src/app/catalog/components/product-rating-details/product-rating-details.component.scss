@@ -1,0 +1,40 @@
+:host {
+  padding-top: 12px;
+  padding-bottom: 18px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.rating-data {
+  display: flex;
+  flex-direction: row;
+  column-gap: 12px;
+  flex-wrap: wrap;
+  padding-left: 12px;
+  padding-right: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  div {
+    white-space: nowrap;
+    * {
+      float: left;
+      margin-right: 4px;
+    }
+  }
+  span {
+    font-weight: 500;
+  }
+  app-rating-stars {
+    margin-top: -2px;
+  }
+}
+
+.rating-actions {
+  display: flex;
+  flex-direction: row;
+  column-gap: 12px;
+  flex-wrap: wrap;
+  .rating-actions-spacer {
+    flex: 1
+  }
+}

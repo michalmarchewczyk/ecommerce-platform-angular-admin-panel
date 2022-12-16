@@ -22,6 +22,9 @@ describe('AttributeTypes Selectors', () => {
       attributeTypes: {
         list: [],
       },
+      productRatings: {
+        ratings: {},
+      },
       status: {
         loading: false,
         error: null,
