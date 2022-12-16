@@ -15,6 +15,8 @@ import { SettingTypeNamePipe } from './pipes/setting-type-name.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
+import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
     FormatCountryPipe,
     SettingTypeNamePipe,
     FormatCurrencyPipe,
+    RatingStarsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +40,7 @@ import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
     FormsModule,
+    MatIconModule,
   ],
   exports: [
     RoleNamePipe,
@@ -47,6 +51,7 @@ import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
     CountrySelectComponent,
     SettingTypeNamePipe,
     FormatCurrencyPipe,
+    RatingStarsComponent,
   ],
 })
 export class SharedModule {}

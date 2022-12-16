@@ -31,5 +31,17 @@
         ></app-product-attributes>
       </mat-card-content>
     </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">reviews</mat-icon>
+        Ratings
+      </ng-template>
+      <mat-card-content>
+        <app-product-ratings
+          *ngIf="product$ | async"
+          [product]="(product$ | async) ?? null"
+        ></app-product-ratings
+      ></mat-card-content>
+    </mat-tab>
   </mat-tab-group>
 </mat-card>

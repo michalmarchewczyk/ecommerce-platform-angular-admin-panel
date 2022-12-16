@@ -54,6 +54,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ProductRatingsComponent } from './components/product-ratings/product-ratings.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CategoryProductsComponent,
     ProductCardComponent,
     CategoriesProductsAddFormComponent,
+    ProductRatingsComponent,
   ],
   imports: [
     CommonModule,
