@@ -21,7 +21,11 @@ describe('ProductPhotoComponent', () => {
                 photos: [
                   {
                     id: 1,
-                    data: new Blob(),
+                    data: new Blob(['photo1']),
+                  },
+                  {
+                    id: 2,
+                    data: new Blob(['photo2']),
                   },
                 ],
               },
@@ -36,7 +40,10 @@ describe('ProductPhotoComponent', () => {
     component.product = {
       id: 1,
       name: 'Product 1',
-      photos: [{ id: 1, path: 'photo1' }],
+      photos: [
+        { id: 1, path: 'photo1' },
+        { id: 2, path: 'photo2' },
+      ],
     } as Product;
   });
 
@@ -45,9 +52,29 @@ describe('ProductPhotoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the photo', () => {
+  it('should display the photo', async () => {
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('img').src).toContain('blob:');
+    const blob = await fetch(
+      fixture.nativeElement.querySelector('img').src,
+    ).then((r) => r.blob());
+    expect(await blob.text()).toBe('photo1');
+  });
+
+  it('should display first photo in order', async () => {
+    component.product = {
+      id: 1,
+      name: 'Product 1',
+      photos: [
+        { id: 1, path: 'photo1' },
+        { id: 2, path: 'photo2' },
+      ],
+      photosOrder: '2,1',
+    } as Product;
+    fixture.detectChanges();
+    const blob = await fetch(
+      fixture.nativeElement.querySelector('img').src,
+    ).then((r) => r.blob());
+    expect(await blob.text()).toBe('photo2');
   });
 
   it('should display icon if no photo', () => {
