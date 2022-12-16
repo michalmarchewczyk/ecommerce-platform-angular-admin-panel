@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   AttributeTypesActions,
   CategoriesActions,
+  ProductRatingsActions,
   ProductsActions,
 } from '../actions';
 
@@ -36,6 +37,8 @@ export const reducer = createReducer(
     CategoriesActions.deleteCategory,
     CategoriesActions.addCategoryProduct,
     CategoriesActions.deleteCategoryProduct,
+    ProductRatingsActions.loadProductRatings,
+    ProductRatingsActions.deleteProductRating,
     (state): State => ({
       ...state,
       loading: true,
@@ -57,6 +60,8 @@ export const reducer = createReducer(
     CategoriesActions.deleteCategorySuccess,
     CategoriesActions.addCategoryProductSuccess,
     CategoriesActions.deleteCategoryProductSuccess,
+    ProductRatingsActions.loadProductRatingsSuccess,
+    ProductRatingsActions.deleteProductRatingSuccess,
     (state): State => ({
       ...state,
       loading: false,
@@ -79,6 +84,8 @@ export const reducer = createReducer(
     CategoriesActions.deleteCategoryFailure,
     CategoriesActions.addCategoryProductFailure,
     CategoriesActions.deleteCategoryProductFailure,
+    ProductRatingsActions.loadProductRatingsFailure,
+    ProductRatingsActions.deleteProductRatingFailure,
     (state, action): State => ({
       ...state,
       loading: false,

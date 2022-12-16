@@ -37,6 +37,9 @@ describe('Products Selectors', () => {
       attributeTypes: {
         list: [],
       },
+      productRatings: {
+        ratings: {},
+      },
       status: {
         loading: false,
         error: null,

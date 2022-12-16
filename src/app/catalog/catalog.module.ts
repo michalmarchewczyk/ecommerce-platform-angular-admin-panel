@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import {
   AttributeTypesEffects,
   CategoriesEffects,
+  ProductRatingsEffects,
   ProductsEffects,
 } from './store/effects';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
@@ -84,6 +85,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
       ProductsEffects,
       CategoriesEffects,
       AttributeTypesEffects,
+      ProductRatingsEffects,
     ]),
     MatCardModule,
     MatTableModule,
