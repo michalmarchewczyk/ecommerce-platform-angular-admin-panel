@@ -1,0 +1,39 @@
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  column-gap: 24px;
+  row-gap: 4px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-top: -8px;
+  padding: 20px 16px 0;
+
+  h2 {
+    margin-bottom: 6px;
+  }
+  .data {
+    flex: 1 0 180px;
+    overflow: hidden;
+    app-checkbox-tree {
+      margin-bottom: -8px;
+      display: block;
+    }
+  }
+  .format {
+    flex: 1 0 180px;
+    overflow: hidden;
+    padding-bottom: 36px;
+    mat-form-field {
+      width: 100%;
+    }
+    > div.buttons {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      button {
+        margin-left: 12px;
+      }
+    }
+  }
+}

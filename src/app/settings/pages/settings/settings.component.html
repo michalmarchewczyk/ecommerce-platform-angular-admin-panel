@@ -2,7 +2,7 @@
   <mat-card-title-group>
     <mat-card-title> Settings </mat-card-title>
   </mat-card-title-group>
-  <mat-tab-group dynamicHeight>
+  <mat-tab-group dynamicHeight selectedIndex="2">
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="mat-tab-icon">settings</mat-icon>
@@ -20,6 +20,20 @@
       <mat-card-content>
         <app-settings-list [builtin]="false"></app-settings-list>
       </mat-card-content>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">file_upload</mat-icon>
+        Export data
+      </ng-template>
+      <mat-card-content> <app-export></app-export></mat-card-content>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-tab-icon">file_download</mat-icon>
+        Import data
+      </ng-template>
+      <mat-card-content> <app-import></app-import> </mat-card-content>
     </mat-tab>
   </mat-tab-group>
 </mat-card>

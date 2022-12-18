@@ -1,0 +1,20 @@
+<form (submit)="submit()">
+  <div class="data">
+    <h2>Data to export</h2>
+    <app-checkbox-tree [tree]="dataToExport"></app-checkbox-tree>
+  </div>
+  <div class="format">
+    <h2>Format</h2>
+    <mat-form-field appearance="outline" class="export-format">
+      <mat-label>File format</mat-label>
+      <mat-select [(value)]="format">
+        <mat-option *ngFor="let format of formatValues" [value]="format">{{
+          format
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="buttons">
+      <button mat-flat-button color="primary" type="submit">Download</button>
+    </div>
+  </div>
+</form>
