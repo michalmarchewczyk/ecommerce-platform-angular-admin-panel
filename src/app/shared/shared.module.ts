@@ -17,6 +17,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
 import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CheckboxTreeComponent } from './components/checkbox-tree/checkbox-tree.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     SettingTypeNamePipe,
     FormatCurrencyPipe,
     RatingStarsComponent,
+    CheckboxTreeComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { MatIconModule } from '@angular/material/icon';
     NgxMatSelectSearchModule,
     FormsModule,
     MatIconModule,
+    MatCheckboxModule,
   ],
   exports: [
     RoleNamePipe,
@@ -52,6 +56,7 @@ import { MatIconModule } from '@angular/material/icon';
     SettingTypeNamePipe,
     FormatCurrencyPipe,
     RatingStarsComponent,
+    CheckboxTreeComponent,
   ],
 })
 export class SharedModule {}
