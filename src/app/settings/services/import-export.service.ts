@@ -15,10 +15,8 @@ export class ImportExportService {
 
     const response = await firstValueFrom(res);
     const blob = response.body;
-    const filename = `export-${new Date().toISOString()}.${
-      format === 'json' ? 'json' : 'tar.gz'
-    }`;
-    if (!blob) {
+    const filename = response.headers.get('Content-Disposition')?.split('=')[1];
+    if (!blob || !filename) {
       return;
     }
     const url = window.URL.createObjectURL(blob);

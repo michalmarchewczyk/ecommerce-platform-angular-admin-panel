@@ -16,7 +16,9 @@ export class CreatePageFormComponent {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    slug: new FormControl<string>(''),
+    slug: new FormControl<string>('', {
+      nonNullable: true,
+    }),
     content: new FormControl('', {
       nonNullable: true,
     }),
@@ -28,7 +30,6 @@ export class CreatePageFormComponent {
       PagesActions.createPage({
         data: {
           ...this.addForm.getRawValue(),
-          slug: this.addForm.getRawValue().slug || undefined,
         },
       }),
     );
