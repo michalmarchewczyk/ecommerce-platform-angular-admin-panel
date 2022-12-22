@@ -51,4 +51,11 @@ describe('ImportExportService', () => {
     await res;
     expect(document.createElement).not.toHaveBeenCalled();
   });
+
+  it('should import a file', async () => {
+    const file = new File(['test'], 'test.json', { type: 'application/json' });
+    const res = service.import(file, false, false);
+    httpTestingController.expectOne({ method: 'POST' }).flush({});
+    expect(await res).toEqual({});
+  });
 });

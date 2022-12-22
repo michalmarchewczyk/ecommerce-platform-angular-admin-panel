@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ExportDto, ImportExportApiService } from '../../core/api';
+import { firstValueFrom } from 'rxjs';
 import DataEnum = ExportDto.DataEnum;
 import FormatEnum = ExportDto.FormatEnum;
-import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +26,14 @@ export class ImportExportService {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+  }
+
+  async import(file: File, clear: boolean, noImport: boolean) {
+    const res = this.importExportApi._import(
+      file,
+      clear.toString(),
+      noImport.toString(),
+    );
+    return await firstValueFrom(res);
   }
 }

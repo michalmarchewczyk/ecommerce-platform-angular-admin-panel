@@ -23,6 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ExportComponent } from './components/export/export.component';
 import { ImportComponent } from './components/import/import.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MaterialFileInputModule,
+    MatProgressBarModule,
   ],
 })
 export class SettingsModule {}
