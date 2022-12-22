@@ -1,0 +1,20 @@
+<ul>
+  <li *ngFor="let item of tree">
+    <mat-checkbox
+      [disabled]="!!item.disabled"
+      [(ngModel)]="item.selected"
+      (ngModelChange)="update(item)"
+      [indeterminate]="indeterminate(item)"
+      [name]="item.name"
+      color="primary"
+    >
+      {{ item.name }}
+    </mat-checkbox>
+    <app-checkbox-tree
+      *ngIf="item.children"
+      [tree]="item.children"
+      [child]="true"
+      (updated)="update($event)"
+    ></app-checkbox-tree>
+  </li>
+</ul>

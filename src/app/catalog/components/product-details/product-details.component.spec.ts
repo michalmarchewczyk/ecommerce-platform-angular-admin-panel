@@ -187,7 +187,7 @@ describe('ProductDetailsComponent', () => {
     );
   });
 
-  it('should dispatch delete category action', async () => {
+  it('should dispatch delete product action', async () => {
     const button = await loader.getHarness(
       MatButtonHarness.with({ text: 'Delete product' }),
     );

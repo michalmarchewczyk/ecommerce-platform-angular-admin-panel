@@ -1,0 +1,31 @@
+<form (submit)="submit()">
+  <div class="file">
+    <h2>Import data</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Select file to import</mat-label>
+      <ngx-mat-file-input
+        accept="application/json,.tar.gz"
+        [(ngModel)]="file"
+        name="file"
+      ></ngx-mat-file-input>
+      <mat-icon matSuffix>download</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="options">
+    <h2>Options</h2>
+    <mat-slide-toggle [(ngModel)]="clear" name="clear" color="primary"
+      >Clear all data before importing</mat-slide-toggle
+    >
+    <mat-slide-toggle
+      [(ngModel)]="noImport"
+      name="noImport"
+      color="primary"
+      [disabled]="!clear"
+      >Don't import data (only clear)</mat-slide-toggle
+    >
+    <div class="buttons">
+      <button mat-flat-button color="primary" type="submit">Import</button>
+    </div>
+  </div>
+</form>
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>

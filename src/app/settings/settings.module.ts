@@ -20,12 +20,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from '../shared/shared.module';
 import { SettingAddFormComponent } from './components/settting-add-form/setting-add-form.component';
 import { MatButtonModule } from '@angular/material/button';
+import { ExportComponent } from './components/export/export.component';
+import { ImportComponent } from './components/import/import.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
     SettingsComponent,
     SettingsListComponent,
     SettingAddFormComponent,
+    ExportComponent,
+    ImportComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +54,9 @@ import { MatButtonModule } from '@angular/material/button';
     SharedModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
+    MaterialFileInputModule,
+    MatProgressBarModule,
   ],
 })
 export class SettingsModule {}

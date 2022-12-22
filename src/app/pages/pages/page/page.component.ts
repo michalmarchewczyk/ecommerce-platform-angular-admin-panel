@@ -141,7 +141,7 @@ export class PageComponent implements OnInit, OnDestroy {
         pageId: page.id,
         data: {
           title: this.editForm.value.title,
-          slug: this.editForm.value.slug || undefined,
+          slug: this.editForm.value.slug,
           content: this.editForm.value.content,
           groups: this.editForm.getRawValue().groups.map((g) => ({ name: g })),
         },
