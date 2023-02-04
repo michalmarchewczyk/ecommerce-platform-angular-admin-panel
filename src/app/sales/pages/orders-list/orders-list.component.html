@@ -12,7 +12,9 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header="id"
           >ID</mat-header-cell
         >
-        <mat-cell *matCellDef="let order">{{ order.id }}</mat-cell>
+        <mat-cell *matCellDef="let order"
+          >{{ order.id }}<a [routerLink]="['/sales/orders', order.id]"></a
+        ></mat-cell>
       </ng-container>
       <ng-container matColumnDef="created">
         <mat-header-cell *matHeaderCellDef mat-sort-header="created">
@@ -92,7 +94,6 @@
         ]"
       ></mat-header-row>
       <mat-row
-        [routerLink]="['/sales/orders', order.id]"
         *matRowDef="
           let order;
           columns: [
@@ -118,12 +119,7 @@
       showFirstLastButtons
     ></mat-paginator>
   </mat-card-content>
-  <button
-    class="add-button"
-    mat-fab
-    color="primary"
-    routerLink="/sales/orders/new"
-  >
+  <a class="add-button" mat-fab color="primary" routerLink="/sales/orders/new">
     <mat-icon>add</mat-icon>
-  </button>
+  </a>
 </mat-card>
