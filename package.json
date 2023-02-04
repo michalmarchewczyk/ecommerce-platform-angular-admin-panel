@@ -1,6 +1,6 @@
 {
   "name": "ecommerce-platform-angular-admin-panel",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "scripts": {
     "openapi-gen": "openapi-generator-cli generate",
     "postinstall": "npm run openapi-gen",
