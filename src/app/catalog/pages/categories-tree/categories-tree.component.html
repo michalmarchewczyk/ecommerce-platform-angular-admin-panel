@@ -15,9 +15,9 @@
         *matTreeNodeDef="let node"
         matTreeNodeToggle
         class="mat-body-strong"
-        [routerLink]="['/catalog/categories', node.id]"
       >
         {{ node.name }}
+        <a [routerLink]="['/catalog/categories', node.id]"></a>
         <button
           mat-icon-button
           class="add-button"
@@ -44,10 +44,7 @@
       </mat-tree-node>
 
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-        <div
-          class="mat-tree-node mat-body-strong"
-          [routerLink]="['/catalog/categories', node.id]"
-        >
+        <div class="mat-tree-node mat-body-strong">
           <button
             mat-icon-button
             matTreeNodeToggle
@@ -60,6 +57,7 @@
             </mat-icon>
           </button>
           {{ node.name }}
+          <a [routerLink]="['/catalog/categories', node.id]"></a>
           <button
             mat-icon-button
             class="add-button"
