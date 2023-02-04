@@ -14,8 +14,22 @@ mat-card {
 
   mat-card-title {
     font-size: 20px;
-    overflow-x: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  mat-card-actions {
+    button {
+      z-index: 2;
+    }
+  }
+
+  a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }
