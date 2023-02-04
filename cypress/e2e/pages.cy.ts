@@ -6,7 +6,7 @@ describe('Pages', () => {
   });
 
   it('adding new page', () => {
-    cy.get('button').contains('add').click();
+    cy.get('a').contains('add').click();
 
     cy.get('.page-title input').type('Test Cypress Page');
     cy.get('.page-slug input').type('test-cypress-page');

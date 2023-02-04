@@ -6,7 +6,7 @@ describe('Products', () => {
   });
 
   it('adding new product', () => {
-    cy.get('button').contains('add').click();
+    cy.get('a').contains('add').click();
 
     cy.get('.product-name input').type('Test Cypress Product');
     cy.get('.product-price input').type('100');
