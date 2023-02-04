@@ -67,7 +67,7 @@ describe('Categories', () => {
 
   it('editing category products', () => {
     cy.visit('/catalog/products');
-    cy.get('button').contains('add').click();
+    cy.get('a').contains('add').click();
     cy.get('.product-name input').type('Test Cypress Product');
     cy.get('.product-price input').type('100');
     cy.get('.product-stock input').type('10');
@@ -106,27 +106,35 @@ describe('Categories', () => {
   });
 
   it('deleting categories', () => {
-    cy.contains('.mat-tree-node', 'Test Cypress Category Nested Nested').click({
-      force: true,
-    });
+    cy.contains('.mat-tree-node', 'Test Cypress Category Nested Nested')
+      .find('a')
+      .click({
+        force: true,
+      });
     cy.get('button').contains('Delete category').click();
     cy.get('.cdk-dialog-container button').contains('Delete').click();
 
-    cy.contains('.mat-tree-node', 'Test Cypress Category Nested 2').click({
-      force: true,
-    });
+    cy.contains('.mat-tree-node', 'Test Cypress Category Nested 2')
+      .find('a')
+      .click({
+        force: true,
+      });
     cy.get('button').contains('Delete category').click();
     cy.get('.cdk-dialog-container button').contains('Delete').click();
 
-    cy.contains('.mat-tree-node', 'Test Cypress Category Nested').click({
-      force: true,
-    });
+    cy.contains('.mat-tree-node', 'Test Cypress Category Nested')
+      .find('a')
+      .click({
+        force: true,
+      });
     cy.get('button').contains('Delete category').click();
     cy.get('.cdk-dialog-container button').contains('Delete').click();
 
-    cy.contains('.mat-tree-node', 'Test Cypress Category Updated').click({
-      force: true,
-    });
+    cy.contains('.mat-tree-node', 'Test Cypress Category Updated')
+      .find('a')
+      .click({
+        force: true,
+      });
     cy.get('button').contains('Delete category').click();
     cy.get('.cdk-dialog-container button').contains('Delete').click();
 

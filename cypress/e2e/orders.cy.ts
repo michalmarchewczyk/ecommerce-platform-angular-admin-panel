@@ -29,7 +29,7 @@ describe('Orders', () => {
     cy.visit('/sales/orders');
     cy.contains('Orders');
 
-    cy.get('button').contains('add').click();
+    cy.get('a').contains('add').click();
     cy.get('body').should('contain.text', 'Create new order');
 
     cy.get('app-create-order-form input[formControlName="contactEmail"]').type(
@@ -84,7 +84,11 @@ describe('Orders', () => {
   });
 
   it('editing order', () => {
-    cy.get('app-orders-list').contains('Test Test').click();
+    cy.get('app-orders-list')
+      .contains('Test Test')
+      .parent()
+      .find('a')
+      .click({ force: true });
     cy.get('.mat-tab-label').contains('Edit').click();
 
     cy.get('mat-select[formControlName="status"] .mat-select-trigger').click();
@@ -109,7 +113,11 @@ describe('Orders', () => {
   });
 
   it('creating return for order', () => {
-    cy.get('app-orders-list').contains('Test Test').click();
+    cy.get('app-orders-list')
+      .contains('Test Test')
+      .parent()
+      .find('a')
+      .click({ force: true });
 
     cy.get('button').contains('Add return').click();
 
@@ -117,7 +125,7 @@ describe('Orders', () => {
     cy.get('.cdk-dialog-container button').contains('Create').click();
 
     cy.visit('/sales/orders');
-    cy.get('app-orders-list').contains('Test Test').click();
+    cy.get('app-orders-list').contains('Test Test').parent().find('a').click();
 
     cy.get('app-order-details').should('not.contain.text', 'Add return');
 

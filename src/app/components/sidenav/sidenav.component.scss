@@ -28,6 +28,7 @@ mat-sidenav {
 mat-sidenav-content {
   padding: 24px;
   height: auto;
+  overflow-x: hidden;
   overflow-y: scroll;
   flex: 1;
   background: map-get(mat.$blue-gray-palette, 50);

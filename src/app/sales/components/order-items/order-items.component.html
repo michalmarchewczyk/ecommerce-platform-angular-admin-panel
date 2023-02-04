@@ -7,7 +7,10 @@
 >
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</mat-header-cell>
-    <mat-cell *matCellDef="let item">{{ item.id }}</mat-cell>
+    <mat-cell *matCellDef="let item"
+      >{{ item.id
+      }}<a [routerLink]="['/catalog/products', item.product?.id ?? '']"></a
+    ></mat-cell>
     <mat-footer-cell *matFooterCellDef></mat-footer-cell>
   </ng-container>
   <ng-container matColumnDef="name">
@@ -67,7 +70,6 @@
     *matHeaderRowDef="['id', 'name', 'price', 'quantity', 'total']"
   ></mat-header-row>
   <mat-row
-    [routerLink]="['/catalog/products', item.product?.id ?? '']"
     *matRowDef="let item; columns: ['id', 'name', 'price', 'quantity', 'total']"
     class="item-row"
   ></mat-row>

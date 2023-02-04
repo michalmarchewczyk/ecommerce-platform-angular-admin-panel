@@ -62,6 +62,17 @@ div[role=group] .mat-nested-tree-node > .mat-tree-node {
 .mat-tree-node {
   margin-left: 24px;
   padding-left: 16px;
+  position: relative;
+  button:first-child {
+    z-index: 2;
+  }
+  a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .mat-nested-tree-node .mat-tree-node {

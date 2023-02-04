@@ -12,7 +12,10 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header="id"
           >ID</mat-header-cell
         >
-        <mat-cell *matCellDef="let product">{{ product.id }}</mat-cell>
+        <mat-cell *matCellDef="let product"
+          >{{ product.id }}
+          <a [routerLink]="['/catalog/products', product.id]"></a
+        ></mat-cell>
       </ng-container>
       <ng-container matColumnDef="photo">
         <mat-header-cell *matHeaderCellDef mat-sort-header="photo"
@@ -75,7 +78,6 @@
         ]"
       ></mat-header-row>
       <mat-row
-        [routerLink]="['/catalog/products', product.id]"
         *matRowDef="
           let product;
           columns: [
@@ -100,7 +102,7 @@
       pageSize="50"
     ></mat-paginator>
   </mat-card-content>
-  <button
+  <a
     class="add-button"
     mat-fab
     color="primary"
@@ -108,5 +110,5 @@
     [appAuthRole]="['admin', 'manager']"
   >
     <mat-icon>add</mat-icon>
-  </button>
+  </a>
 </mat-card>

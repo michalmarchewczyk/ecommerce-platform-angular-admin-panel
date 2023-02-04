@@ -1,4 +1,4 @@
-<mat-card *ngIf="product" [routerLink]="['/catalog/products', product.id]">
+<mat-card *ngIf="product">
   <app-product-photo mat-card-image [product]="product"></app-product-photo>
   <mat-card-title>
     {{ product.name }}
@@ -12,4 +12,5 @@
       Delete
     </button>
   </mat-card-actions>
+  <a [routerLink]="['/catalog/products', product.id]"></a>
 </mat-card>
