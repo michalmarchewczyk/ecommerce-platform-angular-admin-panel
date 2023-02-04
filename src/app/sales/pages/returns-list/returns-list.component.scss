@@ -29,6 +29,11 @@ mat-row, mat-header-row {
   padding-left: 16px;
   padding-right: 16px;
 }
+mat-header-row {
+  position: sticky;
+  top: -24px;
+  z-index: 1;
+}
 
 .mat-column-itemsCount, .mat-column-itemsTotal {
   text-align: right;
@@ -93,6 +98,8 @@ mat-cell, mat-header-cell {
 }
 
 mat-paginator {
+  position: sticky;
+  bottom: -24px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
