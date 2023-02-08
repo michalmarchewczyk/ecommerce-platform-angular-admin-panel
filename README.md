@@ -1,6 +1,6 @@
 # E-Commerce Platform - Angular Admin Panel
 
-Admin Panel for the E-commerce Platform project.
+Admin Panel for the [E-commerce Platform project](https://github.com/michalmarchewczyk/ecommerce-platform)
 
 [![GitHub](https://img.shields.io/github/license/michalmarchewczyk/ecommerce-platform-angular-admin-panel)](LICENSE)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/michalmarchewczyk/ecommerce-platform-angular-admin-panel/main.yml?branch=master&label=CI)](https://github.com/michalmarchewczyk/ecommerce-platform-angular-admin-panel/actions/workflows/main.yml)
